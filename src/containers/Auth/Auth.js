@@ -102,8 +102,7 @@ class Auth extends Component {
         
 
         axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCTi8MO-Fh2rOuDjsDOnpvUQpnVKh-vy_0', authData).then(response =>{
-            console.log("Pidiendo authToken")
-            console.log(response);
+    
             this.setState({idToken: response.data.idToken})
             localStorage.setItem('token', response.data.idToken);
             this.props.history.push('/');
@@ -119,7 +118,6 @@ class Auth extends Component {
 
     componentWillMount = ()=>{
         const token = localStorage.getItem('token');
-        console.log(token);
         /*if(token){
             this.setState({idToken: token});
         }*/

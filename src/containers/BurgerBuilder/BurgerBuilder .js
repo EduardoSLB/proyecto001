@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import Aux from '../../hoc/Auxiliar'
-import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
-import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import ReactTable from 'react-table';
 import axios from '../../axios-orders';
@@ -60,7 +58,6 @@ class BurgerBuilder extends Component {
         
     const datosComuneros=[];
         axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth='+this.state.idToken).then((res)=>{
-            console.log("Llamando Comuneros");
             for(let key in res.data){
                 let objeto = {
                     ...res.data[key],
@@ -69,7 +66,6 @@ class BurgerBuilder extends Component {
                 datosComuneros.push(objeto);
                 
             }
-            console.log(datosComuneros);
             this.setState({datodos: datosComuneros, variable: !this.state.variable});
         });
     }
@@ -140,7 +136,6 @@ class BurgerBuilder extends Component {
           state.sorted,
           state.filtered
         ).then(res => {
-          console.log(res);
           // Now just get the rows of data to your React Table (and update anything else like total pages or loading)
           this.setState({
             data: res.rows,
