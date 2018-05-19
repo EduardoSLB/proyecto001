@@ -4,7 +4,7 @@ import Aux from '../../hoc/Auxiliar'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import ReactTable from 'react-table';
 import axios from '../../axios-orders';
-
+import { withRouter } from 'react-router-dom';
 //import classes from '../../assets/react-table.css';
 
 //import noraxios from 'axios';
@@ -71,7 +71,7 @@ class BurgerBuilder extends Component {
                     datosComuneros.push(objeto);
                     
                 }
-                this.setState({datodos: datosComuneros, variable: !this.state.variable});
+                this.setState({datodos: datosComuneros, variable: !this.state.variable, loading: false});
                 
               }else{
                 this.props.history.push('/auth');
@@ -180,6 +180,27 @@ class BurgerBuilder extends Component {
         this.props.history.push('/auth');
     }
 
+    registrarUsuario = (id) => {
+      
+        const queryParams = [];/*
+        for(let i in this.state.ingredients){
+            queryParams.push(encodeURIComponent(i) + '='+encodeURIComponent(this.state.ingredients[i]));
+        }
+        queryParams.push('price='+this.state.totalPrice);
+        const queryString = queryParams.join('&');
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString  
+        }); */
+       queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("nuevo")); 
+       queryParams.push("hola=fdadf"); 
+       const queryString = queryParams.join('&');
+      this.props.history.push({
+        pathname: '/modelo', 
+        search: '?' + queryString
+      });
+    }
+
     render(){
 
         const { data, pages, loading, variable} = this.state;
@@ -251,6 +272,102 @@ class BurgerBuilder extends Component {
                 Header: "Dirección",
                 accessor: "DirUsu"
               }
+
+              		
+
+              ,
+              {
+                Header: "Fecha Ingreso",
+                accessor: "FecIng"
+              },
+              {
+                Header: "tipo",
+                accessor: "tipo"
+              },
+              {
+                Header: "PadUsu",
+                accessor: "PadUsu"
+              },
+              {
+                Header: "AsaSes",
+                accessor: "AsaSes"
+              },
+              {							
+                Header: "NomHer",
+                accessor: "NomHer"
+              },
+              {
+                Header: "FecRei",
+                accessor: "FecRei"
+              },
+              {
+                Header: "DesDoc",
+                accessor: "DesDoc"
+              },
+              {
+                Header: "NumDoc",
+                accessor: "NumDoc"
+              },
+              {
+                Header: "Activo",
+                accessor: "Activo"
+              },
+              {
+                Header: "Activo04",
+                accessor: "Activo04"
+              },
+              {
+                Header: "FecRei04",
+                accessor: "FecRei04"
+              },
+              {											
+                Header: "Activo06",
+                accessor: "Activo06"
+              },
+              {
+                Header: "FecRei06",
+                accessor: "FecRei06"
+              },
+              {
+                Header: "Activo08",
+                accessor: "Activo08"
+              },
+              {
+                Header: "FecRei08",
+                accessor: "FecRei08"
+              },
+              {
+                Header: "Activo10",
+                accessor: "Activo10"
+              },
+              {
+                Header: "FecRei10",
+                accessor: "FecRei10"
+              },
+              {
+                Header: "Activo12",
+                accessor: "Activo12"
+              },
+              {
+                Header: "FecRei12",
+                accessor: "FecRei12"
+              },
+              {
+                Header: "Activo14",
+                accessor: "Activo14"
+              },
+              {
+                Header: "FecRei14",
+                accessor: "FecRei14"
+              },
+              {
+                Header: "Activo16",
+                accessor: "Activo16"
+              },
+              {
+                Header: "FecRei16",
+                accessor: "FecRei16"
+              }
             ]}
             manual // Forces table not to paginate or sort automatically, so we can handle it server-side
             data={data}
@@ -263,7 +380,7 @@ class BurgerBuilder extends Component {
               return (
                 <div style={{ padding: "20px" }}>
                   
-                  <button onClick={()=>{this.alertar("Falta implementar")}}>Modificar</button>
+                  <button onClick={()=>{this.alertar(row.original.id)}}>Modificar</button>
                   <button onClick={()=>{this.alertar("Falta implementar")}}>Imprimir Certificado</button>
                   <button onClick={()=>{this.alertar("Falta implementar")}}>Imprimir carnet</button>
                   </div>
@@ -280,11 +397,12 @@ class BurgerBuilder extends Component {
             className="-striped -highlight"
             />
             <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={this.logout}>Cerrar Sesión</button>
-            
+            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarUsuario("nuevo")}}>Registar usuario</button>
             </Aux>
         );
 
     }
 }
 
-export default withErrorHandler(BurgerBuilder, axios);
+export default withRouter(withErrorHandler(BurgerBuilder, axios));
+
