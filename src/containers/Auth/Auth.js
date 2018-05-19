@@ -42,10 +42,12 @@ class Auth extends Component {
 
     componentDidMount = () =>{
         let token = localStorage.getItem('token');
-        if(token){
+        let expirationDate = new Date(localStorage.getItem('expirationDate'));
+
+        if(token && expirationDate  > new Date().getTime()){
             this.props.history.push('/');
         }
-    }
+            }
 
     checkValidity ( value, rules ) {
         let isValid = true;
@@ -102,9 +104,14 @@ class Auth extends Component {
         
 
         axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCTi8MO-Fh2rOuDjsDOnpvUQpnVKh-vy_0', authData).then(response =>{
-    
+            
             this.setState({idToken: response.data.idToken})
             localStorage.setItem('token', response.data.idToken);
+            let expire = new Date(new Date().getTime() + (response.data.expiresIn*1000));
+            
+            
+            localStorage.setItem('expirationDate', expire);
+            
             this.props.history.push('/');
         });
         //this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup );
@@ -118,9 +125,9 @@ class Auth extends Component {
 
     componentWillMount = ()=>{
         const token = localStorage.getItem('token');
-        /*if(token){
+        if(token){
             this.setState({idToken: token});
-        }*/
+        }
     }
 
     render () {

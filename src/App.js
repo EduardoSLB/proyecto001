@@ -24,7 +24,9 @@ class App extends Component {
 
   componentDidMount = () =>{
     let tokenleido = localStorage.getItem('token');
-    this.setState({token: tokenleido});
+    if(tokenleido){
+      this.setState({token: tokenleido});
+    }
   }
   
   

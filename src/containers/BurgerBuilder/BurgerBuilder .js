@@ -53,21 +53,35 @@ class BurgerBuilder extends Component {
     componentDidMount() {
         
         let tokenleido = localStorage.getItem('token');
+       
+        let expirationDate = new Date(localStorage.getItem('expirationDate'));
         this.setState({idToken: tokenleido});
-        if(tokenleido){
-        
-    const datosComuneros=[];
-        axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth='+this.state.idToken).then((res)=>{
-            for(let key in res.data){
-                let objeto = {
-                    ...res.data[key],
-                    id: key
-                }
-                datosComuneros.push(objeto);
+       
+        if(tokenleido && (new Date()<expirationDate)){
+         
+          const datosComuneros=[];
+            axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth='+this.state.idToken).then((res)=>{
+              if(res){   
                 
-            }
-            this.setState({datodos: datosComuneros, variable: !this.state.variable});
-        });
+            for(let key in res.data){
+                    let objeto = {
+                        ...res.data[key],
+                        id: key
+                    }
+                    datosComuneros.push(objeto);
+                    
+                }
+                this.setState({datodos: datosComuneros, variable: !this.state.variable});
+                
+              }else{
+                this.props.history.push('/auth');
+              }
+
+            });
+    } else{
+      localStorage.removeItem('token');
+      localStorage.removeItem('expirationDate');
+      this.props.history.push('/auth');
     }
         
     }
@@ -161,6 +175,7 @@ class BurgerBuilder extends Component {
 
     logout = ()=>{
         localStorage.removeItem('token');
+        localStorage.removeItem('expirationDate');
         this.setState({idToken: null});
         this.props.history.push('/auth');
     }
