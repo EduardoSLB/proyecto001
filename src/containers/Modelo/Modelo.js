@@ -191,7 +191,8 @@ class Modelo extends Component {
                         
                         alert("Usuario registrado exitosamente");
                         this.setState({persona: this.state.limpio});
-                        //this.context.router.history.goBack();
+
+                        this.context.router.history.goBack();
                     });
                 }
                 else if(this.state.tipo==="modificar"){
@@ -593,7 +594,7 @@ class Modelo extends Component {
                 
                 <Button 
                     clicked={this.switchAuthModeHandler}
-                    btnType="Danger">Cancelar</Button>
+                    btnType="Danger">Volver a Inicio / Cancelar</Button>
                     {botonEliminar}
             </div>
         );
