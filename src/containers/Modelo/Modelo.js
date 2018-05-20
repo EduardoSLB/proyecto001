@@ -13,9 +13,9 @@ class Modelo extends Component {
     state = {
         tipo: null,
         persona: {
-            NomUsu: 'eduardo',
-            ApeUsu: 'levano', 
-            CodUsu: '1713',
+            NomUsu: '',
+            ApeUsu: '', 
+            CodUsu: '',
             NomAne: 'COCHAPATA',
             DesCiv: 'Soltero(a)',
             Sexo: 'M',
@@ -51,7 +51,47 @@ class Modelo extends Component {
             FecRei16: '',
         },
         token: null,
-        verificacion: false
+        verificacion: false, 
+        idCom: null, 
+        limpio: {
+            NomUsu: '',
+            ApeUsu: '', 
+            CodUsu: '',
+            NomAne: 'COCHAPATA',
+            DesCiv: 'Soltero(a)',
+            Sexo: 'M',
+            FecNac:'',
+            DesOcu: 'Agricultor(a)',
+            GraIns: '',
+            NomDis: 'Palca',
+            NomPro: 'Tarma',
+            NomDep: 'Junín',
+            DirUsu: '',
+            FecIng: '',
+            tipo:'Antiguo', 
+            PadUsu: '',
+            AsaSes: 'Asamblea',
+            NomHer: '',
+            FecRei: '',
+            DesDoc: 'D.N.I', 
+            NumDoc:'', 
+            Activo: 'Si',
+            Activo04: 'Si',
+            FecRei04: '',
+            Activo06: 'Si',
+            FecRei06: '',
+            Activo08: 'Si',
+            FecRei08: '',
+            Activo10: 'Si',
+            FecRei10: '',
+            Activo12: 'Si',
+            FecRei12: '',
+            Activo14: 'Si',
+            FecRei14: '',
+            Activo16: 'Si',
+            FecRei16: '',
+        }, 
+        mostrarEliminar: true
     }
 
 
@@ -63,24 +103,44 @@ class Modelo extends Component {
   
 
         if(!(token && expirationDate  > new Date())){
-            console.log("ahora");
+  
             this.props.history.push('/');
         }else{
             const query = new URLSearchParams(this.props.location.search);
             let varHayTipo = null;
+            let idCom = null;
             for (let param of query.entries()){
             if(param[0]==="tipo")
             {
                 varHayTipo = param[1];
                 this.setState({tipo: param[1]})
-                
+
             }
+            if(param[0]==="id"){
+                idCom = param[1];
+            }
+            
         }
-        if(varHayTipo){
-                this.setState({tipo: varHayTipo});          
+        
+        if(varHayTipo==="nuevo"){
+                this.setState({tipo: varHayTipo, mostrarEliminar: false});
+
+        }else if(varHayTipo==="modificar"&&idCom){
+
+            axios.get('https://proyecto-tarma.firebaseio.com/comuneros/'+idCom+'/.json?auth='+ token).then((response)=>{
+               
+                this.setState({persona: response.data});
+                /*const obje = {"tipo": "antiguoo"}
+                axios.patch('https://proyecto-tarma.firebaseio.com/comuneros/-LCo9OSE5nDH-552kbsK/.json?auth='+ token, obje).then((response)=>{
+                    console.log(response);
+                });*/
+
+            });
+        
         }
         else{
             this.props.history.push('/');
+            
         }
         }
         }
@@ -99,9 +159,13 @@ class Modelo extends Component {
                     nuevo[key] = evt.target.value;
                 }
             }
+                    
+            this.setState({persona: nuevo});
+            if(this.state.persona.NomUsu==="DesarrolladoPo"){
+                alert("Proyecto desarrollado por \"Lévano Bezada, Eduardo Sebastian 7263479692\" Lima - Perú");
 
+            }
 
-            this.setState({persona: nuevo});console.log(nuevo);
         }
 
     submitHandler = ( event ) => {
@@ -115,19 +179,44 @@ class Modelo extends Component {
         if(this.state.verificacion){
 
             if(!(token && expirationDate  > new Date())){
-                console.log("ahora");
+           
                 this.props.history.push('/');
             }else{
                 
                 if(this.state.tipo==="nuevo"){
     
                 const obje = this.state.persona;
-                    axios.post('https://proyecto-tarma.firebaseio.com/pruebas.json?auth='+ token, obje).then((response)=>{
+             
+                    axios.post('https://proyecto-tarma.firebaseio.com/comuneros.json?auth='+ token, obje).then((response)=>{
                         
-                        alert("Usuario de prueba registrado exitosamente");
-                        this.context.router.history.goBack();
+                        alert("Usuario registrado exitosamente");
+                        this.setState({persona: this.state.limpio});
+                        //this.context.router.history.goBack();
                     });
+                }
+                else if(this.state.tipo==="modificar"){
+
+                    const query = new URLSearchParams(this.props.location.search);
+
+            let idCom = null;
+            for (let param of query.entries()){
+            if(param[0]==="tipo")
+            {
             }
+            if(param[0]==="id"){
+                idCom = param[1];
+            }
+            
+        }
+
+                    const obje = this.state.persona;
+                    axios.patch('https://proyecto-tarma.firebaseio.com/comuneros/'+idCom+'/.json?auth='+ token, obje).then((response)=>{
+                        
+                        alert("Usuario modificado exitosamente");
+                        this.setState({verificacion: false});
+                        
+                    });
+                }
             }
 
         }
@@ -142,9 +231,52 @@ class Modelo extends Component {
         this.context.router.history.goBack();
     }
 
-    componentWillMount = ()=>{
+   eliminar = ()=>{
+    
         
+    let token = localStorage.getItem('token');
+    this.setState({token: token});
+    let expirationDate = new Date(localStorage.getItem('expirationDate'));
+    if(this.state.verificacion){
+
+        if(!(token && expirationDate  > new Date())){
+         
+            this.props.history.push('/');
+        }else{
+            
+            if(this.state.tipo==="nuevo"){
+
+            alert("No hay a quien eliminar");
+            }
+            else if(this.state.tipo==="modificar"){
+
+                const query = new URLSearchParams(this.props.location.search);
+
+        let idCom = null;
+        for (let param of query.entries()){
+        if(param[0]==="tipo")
+        {
+        }
+        if(param[0]==="id"){
+            idCom = param[1];
+        }
+        
+        }
+
+                const obje = this.state.persona;
+                axios.delete('https://proyecto-tarma.firebaseio.com/comuneros/'+idCom+'/.json?auth='+ token, obje).then((response)=>{
+                    
+                    alert("Usuario eliminado correctamente");
+                    this.context.router.history.goBack();
+                }).catch(err=>{alert("No se pudo eliminar al usuario. Puede que haya sido eliminado previamente")});
+            }
+        }
+
     }
+        else{
+            alert("Marque la verificación de seguridad primero");
+        }
+   }
 
     static contextTypes = {
         router: () => true
@@ -158,9 +290,15 @@ class Modelo extends Component {
                 config: this.state.controls[key]
             } );
         }
-
+        let botonEliminar = null;
+        if(this.state.mostrarEliminar){
+            botonEliminar = <Button 
+            clicked={this.eliminar}
+            btnType="Danger">Eliminar Usuario</Button>;
+        }
 
         return (
+            
             <div className={classes.Modelo}>
                 
                 
@@ -168,17 +306,17 @@ class Modelo extends Component {
                     <fieldset>
                     <div className="pure-control-group">
                         <label htmlFor="NomUsu">Código</label>
-                        <input value={this.state.persona.CodUsu} onChange={evt=>{this.cambiar(evt,"CodUsu")}} type="text" placeholder="Código"/>
+                        <input value={this.state.persona.CodUsu} onChange={evt=>{this.cambiar(evt,"CodUsu")}} type="text" placeholder="17**"/>
                         
                     </div>
 
                     <div className="pure-control-group">
-                        <label >Apellido</label>
+                        <label >Apellidos</label>
                         <input value={this.state.persona.ApeUsu} onChange={evt=>{this.cambiar(evt,"ApeUsu")}} type="text" placeholder="Apellido"/>
                         
                     </div>
                     <div className="pure-control-group">
-                        <label htmlFor="name">Nombre</label>
+                        <label htmlFor="name">Nombres</label>
                         <input value={this.state.persona.NomUsu} onChange={evt=>{this.cambiar(evt,"NomUsu")}} type="text" placeholder="Nombre"/>
                         
                     </div>
@@ -245,7 +383,7 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >Fecha Nacimiento</label>
-                        <input value={this.state.persona.FecNac} onChange={evt=>{this.cambiar(evt,"FecNac")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.FecNac} onChange={evt=>{this.cambiar(evt,"FecNac")}} type="text" placeholder="01/01/2018"/>
                         
                     </div>
                     <div className="pure-control-group">
@@ -266,7 +404,7 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >Grado Instrucción</label>
-                        <input value={this.state.persona.GraIns} onChange={evt=>{this.cambiar(evt,"GraIns")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.GraIns} onChange={evt=>{this.cambiar(evt,"GraIns")}} type="text" placeholder="Grado Instrucción"/>
                     </div>
                     <div className="pure-control-group">
                         <label htmlFor="state">Distrito</label>
@@ -306,11 +444,11 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >Dirección</label>
-                        <input value={this.state.persona.DirUsu} onChange={evt=>{this.cambiar(evt,"DirUsu")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.DirUsu} onChange={evt=>{this.cambiar(evt,"DirUsu")}} type="text" placeholder="Dirección"/>
                     </div>
                     <div className="pure-control-group">
                         <label >Fecha Ingreso</label>
-                        <input value={this.state.persona.FecIng} onChange={evt=>{this.cambiar(evt,"FecIng")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.FecIng} onChange={evt=>{this.cambiar(evt,"FecIng")}} type="text" placeholder="Fecha Ingreso"/>
                     </div>
                     <div className="pure-control-group">
                         <label htmlFor="state">tipo</label>
@@ -321,7 +459,7 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >PadUsu</label>
-                        <input value={this.state.persona.PadUsu} onChange={evt=>{this.cambiar(evt,"PadUsu")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.PadUsu} onChange={evt=>{this.cambiar(evt,"PadUsu")}} type="text" placeholder="PadUsu"/>
                     </div>
                     <div className="pure-control-group">
                         <label htmlFor="state">Escogido</label>
@@ -332,11 +470,11 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >Herederos</label>
-                        <input value={this.state.persona.NomHer} onChange={evt=>{this.cambiar(evt,"NomHer")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.NomHer} onChange={evt=>{this.cambiar(evt,"NomHer")}} type="text" placeholder="Herederos"/>
                     </div>
                     <div className="pure-control-group">
                         <label >Fecha Reingreso</label>
-                        <input value={this.state.persona.FecRei} onChange={evt=>{this.cambiar(evt,"FecRei")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.FecRei} onChange={evt=>{this.cambiar(evt,"FecRei")}} type="text" placeholder="01/01/2018"/>
                     </div>
                     <div className="pure-control-group">
                         <label htmlFor="state">Tipo Documento</label>
@@ -350,7 +488,7 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >Número de Documento</label>
-                        <input value={this.state.persona.NumDoc} onChange={evt=>{this.cambiar(evt,"NumDoc")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.NumDoc} onChange={evt=>{this.cambiar(evt,"NumDoc")}} type="text" placeholder="Número de Documento"/>
                     </div>
                     <div className="pure-control-group">
                         <label htmlFor="state">¿Activo?</label>
@@ -368,7 +506,7 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >Fecha Reingreso 04</label>
-                        <input value={this.state.persona.FecRei04} onChange={evt=>{this.cambiar(evt,"FecRei04")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.FecRei04} onChange={evt=>{this.cambiar(evt,"FecRei04")}} type="text" placeholder="01/01/2018"/>
                     </div>
                     <div className="pure-control-group">
                         <label >¿Activo 06?</label>
@@ -379,7 +517,7 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >Fecha Reingreso 06</label>
-                        <input value={this.state.persona.FecRei06} onChange={evt=>{this.cambiar(evt,"FecRei06")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.FecRei06} onChange={evt=>{this.cambiar(evt,"FecRei06")}} type="text" placeholder="01/01/2018"/>
                     </div>
                     <div className="pure-control-group">
                         <label >¿Activo 08?</label>
@@ -390,7 +528,7 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >Fecha Reingreso 08</label>
-                        <input value={this.state.persona.FecRei08} onChange={evt=>{this.cambiar(evt,"FecRei08")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.FecRei08} onChange={evt=>{this.cambiar(evt,"FecRei08")}} type="text" placeholder="01/01/2018"/>
                     </div>
                     <div className="pure-control-group">
                         <label >¿Activo 10?</label>
@@ -401,7 +539,7 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >Fecha Reingreso 10</label>
-                        <input value={this.state.persona.FecRei10} onChange={evt=>{this.cambiar(evt,"FecRei10")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.FecRei10} onChange={evt=>{this.cambiar(evt,"FecRei10")}} type="text" placeholder="01/01/2018"/>
                     </div>
                     <div className="pure-control-group">
                         <label >¿Activo 12?</label>
@@ -412,7 +550,7 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >Fecha Reingreso 12</label>
-                        <input value={this.state.persona.FecRei12} onChange={evt=>{this.cambiar(evt,"FecRei12")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.FecRei12} onChange={evt=>{this.cambiar(evt,"FecRei12")}} type="text" placeholder="01/01/2018"/>
                     </div>
                     <div className="pure-control-group">
                         <label >¿Activo 14?</label>
@@ -423,7 +561,7 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >Fecha Reingreso 14</label>
-                        <input value={this.state.persona.FecRei14} onChange={evt=>{this.cambiar(evt,"FecRei14")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.FecRei14} onChange={evt=>{this.cambiar(evt,"FecRei14")}} type="text" placeholder="01/01/2018"/>
                     </div>
                     <div className="pure-control-group">
                         <label >¿Activo 16?</label>
@@ -434,11 +572,11 @@ class Modelo extends Component {
                     </div>
                     <div className="pure-control-group">
                         <label >Fecha Reingreso 16</label>
-                        <input value={this.state.persona.FecRei16} onChange={evt=>{this.cambiar(evt,"FecRei16")}} type="text" placeholder="Apellido"/>
+                        <input value={this.state.persona.FecRei16} onChange={evt=>{this.cambiar(evt,"FecRei16")}} type="text" placeholder="01/01/2018"/>
                     </div>
                     <div className="pure-controls">
                         <label htmlFor="cb" className="pure-checkbox">
-                        <input value={this.state.verificacion} id="cb" type="checkbox" onChange={(evt)=>{
+                        <input checked={this.state.verificacion} id="cb" type="checkbox" onChange={(evt)=>{
                             if(evt.target.checked){
                                 this.setState({verificacion: true});
                             }
@@ -452,9 +590,11 @@ class Modelo extends Component {
                     </fieldset>             
                     <Button  btnType="Success">Confirmar</Button>
                 </form>
+                
                 <Button 
                     clicked={this.switchAuthModeHandler}
                     btnType="Danger">Cancelar</Button>
+                    {botonEliminar}
             </div>
         );
     }

@@ -193,7 +193,17 @@ class BurgerBuilder extends Component {
             search: '?' + queryString  
         }); */
        queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("nuevo")); 
-       queryParams.push("hola=fdadf"); 
+       const queryString = queryParams.join('&');
+      this.props.history.push({
+        pathname: '/modelo', 
+        search: '?' + queryString
+      });
+    }
+
+    modificarUsuario = (id) =>{
+      const queryParams = [];
+       queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("modificar")); 
+       queryParams.push(encodeURIComponent("id")+ '=' + encodeURIComponent(id)); 
        const queryString = queryParams.join('&');
       this.props.history.push({
         pathname: '/modelo', 
@@ -380,7 +390,7 @@ class BurgerBuilder extends Component {
               return (
                 <div style={{ padding: "20px" }}>
                   
-                  <button onClick={()=>{this.alertar(row.original.id)}}>Modificar</button>
+                  <button onClick={()=>{this.modificarUsuario(row.original.id)}}>Modificar</button>
                   <button onClick={()=>{this.alertar("Falta implementar")}}>Imprimir Certificado</button>
                   <button onClick={()=>{this.alertar("Falta implementar")}}>Imprimir carnet</button>
                   </div>
