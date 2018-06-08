@@ -6,7 +6,7 @@ import ReactTable from 'react-table';
 import axios from '../../axios-orders';
 import { withRouter } from 'react-router-dom';
 //import classes from '../../assets/react-table.css';
-
+import * as firebase from 'firebase';
 //import noraxios from 'axios';
 
 
@@ -21,15 +21,6 @@ class BurgerBuilder extends Component {
           pages: null,
           loading: true, 
           variable: false, 
-          ingredients: {
-            salad: 0,
-            bacon: 0,
-            cheese: 0,
-            meat: 0
-        }, 
-        totalPrice: 4, 
-        purchasable: false,
-        purchasing: false, 
         //loading: false,
         idToken: null
         };
@@ -37,16 +28,6 @@ class BurgerBuilder extends Component {
       }
 
     state = {
-        ingredients: {
-            salad: 0,
-            bacon: 0,
-            cheese: 0,
-            meat: 0
-        }, 
-        totalPrice: 4, 
-        purchasable: false,
-        purchasing: false, 
-        loading: false,
         idToken: null
     }
 
@@ -126,19 +107,6 @@ class BurgerBuilder extends Component {
 
     
 
-    updatePurchaseState (ingredients) {
-        
-        const sum = Object.keys(ingredients)
-        .map(igKey =>{
-            return ingredients[igKey];
-        })
-        .reduce((sum, el)=>{
-            return sum + el;
-        }, 0);
-
-        this.setState({purchasable: sum>0});
-    }
-
     fetchData(state, instance) {
         // Whenever the table model changes, or the user sorts or changes pages, this method gets called and passed the current table model.
         // You can set the `loading` prop of the table to true to use the built-in one or show you're own loading bar if you want.
@@ -164,7 +132,8 @@ class BurgerBuilder extends Component {
       }
 
     
-    componentWillMount = ()=>{
+    
+      componentWillMount = ()=>{
         const token = localStorage.getItem('token');
         if(token){
             this.setState({idToken: token});
@@ -176,8 +145,13 @@ class BurgerBuilder extends Component {
     logout = ()=>{
         localStorage.removeItem('token');
         localStorage.removeItem('expirationDate');
+        firebase.auth().signOut();
         this.setState({idToken: null});
         this.props.history.push('/auth');
+    }
+
+    abrirPruebas = () =>{
+      this.props.history.push('/pruebas');
     }
 
     registrarUsuario = (id) => {
@@ -210,6 +184,16 @@ class BurgerBuilder extends Component {
         search: '?' + queryString
       });
     }
+    
+    verInfo = (tipo, id) => {
+      const queryParams = [];
+       queryParams.push(encodeURIComponent("id")+ '=' + encodeURIComponent(id)); 
+       const queryString = queryParams.join('&');
+      this.props.history.push({
+        pathname: '/' + tipo, 
+        search: '?' + queryString
+      });
+    }
 
     render(){
 
@@ -225,7 +209,8 @@ class BurgerBuilder extends Component {
 
         return (
             <Aux>
-           <ReactTable
+              <h1 style={{textAlign:"center", margin:"5px"}}>Comuneros</h1>
+           <ReactTable style={{textAlign: "center"}}
             columns={[
               {
                 Header: "Código",
@@ -377,6 +362,14 @@ class BurgerBuilder extends Component {
               {
                 Header: "FecRei16",
                 accessor: "FecRei16"
+              },
+              {
+                Header: "Activo18",
+                accessor: "Activo18"
+              },
+              {
+                Header: "FecRei18",
+                accessor: "FecRei18"
               }
             ]}
             manual // Forces table not to paginate or sort automatically, so we can handle it server-side
@@ -388,11 +381,16 @@ class BurgerBuilder extends Component {
             SubComponent={row => {
               
               return (
-                <div style={{ padding: "20px" }}>
+                <div style={{textAlign:"left", marginLeft: "500px" }}>
                   
-                  <button onClick={()=>{this.modificarUsuario(row.original.id)}}>Modificar</button>
-                  <button onClick={()=>{this.alertar("Falta implementar")}}>Imprimir Certificado</button>
-                  <button onClick={()=>{this.alertar("Falta implementar")}}>Imprimir carnet</button>
+                  <button style={{marginLeft:"10px", padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.modificarUsuario(row.original.id)}}>Modificar</button>
+                  <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.alertar("En proceso...")}}>Imprimir Certificado</button>
+                  <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.alertar("En proceso...")}}>Imprimir carnet</button>
+                  
+                  <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('familias',row.original.id)}}>Familia</button>
+                  <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('ganado',row.original.id)}}>Ganado</button>
+                  <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('terrenos',row.original.id)}}>Terrenos</button>
+                  
                   </div>
               
             )
@@ -403,15 +401,17 @@ class BurgerBuilder extends Component {
                 asc: {variable}
               }
             ]}
-            defaultPageSize={10}
+            defaultPageSize={20}
             className="-striped -highlight"
             />
-            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={this.logout}>Cerrar Sesión</button>
+            <div style={{textAlign: "center"}}>
             <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarUsuario("nuevo")}}>Registar usuario</button>
+            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={this.logout}>Cerrar Sesión</button>
+            </div>
             </Aux>
         );
-
     }
+    /*<button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.abrirPruebas()}}>Pruebas</button>*/
 }
 
 export default withRouter(withErrorHandler(BurgerBuilder, axios));

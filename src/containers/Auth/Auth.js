@@ -4,6 +4,7 @@ import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import classes from './Auth.css';
 import axios from 'axios';
+import * as firebase from 'firebase';
 
 class Auth extends Component {
     state = {
@@ -12,7 +13,7 @@ class Auth extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'email',
-                    placeholder: 'Mail Address'
+                    placeholder: 'Usuario'
                 },
                 value: '',
                 validation: {
@@ -26,7 +27,7 @@ class Auth extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Password'
+                    placeholder: 'Contraseña'
                 },
                 value: '',
                 validation: {
@@ -101,7 +102,9 @@ class Auth extends Component {
             returnSecureToken: true
         };
         
-        
+        firebase.auth().signInWithEmailAndPassword(authData.email, authData.password).catch(function(error){
+            
+        });
 
         axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCTi8MO-Fh2rOuDjsDOnpvUQpnVKh-vy_0', authData).then(response =>{
             
@@ -113,6 +116,8 @@ class Auth extends Component {
             localStorage.setItem('expirationDate', expire);
             
             this.props.history.push('/');
+        }, err =>{
+            alert("Datos no válidos");
         });
         //this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup );
     }
@@ -155,11 +160,8 @@ class Auth extends Component {
             <div className={classes.Auth}>
                 <form onSubmit={this.submitHandler}>
                     {form}
-                    <Button btnType="Success">SUBMIT</Button>
+                    <Button btnType="Success">INICIAR SESIÓN</Button>
                 </form>
-                <Button 
-                    clicked={this.switchAuthModeHandler}
-                    btnType="Danger">SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}</Button>
             </div>
         );
     }

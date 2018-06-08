@@ -1,0 +1,1992 @@
+[
+    {
+      "CodPar": "0000201",
+      "ApePar": "TORRES VASQUEZ",
+      "NomPar": "ISABEL",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/1940",
+      "FecRei": "16/02/2000",
+      "Carnet": "00002"
+    },
+    {
+      "CodPar": "0000202",
+      "ApePar": "CELESTINO TORRES",
+      "NomPar": "CARMEN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1977",
+      "FecRei": "16/02/2000",
+      "Carnet": "00002"
+    },
+    {
+      "CodPar": "0000203",
+      "ApePar": "CELESTINO TORRES",
+      "NomPar": "JACOB",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1975",
+      "FecRei": "16/02/2000",
+      "Carnet": "00002"
+    },
+    {
+      "CodPar": "0000204",
+      "ApePar": "CELESTINO TORRRES",
+      "NomPar": "SONIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1981",
+      "FecRei": "16/02/2000",
+      "Carnet": "00002"
+    },
+    {
+      "CodPar": "0000401",
+      "ApePar": "FRANCIA CAVERO",
+      "NomPar": "RITA ROSARIO",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "10/04/1965",
+      "FecRei": "24/04/2000",
+      "Carnet": "00004"
+    },
+    {
+      "CodPar": "0000403",
+      "ApePar": "PEREZ FRANCIA",
+      "NomPar": "GIANNY",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "04/05/1988",
+      "FecRei": "24/04/2000",
+      "Carnet": "00004"
+    },
+    {
+      "CodPar": "0000404",
+      "ApePar": "PEREZ  FRANCIA",
+      "NomPar": "CARLOS MICHEL",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "16/09/1996",
+      "FecRei": "24/04/2000",
+      "Carnet": "00004"
+    },
+    {
+      "CodPar": "0000501",
+      "ApePar": "HUAMAN AGUILAR",
+      "NomPar": "JUANA SILVIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Casado(a)",
+      "FecPar": "14/08/1971",
+      "FecRei": "17/05/2000",
+      "Carnet": "00005"
+    },
+    {
+      "CodPar": "0000601",
+      "ApePar": "CAJACURI DE COCA",
+      "NomPar": "MAURA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "08/11/1938",
+      "FecRei": "17/02/2000",
+      "Carnet": "00006"
+    },
+    {
+      "CodPar": "0000602",
+      "ApePar": "INGARUCA COCA",
+      "NomPar": "HENRY",
+      "DesPar": "Nieto(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "06/06/1980",
+      "FecRei": "17/02/2000",
+      "Carnet": "00006"
+    },
+    {
+      "CodPar": "0000603",
+      "ApePar": "INGARUCA COCA",
+      "NomPar": "CORAZON LUZ",
+      "DesPar": "Nieto(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "19/03/1986",
+      "FecRei": "17/02/2000",
+      "Carnet": "00006"
+    },
+    {
+      "CodPar": "0000604",
+      "ApePar": "INGARUCA COCA",
+      "NomPar": "ALDAIR ULISES",
+      "DesPar": "Nieto(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "11/02/2000",
+      "FecRei": "17/02/2000",
+      "Carnet": "00006"
+    },
+    {
+      "CodPar": "0000801",
+      "ApePar": "PAUCAR JORGE",
+      "NomPar": "ALICIA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/1960",
+      "FecRei": "16/02/2000",
+      "Carnet": "00008"
+    },
+    {
+      "CodPar": "0000802",
+      "ApePar": "QUISPE PAUCAR",
+      "NomPar": "MERCEDES",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1986",
+      "FecRei": "16/02/2000",
+      "Carnet": "00008"
+    },
+    {
+      "CodPar": "0000803",
+      "ApePar": "QUISPE PAUCAR",
+      "NomPar": "JESUS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1980",
+      "FecRei": "16/02/2000",
+      "Carnet": "00008"
+    },
+    {
+      "CodPar": "0000804",
+      "ApePar": "QUISPE PAUCAR",
+      "NomPar": "LAURA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1992",
+      "FecRei": "16/02/2000",
+      "Carnet": "00008"
+    },
+    {
+      "CodPar": "0000901",
+      "ApePar": "OLLERO N.",
+      "NomPar": "ALEJANDRINA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "10/01/2000",
+      "Carnet": "00009"
+    },
+    {
+      "CodPar": "0000902",
+      "ApePar": "CELESTINO OLLERO",
+      "NomPar": "ROLANDO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "10/01/2000",
+      "Carnet": "00009"
+    },
+    {
+      "CodPar": "0000903",
+      "ApePar": "CELESTINO OLLERO",
+      "NomPar": "ROCIO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "10/01/2000",
+      "Carnet": "00009"
+    },
+    {
+      "CodPar": "0000904",
+      "ApePar": "CELESTINO OLLERO",
+      "NomPar": "JESUS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "10/01/2000",
+      "Carnet": "00009"
+    },
+    {
+      "CodPar": "0000905",
+      "ApePar": "CELESTINO OLLERO",
+      "NomPar": "EDGAR",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "10/01/2000",
+      "Carnet": "00009"
+    },
+    {
+      "CodPar": "0001001",
+      "ApePar": "VILLUGAS TORRES",
+      "NomPar": "ROSA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "24/11/2000",
+      "Carnet": "00010"
+    },
+    {
+      "CodPar": "0001002",
+      "ApePar": "LEON VILLUGAS",
+      "NomPar": "FREDY",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "24/11/2000",
+      "Carnet": "00010"
+    },
+    {
+      "CodPar": "0001003",
+      "ApePar": "LEON VILLUGAS",
+      "NomPar": "SUSANA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "24/11/2000",
+      "Carnet": "00010"
+    },
+    {
+      "CodPar": "0001101",
+      "ApePar": "TERREL FUSTER",
+      "NomPar": "EVA RITA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "04/03/1969",
+      "FecRei": "10/03/2000",
+      "Carnet": "00011"
+    },
+    {
+      "CodPar": "0001102",
+      "ApePar": "ESTRADA TERREL",
+      "NomPar": "YULISSA ROSALYN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "29/07/1994",
+      "FecRei": "10/03/2000",
+      "Carnet": "00011"
+    },
+    {
+      "CodPar": "0001103",
+      "ApePar": "ESTRADA TERREL",
+      "NomPar": "LUIS OSWALDO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "13/02/1999",
+      "FecRei": "10/03/2000",
+      "Carnet": "00011"
+    },
+    {
+      "CodPar": "0001301",
+      "ApePar": "SALCEDO PECHO",
+      "NomPar": "CARLOS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "17/02/2000",
+      "Carnet": "00013"
+    },
+    {
+      "CodPar": "0001302",
+      "ApePar": "SALCEDO PECHO",
+      "NomPar": "JOSE LUIS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "17/02/2000",
+      "Carnet": "00013"
+    },
+    {
+      "CodPar": "0001303",
+      "ApePar": "SALCEDO PECHO",
+      "NomPar": "IVAN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "17/02/2000",
+      "Carnet": "00013"
+    },
+    {
+      "CodPar": "0001304",
+      "ApePar": "SALCEDO PECHO",
+      "NomPar": "MARCO ANTONIO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "17/02/2000",
+      "Carnet": "00013"
+    },
+    {
+      "CodPar": "0001401",
+      "ApePar": "CABEZAS  CAMARGO",
+      "NomPar": "EDITH",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00014"
+    },
+    {
+      "CodPar": "0001402",
+      "ApePar": "FLORES CABEZAS",
+      "NomPar": "YUSTIN LEHER",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00014"
+    },
+    {
+      "CodPar": "0001501",
+      "ApePar": "CHAVEZ RIVAS",
+      "NomPar": "SARA ROSA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "16/02/2000",
+      "Carnet": "00015"
+    },
+    {
+      "CodPar": "0001502",
+      "ApePar": "CASTILLON POMA",
+      "NomPar": "MARIA ADELA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "08/09/1982",
+      "FecRei": "16/02/2000",
+      "Carnet": "00015"
+    },
+    {
+      "CodPar": "0001601",
+      "ApePar": "ORTEGA SALAZAR",
+      "NomPar": "OVIDIO",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Conviv.",
+      "FecPar": "09/03/1978",
+      "FecRei": "30/07/2002",
+      "Carnet": "00016"
+    },
+    {
+      "CodPar": "0001602",
+      "ApePar": "ORTEGA CASTILLON",
+      "NomPar": "YAQUELIN YANELA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "30/04/1999",
+      "FecRei": "30/07/2002",
+      "Carnet": "00016"
+    },
+    {
+      "CodPar": "0001603",
+      "ApePar": "ORTEGA CASTILLON",
+      "NomPar": "KENEDIN HENRY",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "05/09/2000",
+      "FecRei": "30/07/2002",
+      "Carnet": "00016"
+    },
+    {
+      "CodPar": "0001701",
+      "ApePar": "HUALLPA MEZA",
+      "NomPar": "SERAFIN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "11/01/2000",
+      "Carnet": "00017"
+    },
+    {
+      "CodPar": "0001702",
+      "ApePar": "VARGAS MEZA",
+      "NomPar": "SONIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "11/01/2000",
+      "Carnet": "00017"
+    },
+    {
+      "CodPar": "0001801",
+      "ApePar": "GONZALES",
+      "NomPar": "VICTOR",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00018"
+    },
+    {
+      "CodPar": "0001802",
+      "ApePar": "GONZALES AMAYA",
+      "NomPar": "KATHERINE",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00018"
+    },
+    {
+      "CodPar": "0001803",
+      "ApePar": "GONZALES AMAYA",
+      "NomPar": "EVA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00018"
+    },
+    {
+      "CodPar": "0001804",
+      "ApePar": "GONZALES AMAYA",
+      "NomPar": "PAMELA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00018"
+    },
+    {
+      "CodPar": "0001805",
+      "ApePar": "GONZALES AMAYA",
+      "NomPar": "CESAR",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00018"
+    },
+    {
+      "CodPar": "0001806",
+      "ApePar": "GONZALES AMAYA",
+      "NomPar": "JULIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "10/05/1979",
+      "FecRei": "15/03/2000",
+      "Carnet": "00018"
+    },
+    {
+      "CodPar": "0001807",
+      "ApePar": "GONZALES AMAYA",
+      "NomPar": "JESUS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00018"
+    },
+    {
+      "CodPar": "0001901",
+      "ApePar": "ROJAS QUISPE",
+      "NomPar": "JULIA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "21/01/2000",
+      "Carnet": "00019"
+    },
+    {
+      "CodPar": "0001902",
+      "ApePar": "RAMIREZ ROJAS",
+      "NomPar": "FERNANDO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00019"
+    },
+    {
+      "CodPar": "0001903",
+      "ApePar": "RAMIREZ ROJAS",
+      "NomPar": "ABELIO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00019"
+    },
+    {
+      "CodPar": "0001904",
+      "ApePar": "RAMIREZ ROJAS",
+      "NomPar": "CESAR",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00019"
+    },
+    {
+      "CodPar": "0001905",
+      "ApePar": "RAMIREZ ROJAS",
+      "NomPar": "ERIKA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00019"
+    },
+    {
+      "CodPar": "0001906",
+      "ApePar": "RAMIREZ ROJAS",
+      "NomPar": "DORIS E.",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00019"
+    },
+    {
+      "CodPar": "0001907",
+      "ApePar": "RAMIREZ ROJAS",
+      "NomPar": "ROMAN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00019"
+    },
+    {
+      "CodPar": "0002001",
+      "ApePar": "QUINTO ECHEVARRIO",
+      "NomPar": "RAUL",
+      "DesPar": "Sobrino(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "--/--/----",
+      "FecRei": "20/02/2006",
+      "Carnet": "00020"
+    },
+    {
+      "CodPar": "0002002",
+      "ApePar": "QUINTO ECHEVARRIA",
+      "NomPar": "ESTEBAN",
+      "DesPar": "Sobrino(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "--/--/----",
+      "FecRei": "20/02/2006",
+      "Carnet": "00020"
+    },
+    {
+      "CodPar": "0002003",
+      "ApePar": "QUINTO ECHEVARRIA",
+      "NomPar": "ZOSIMO",
+      "DesPar": "Sobrino(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "--/--/----",
+      "FecRei": "20/02/2006",
+      "Carnet": "00020"
+    },
+    {
+      "CodPar": "0002004",
+      "ApePar": "QUINTO ECHEVARRIA",
+      "NomPar": "ANA",
+      "DesPar": "Sobrino(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "--/--/----",
+      "FecRei": "20/02/2006",
+      "Carnet": "00020"
+    },
+    {
+      "CodPar": "0002005",
+      "ApePar": "QUINTO ECHEVARRIA",
+      "NomPar": "ANIBAL",
+      "DesPar": "Sobrino(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "--/--/----",
+      "FecRei": "20/02/2006",
+      "Carnet": "00020"
+    },
+    {
+      "CodPar": "0002101",
+      "ApePar": "GUERE LUNA",
+      "NomPar": "CELSO",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00021"
+    },
+    {
+      "CodPar": "0002102",
+      "ApePar": "Guere OSCANOA",
+      "NomPar": "Ester Amelia",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "12/12/1997",
+      "FecRei": "21/01/2000",
+      "Carnet": "00021"
+    },
+    {
+      "CodPar": "0002103",
+      "ApePar": "Guere Oscanoa",
+      "NomPar": "Erika Lady",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "08/01/1998",
+      "FecRei": "21/01/2000",
+      "Carnet": "00021"
+    },
+    {
+      "CodPar": "0002104",
+      "ApePar": "Guere Oscanoa",
+      "NomPar": "Sadith Xiomara",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "08/02/2005",
+      "FecRei": "16/11/2004",
+      "Carnet": "00021"
+    },
+    {
+      "CodPar": "0002201",
+      "ApePar": "HURTADAO RAMIREZ",
+      "NomPar": "GUILLERMINA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00022"
+    },
+    {
+      "CodPar": "0002202",
+      "ApePar": "HUAMAN FLORES",
+      "NomPar": "NANCY",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "23/06/2006",
+      "FecRei": "19/11/2004",
+      "Carnet": "00022"
+    },
+    {
+      "CodPar": "0002203",
+      "ApePar": "COLACHAGUA FLORES",
+      "NomPar": "ELMER",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00022"
+    },
+    {
+      "CodPar": "0002204",
+      "ApePar": "COLACHAGUA FLORES",
+      "NomPar": "VICENTE E.",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/03/2000",
+      "Carnet": "00022"
+    },
+    {
+      "CodPar": "0002301",
+      "ApePar": "PAUCA OSCANOA",
+      "NomPar": "RUFINA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "10/07/1964",
+      "FecRei": "14/02/2000",
+      "Carnet": "00023"
+    },
+    {
+      "CodPar": "0002302",
+      "ApePar": "TORRES PAUCAR",
+      "NomPar": "MARCELA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "16/07/1981",
+      "FecRei": "14/02/2000",
+      "Carnet": "00023"
+    },
+    {
+      "CodPar": "0002303",
+      "ApePar": "TORRES PAUCAR",
+      "NomPar": "YOVANA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "22/11/1985",
+      "FecRei": "14/02/2000",
+      "Carnet": "00023"
+    },
+    {
+      "CodPar": "0002304",
+      "ApePar": "TORRES PAUCAR",
+      "NomPar": "MERLINDA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "04/04/1987",
+      "FecRei": "14/02/2000",
+      "Carnet": "00023"
+    },
+    {
+      "CodPar": "0002305",
+      "ApePar": "TORRES PAUCAR",
+      "NomPar": "DINA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "12/04/1991",
+      "FecRei": "14/02/2000",
+      "Carnet": "00023"
+    },
+    {
+      "CodPar": "0002306",
+      "ApePar": "TORRES PAUCAR",
+      "NomPar": "MARCELINO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "16/07/1981",
+      "FecRei": "14/02/2000",
+      "Carnet": "00023"
+    },
+    {
+      "CodPar": "0002307",
+      "ApePar": "TORRES PAUCAR",
+      "NomPar": "ARTURO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "29/12/1983",
+      "FecRei": "14/02/2000",
+      "Carnet": "00023"
+    },
+    {
+      "CodPar": "0002308",
+      "ApePar": "TORRES PAUCAR",
+      "NomPar": "GRIMALDO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "30/09/1986",
+      "FecRei": "14/02/2000",
+      "Carnet": "00023"
+    },
+    {
+      "CodPar": "0002309",
+      "ApePar": "TORRES PAUCAR",
+      "NomPar": "ALEJO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "04/08/1989",
+      "FecRei": "14/02/2000",
+      "Carnet": "00023"
+    },
+    {
+      "CodPar": "0002310",
+      "ApePar": "TORRES PAUCAR",
+      "NomPar": "ANTONI",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "02/04/2005",
+      "FecRei": "03/11/2004",
+      "Carnet": "00023"
+    },
+    {
+      "CodPar": "0002401",
+      "ApePar": "TEJEDA  TAIPE",
+      "NomPar": "YAVELA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "21/02/2000",
+      "Carnet": "00024"
+    },
+    {
+      "CodPar": "0002402",
+      "ApePar": "TEJEDA TAIPE",
+      "NomPar": "EFRAIN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "21/02/2000",
+      "Carnet": "00024"
+    },
+    {
+      "CodPar": "0002403",
+      "ApePar": "MERCADO TEJEDA",
+      "NomPar": "OHMAR",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "21/02/2000",
+      "Carnet": "00024"
+    },
+    {
+      "CodPar": "0002404",
+      "ApePar": "TAYPE CACERES",
+      "NomPar": "SIMONA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "16/03/2000",
+      "Carnet": "00024"
+    },
+    {
+      "CodPar": "0002405",
+      "ApePar": "TEJEDA TAYPE",
+      "NomPar": "MANUEL",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "16/03/2000",
+      "Carnet": "00024"
+    },
+    {
+      "CodPar": "0002406",
+      "ApePar": "MERCADO  TEJEDA",
+      "NomPar": "JHONY",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "16/03/2000",
+      "Carnet": "00024"
+    },
+    {
+      "CodPar": "0002501",
+      "ApePar": "RIVERA MEZA",
+      "NomPar": "LIDIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "16/03/2000",
+      "Carnet": "00025"
+    },
+    {
+      "CodPar": "0002601",
+      "ApePar": "TORRES HUAMAN",
+      "NomPar": "LUISA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "16/03/2000",
+      "Carnet": "00026"
+    },
+    {
+      "CodPar": "0002602",
+      "ApePar": "COLACHAGUA TORRES",
+      "NomPar": "WALTER",
+      "DesPar": "Hermano(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "16/03/2000",
+      "Carnet": "00026"
+    },
+    {
+      "CodPar": "0002701",
+      "ApePar": "BRISEÑO LEONARDO",
+      "NomPar": "JUAN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "18/02/2000",
+      "Carnet": "00027"
+    },
+    {
+      "CodPar": "0002702",
+      "ApePar": "BRISEÑO LEONARDO",
+      "NomPar": "BENJAMIN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "18/02/2000",
+      "Carnet": "00027"
+    },
+    {
+      "CodPar": "0002801",
+      "ApePar": "ALBORNOZ  ARTICA",
+      "NomPar": "CARLOS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1960",
+      "FecRei": "21/02/2000",
+      "Carnet": "00028"
+    },
+    {
+      "CodPar": "0002802",
+      "ApePar": "ALBORNOS ARTICA",
+      "NomPar": "PEDRO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1962",
+      "FecRei": "21/02/2000",
+      "Carnet": "00028"
+    },
+    {
+      "CodPar": "0002901",
+      "ApePar": "BADOS EGOAVIL",
+      "NomPar": "MAURA INES",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "08/11/942_",
+      "FecRei": "22/02/2000",
+      "Carnet": "00029"
+    },
+    {
+      "CodPar": "0002902",
+      "ApePar": "PAREDES BADOS",
+      "NomPar": "ANDRES GIANCARLO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00029"
+    },
+    {
+      "CodPar": "0003001",
+      "ApePar": "LOYA BADOS",
+      "NomPar": "DANIEL",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00030"
+    },
+    {
+      "CodPar": "0003002",
+      "ApePar": "PAREDES BADOS",
+      "NomPar": "ANDRES G.",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00030"
+    },
+    {
+      "CodPar": "0003101",
+      "ApePar": "LEON ARELLANO",
+      "NomPar": "VICTORIA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "31/05/1959",
+      "FecRei": "21/02/2000",
+      "Carnet": "00031"
+    },
+    {
+      "CodPar": "0003102",
+      "ApePar": "MAYTA LEON",
+      "NomPar": "BELINDA ESTHER",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "02/02/1977",
+      "FecRei": "21/02/2000",
+      "Carnet": "00031"
+    },
+    {
+      "CodPar": "0003103",
+      "ApePar": "MAYTA LEON",
+      "NomPar": "VIDAL ANGEL",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "19/06/1982",
+      "FecRei": "21/02/2000",
+      "Carnet": "00031"
+    },
+    {
+      "CodPar": "0003104",
+      "ApePar": "MAYTA LEON",
+      "NomPar": "ELIO ELVIS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "10/03/1988",
+      "FecRei": "21/02/2000",
+      "Carnet": "00031"
+    },
+    {
+      "CodPar": "0003105",
+      "ApePar": "MAYTA LEON",
+      "NomPar": "DINO MINES",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "20/05/1986",
+      "FecRei": "21/02/2000",
+      "Carnet": "00031"
+    },
+    {
+      "CodPar": "0003106",
+      "ApePar": "MAYTA LEON",
+      "NomPar": "JUAN BRYAN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Casado(a)",
+      "FecPar": "11/03/1998",
+      "FecRei": "21/02/2000",
+      "Carnet": "00031"
+    },
+    {
+      "CodPar": "0003201",
+      "ApePar": "ARIAS  LEONARDO",
+      "NomPar": "JESUSA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "01/01/1945",
+      "FecRei": "22/02/2000",
+      "Carnet": "00032"
+    },
+    {
+      "CodPar": "0003202",
+      "ApePar": "HUALLPA ARIAS",
+      "NomPar": "LEONOR",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00032"
+    },
+    {
+      "CodPar": "0003203",
+      "ApePar": "HUALLPA  ARIAS",
+      "NomPar": "DARIA CELESTINA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00032"
+    },
+    {
+      "CodPar": "0003204",
+      "ApePar": "HUALLPA ARIAS",
+      "NomPar": "ELENA MARGARITA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00032"
+    },
+    {
+      "CodPar": "0003205",
+      "ApePar": "HUALLPA ARIAS",
+      "NomPar": "CINTHIA LORENA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00032"
+    },
+    {
+      "CodPar": "0003206",
+      "ApePar": "HUALLPA ARIAS",
+      "NomPar": "DAVID PERCY",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00032"
+    },
+    {
+      "CodPar": "0003207",
+      "ApePar": "HUALLPA ARIAS",
+      "NomPar": "RAFAEL",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00032"
+    },
+    {
+      "CodPar": "0003301",
+      "ApePar": "CAPCHA QUISPE",
+      "NomPar": "FRANCISCA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "09/03/1948",
+      "FecRei": "22/02/2000",
+      "Carnet": "00033"
+    },
+    {
+      "CodPar": "0003302",
+      "ApePar": "LEON CAPCHA",
+      "NomPar": "EDGAR NICOLAS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "21/01/1984",
+      "FecRei": "22/02/2000",
+      "Carnet": "00033"
+    },
+    {
+      "CodPar": "0003401",
+      "ApePar": "FERNANDEZ MARTINEZ",
+      "NomPar": "PILAR DIMAS",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "25/03/1940",
+      "FecRei": "22/02/2000",
+      "Carnet": "00034"
+    },
+    {
+      "CodPar": "0003402",
+      "ApePar": "COCA FERNANDEZ",
+      "NomPar": "WILFREDO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Casado(a)",
+      "FecPar": "18/10/1965",
+      "FecRei": "22/02/2000",
+      "Carnet": "00034"
+    },
+    {
+      "CodPar": "0003403",
+      "ApePar": "COCA FERNANDEZ",
+      "NomPar": "MARLENE ELIZABETH",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "14/06/1964",
+      "FecRei": "22/02/2000",
+      "Carnet": "00034"
+    },
+    {
+      "CodPar": "0003404",
+      "ApePar": "COCA FERNANDEZZ",
+      "NomPar": "DANTE",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "29/01/1971",
+      "FecRei": "22/02/2000",
+      "Carnet": "00034"
+    },
+    {
+      "CodPar": "0003405",
+      "ApePar": "COCA FERNANDEZ",
+      "NomPar": "TERESA BETZABE",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Casado(a)",
+      "FecPar": "21/05/1976",
+      "FecRei": "22/02/2000",
+      "Carnet": "00034"
+    },
+    {
+      "CodPar": "0003501",
+      "ApePar": "ECHEVARRIA IZQUIERDO",
+      "NomPar": "CELIA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "24/06/1958",
+      "FecRei": "22/02/2000",
+      "Carnet": "00035"
+    },
+    {
+      "CodPar": "0003502",
+      "ApePar": "QUINTO ECHEVARRIA",
+      "NomPar": "NILDA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00035"
+    },
+    {
+      "CodPar": "0003503",
+      "ApePar": "QUINTO  ECHEVARRIA",
+      "NomPar": "ANA OCTAVIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00035"
+    },
+    {
+      "CodPar": "0003504",
+      "ApePar": "QUINTO ECHEVARRIA",
+      "NomPar": "RAUL",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00035"
+    },
+    {
+      "CodPar": "0003505",
+      "ApePar": "QUINTO ECHEVARRIA",
+      "NomPar": "SOSIMO MEZARINO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00035"
+    },
+    {
+      "CodPar": "0003506",
+      "ApePar": "QUINTO ECHEVARRIA",
+      "NomPar": "DOMINICA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00035"
+    },
+    {
+      "CodPar": "0003507",
+      "ApePar": "QUINTO ECHEVARRIA",
+      "NomPar": "ANIBAL",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00035"
+    },
+    {
+      "CodPar": "0003508",
+      "ApePar": "QUINTO ECHEVARRIA",
+      "NomPar": "CELIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00035"
+    },
+    {
+      "CodPar": "0003601",
+      "ApePar": "EGOAVIL SANCHEZ",
+      "NomPar": "DOMITILA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00036"
+    },
+    {
+      "CodPar": "0003602",
+      "ApePar": "QUINTO EGOAVIL",
+      "NomPar": "WILDER",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00036"
+    },
+    {
+      "CodPar": "0003603",
+      "ApePar": "QUINTO EGOAVIL",
+      "NomPar": "EDGAR",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00036"
+    },
+    {
+      "CodPar": "0003604",
+      "ApePar": "QUINTO EGOAVIL",
+      "NomPar": "SUSANA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00036"
+    },
+    {
+      "CodPar": "0003605",
+      "ApePar": "QUINTO EGOAVIL",
+      "NomPar": "MARCOS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00036"
+    },
+    {
+      "CodPar": "0003606",
+      "ApePar": "QUINTO EGOAVIL",
+      "NomPar": "JESUS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00036"
+    },
+    {
+      "CodPar": "0003607",
+      "ApePar": "QUINTO EGOAVIL",
+      "NomPar": "MARIANA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "22/02/2000",
+      "Carnet": "00036"
+    },
+    {
+      "CodPar": "0003801",
+      "ApePar": "SOLORZANO ARELLANO",
+      "NomPar": "HERLINDA",
+      "DesPar": "Hermano(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "01/07/1956",
+      "FecRei": "25/02/2000",
+      "Carnet": "00038"
+    },
+    {
+      "CodPar": "0003802",
+      "ApePar": "SOLORZANO ARELLANO",
+      "NomPar": "OLGA",
+      "DesPar": "Hermano(a)",
+      "DesCiv": "Casado(a)",
+      "FecPar": "12/09/1960",
+      "FecRei": "25/02/2000",
+      "Carnet": "00038"
+    },
+    {
+      "CodPar": "0003803",
+      "ApePar": "SOLORZANO ARELLANO",
+      "NomPar": "NORMA",
+      "DesPar": "Hermano(a)",
+      "DesCiv": "Casado(a)",
+      "FecPar": "07/01/1964",
+      "FecRei": "25/02/2000",
+      "Carnet": "00038"
+    },
+    {
+      "CodPar": "0003901",
+      "ApePar": "NAVARRO LOPEZ",
+      "NomPar": "JUAN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "25/02/2000",
+      "Carnet": "00039"
+    },
+    {
+      "CodPar": "0003902",
+      "ApePar": "NAVARRO LOPEZ",
+      "NomPar": "NORIAN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "25/02/2000",
+      "Carnet": "00039"
+    },
+    {
+      "CodPar": "0004001",
+      "ApePar": "CCANCHO HUARCAYA",
+      "NomPar": "DANIEL",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Conviv.",
+      "FecPar": "12/12/1957",
+      "FecRei": "25/02/2000",
+      "Carnet": "00040"
+    },
+    {
+      "CodPar": "0004002",
+      "ApePar": "CCANCHO RIOS",
+      "NomPar": "MARIA ELENA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "15/07/1998",
+      "FecRei": "25/02/2000",
+      "Carnet": "00040"
+    },
+    {
+      "CodPar": "0004101",
+      "ApePar": "CHAVEZ RIVAS",
+      "NomPar": "SARA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "25/02/2000",
+      "Carnet": "00041"
+    },
+    {
+      "CodPar": "0004201",
+      "ApePar": "VICUÑA  COCHACHI",
+      "NomPar": "HERMELINDA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "28/02/2000",
+      "Carnet": "00042"
+    },
+    {
+      "CodPar": "0004301",
+      "ApePar": "ARIAS QUINTO",
+      "NomPar": "NICOLASA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/1944",
+      "FecRei": "28/02/2000",
+      "Carnet": "00043"
+    },
+    {
+      "CodPar": "0004302",
+      "ApePar": "TORRES ARIAS",
+      "NomPar": "ROBERTO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1979",
+      "FecRei": "28/02/2000",
+      "Carnet": "00043"
+    },
+    {
+      "CodPar": "0004303",
+      "ApePar": "TORRES ARIAS",
+      "NomPar": "LUCIO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1982",
+      "FecRei": "28/02/2000",
+      "Carnet": "00043"
+    },
+    {
+      "CodPar": "0004401",
+      "ApePar": "BLANCO DIAZ",
+      "NomPar": "GIOVANO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "27/03/2000",
+      "Carnet": "00044"
+    },
+    {
+      "CodPar": "0004501",
+      "ApePar": "CONDORI HUAMAN",
+      "NomPar": "JOSE",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Conviv.",
+      "FecPar": "__/__/1961",
+      "FecRei": "28/02/2000",
+      "Carnet": "00045"
+    },
+    {
+      "CodPar": "0004502",
+      "ApePar": "ACEVEDO BLANCO",
+      "NomPar": "NELVA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1979",
+      "FecRei": "28/02/2000",
+      "Carnet": "00045"
+    },
+    {
+      "CodPar": "0004503",
+      "ApePar": "ACEVEDO LEON",
+      "NomPar": "CLELIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1982",
+      "FecRei": "28/02/2000",
+      "Carnet": "00045"
+    },
+    {
+      "CodPar": "0004504",
+      "ApePar": "CONDORI BLANCO",
+      "NomPar": "NICOLAS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "28/02/2000",
+      "Carnet": "00045"
+    },
+    {
+      "CodPar": "0004505",
+      "ApePar": "CONDORI BLANCO",
+      "NomPar": "RUTH",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "28/02/2000",
+      "Carnet": "00045"
+    },
+    {
+      "CodPar": "0004506",
+      "ApePar": "CONDORI BLANCO",
+      "NomPar": "ANTONIO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "28/02/2000",
+      "Carnet": "00045"
+    },
+    {
+      "CodPar": "0004507",
+      "ApePar": "CONDORI BLANCO",
+      "NomPar": "WILMER",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "15/06/2004",
+      "Carnet": "00045"
+    },
+    {
+      "CodPar": "0004601",
+      "ApePar": "CHAVEZ CALDERON",
+      "NomPar": "JUSTINA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "28/02/2000",
+      "Carnet": "00046"
+    },
+    {
+      "CodPar": "0004602",
+      "ApePar": "HUAMAN CHAVEZ",
+      "NomPar": "NANCY",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "28/02/2000",
+      "Carnet": "00046"
+    },
+    {
+      "CodPar": "0004603",
+      "ApePar": "HUAMAN CHAVEZ",
+      "NomPar": "AMELIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "28/02/2000",
+      "Carnet": "00046"
+    },
+    {
+      "CodPar": "0004604",
+      "ApePar": "COCHACHI HUAMAN",
+      "NomPar": "MOISES",
+      "DesPar": "Nieto(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "28/02/2000",
+      "Carnet": "00046"
+    },
+    {
+      "CodPar": "0004701",
+      "ApePar": "INGA LOBO",
+      "NomPar": "GLADYS EVARISTA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "29/02/2000",
+      "Carnet": "00047"
+    },
+    {
+      "CodPar": "0004702",
+      "ApePar": "HUALLPA INGA",
+      "NomPar": "ALINA  YESICA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "05/04/1998",
+      "FecRei": "29/02/2000",
+      "Carnet": "00047"
+    },
+    {
+      "CodPar": "0004703",
+      "ApePar": "HUALLPA INGA",
+      "NomPar": "NILO WALDIR",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "11/01/2000",
+      "FecRei": "29/02/2000",
+      "Carnet": "00047"
+    },
+    {
+      "CodPar": "0004801",
+      "ApePar": "PAUCAR OSCANOA",
+      "NomPar": "MILA LUZMILA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "27/10/1982",
+      "FecRei": "03/02/2000",
+      "Carnet": "00048"
+    },
+    {
+      "CodPar": "0004802",
+      "ApePar": "HUAMAN PAUCAR",
+      "NomPar": "JORDY YELSEIN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "20/11/1999",
+      "FecRei": "03/02/2000",
+      "Carnet": "00048"
+    },
+    {
+      "CodPar": "0004901",
+      "ApePar": "YAURI  ROSALES",
+      "NomPar": "CARLOS",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "25/04/1962",
+      "FecRei": "03/02/2000",
+      "Carnet": "00049"
+    },
+    {
+      "CodPar": "0004902",
+      "ApePar": "GUILLEN ARELLANO",
+      "NomPar": "HERNAN IVAN",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "24/05/1986",
+      "FecRei": "03/02/2000",
+      "Carnet": "00049"
+    },
+    {
+      "CodPar": "0004903",
+      "ApePar": "CAMACHO ARELLANO",
+      "NomPar": "ANGEL LUIS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "08/05/1989",
+      "FecRei": "03/02/2000",
+      "Carnet": "00049"
+    },
+    {
+      "CodPar": "0004904",
+      "ApePar": "YAURI ARELLANO",
+      "NomPar": "FRANZ CARLOS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "07/05/1996",
+      "FecRei": "03/02/2000",
+      "Carnet": "00049"
+    },
+    {
+      "CodPar": "0005002",
+      "ApePar": "BALTAZAR FERNANDES",
+      "NomPar": "FLAVIO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "06/03/2000",
+      "Carnet": "00050"
+    },
+    {
+      "CodPar": "0005101",
+      "ApePar": "MENECES INGARUCA",
+      "NomPar": "CESARINA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/1935",
+      "FecRei": "07/03/2000",
+      "Carnet": "00051"
+    },
+    {
+      "CodPar": "0005102",
+      "ApePar": "MENDOZA MENECES",
+      "NomPar": "MARCOS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1980",
+      "FecRei": "07/03/2000",
+      "Carnet": "00051"
+    },
+    {
+      "CodPar": "0005201",
+      "ApePar": "CUNIBERTTI YARINGAÑO",
+      "NomPar": "PATRICIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "07/03/2000",
+      "Carnet": "00052"
+    },
+    {
+      "CodPar": "0005202",
+      "ApePar": "CUNIBERTI",
+      "NomPar": "CLAUDIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "07/03/2000",
+      "Carnet": "00052"
+    },
+    {
+      "CodPar": "0005301",
+      "ApePar": "PAREDES CHIPANA",
+      "NomPar": "SUSSY IRENE",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "21/03/1964",
+      "FecRei": "07/03/2000",
+      "Carnet": "00053"
+    },
+    {
+      "CodPar": "0005302",
+      "ApePar": "CAMACHO PARDES",
+      "NomPar": "HERKY JEAN PIERRE",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "03/04/1986",
+      "FecRei": "07/03/2000",
+      "Carnet": "00053"
+    },
+    {
+      "CodPar": "0005303",
+      "ApePar": "CAMACHO PAREDES",
+      "NomPar": "BRYAN ANDRÉ",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "08/11/1994",
+      "FecRei": "07/03/2000",
+      "Carnet": "00053"
+    },
+    {
+      "CodPar": "0005401",
+      "ApePar": "OSORIO ROJAS",
+      "NomPar": "CATALINA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "13/04/2000",
+      "Carnet": "00054"
+    },
+    {
+      "CodPar": "0005402",
+      "ApePar": "QUISPE GUADALUPE",
+      "NomPar": "DORA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "13/04/2000",
+      "Carnet": "00054"
+    },
+    {
+      "CodPar": "0005403",
+      "ApePar": "BAILON OSORIO",
+      "NomPar": "ZENOBIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "05/03/2000",
+      "Carnet": "00054"
+    },
+    {
+      "CodPar": "0005501",
+      "ApePar": "ARELLANO URBISAGASTEGUI",
+      "NomPar": "FELIX",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Casado(a)",
+      "FecPar": "23/06/1950",
+      "FecRei": "08/03/2000",
+      "Carnet": "00055"
+    },
+    {
+      "CodPar": "0005601",
+      "ApePar": "JORGE DE LEONARDO",
+      "NomPar": "ALEJANDRINA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "14/03/2000",
+      "Carnet": "00056"
+    },
+    {
+      "CodPar": "0005602",
+      "ApePar": "LEONARDO JORGE",
+      "NomPar": "RODY",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "14/03/2000",
+      "Carnet": "00056"
+    },
+    {
+      "CodPar": "0005603",
+      "ApePar": "LEONARDO",
+      "NomPar": "CARLOS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/____",
+      "FecRei": "14/03/2000",
+      "Carnet": "00056"
+    },
+    {
+      "CodPar": "0005701",
+      "ApePar": "PECHO MEZA",
+      "NomPar": "DDOMITILA SANCHEZ GU",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "19/03/1939",
+      "FecRei": "13/03/2000",
+      "Carnet": "00057"
+    },
+    {
+      "CodPar": "0005702",
+      "ApePar": "PECHO SANCHEZ",
+      "NomPar": "JORGE",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "11/06/1959",
+      "FecRei": "13/03/2000",
+      "Carnet": "00057"
+    },
+    {
+      "CodPar": "0005703",
+      "ApePar": "PECHO SANCHEZ",
+      "NomPar": "NORMA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "03/02/1961",
+      "FecRei": "13/03/2000",
+      "Carnet": "00057"
+    },
+    {
+      "CodPar": "0005704",
+      "ApePar": "PECHO  SANCHEZ",
+      "NomPar": "LOURDES",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "13/07/1973",
+      "FecRei": "13/03/2000",
+      "Carnet": "00057"
+    },
+    {
+      "CodPar": "0005705",
+      "ApePar": "PECHO SANCHEZ",
+      "NomPar": "ROXANA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "27/08/1978",
+      "FecRei": "13/03/2000",
+      "Carnet": "00057"
+    },
+    {
+      "CodPar": "0005802",
+      "ApePar": "PAREDES CAMACHO",
+      "NomPar": "JACK GALDINO",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "18/04/1979",
+      "FecRei": "13/03/2000",
+      "Carnet": "00058"
+    },
+    {
+      "CodPar": "0005803",
+      "ApePar": "PAREDES CAMACHO",
+      "NomPar": "NATALI KATIUSCA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "19/09/1982",
+      "FecRei": "13/03/2000",
+      "Carnet": "00058"
+    },
+    {
+      "CodPar": "0005901",
+      "ApePar": "ZEGARRA SUAREZ",
+      "NomPar": "JUAN",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/1936",
+      "FecRei": "13/03/2000",
+      "Carnet": "00059"
+    },
+    {
+      "CodPar": "0005902",
+      "ApePar": "ZEGARRA VELASCO",
+      "NomPar": "MARIA JESUS",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Casado(a)",
+      "FecPar": "__/__/1959",
+      "FecRei": "13/03/2000",
+      "Carnet": "00059"
+    },
+    {
+      "CodPar": "0005903",
+      "ApePar": "VELASCO TORRES",
+      "NomPar": "PAUL",
+      "DesPar": "Sobrino(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1983",
+      "FecRei": "13/03/2000",
+      "Carnet": "00059"
+    },
+    {
+      "CodPar": "0006001",
+      "ApePar": "AYALA CORTEZ",
+      "NomPar": "FIDELA JULIA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "16/02/1955",
+      "FecRei": "13/03/2000",
+      "Carnet": "00060"
+    },
+    {
+      "CodPar": "0006002",
+      "ApePar": "VILLUGAS",
+      "NomPar": "FROILAN",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Conviv.",
+      "FecPar": "05/10/1978",
+      "FecRei": "13/03/2000",
+      "Carnet": "00060"
+    },
+    {
+      "CodPar": "0006003",
+      "ApePar": "VILLUGAS AYALA",
+      "NomPar": "SILVIA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "16/01/1983",
+      "FecRei": "13/03/2000",
+      "Carnet": "00060"
+    },
+    {
+      "CodPar": "0006004",
+      "ApePar": "VILLUGAS AYALA",
+      "NomPar": "JAVIER",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Conviv.",
+      "FecPar": "21/05/1986",
+      "FecRei": "13/03/2000",
+      "Carnet": "00060"
+    },
+    {
+      "CodPar": "0006101",
+      "ApePar": "AMARILO POMA",
+      "NomPar": "BERNARDA",
+      "DesPar": "Madre",
+      "DesCiv": "Viudo(a)",
+      "FecPar": "__/__/1940",
+      "FecRei": "13/03/2000",
+      "Carnet": "00061"
+    },
+    {
+      "CodPar": "0006102",
+      "ApePar": "GALARZA TOVAR",
+      "NomPar": "ANGEL",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "14/09/____",
+      "FecRei": "07/08/2008",
+      "Carnet": "00061"
+    },
+    {
+      "CodPar": "0006103",
+      "ApePar": "MORALES AMARILLO",
+      "NomPar": "AMILCAR",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1987",
+      "FecRei": "08/06/2007",
+      "Carnet": "00061"
+    },
+    {
+      "CodPar": "0006104",
+      "ApePar": "GALARZA TOVAR",
+      "NomPar": "JOSUE",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "04/02/1990",
+      "FecRei": "13/03/2000",
+      "Carnet": "00061"
+    },
+    {
+      "CodPar": "0006105",
+      "ApePar": "GALARZA TOVAR",
+      "NomPar": "MARLENE SARA",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "__/__/1992",
+      "FecRei": "08/06/2007",
+      "Carnet": "00061"
+    },
+    {
+      "CodPar": "0006201",
+      "ApePar": "LEONARDO DE ARELLANO",
+      "NomPar": "AMELIA",
+      "DesPar": "Cónyuge",
+      "DesCiv": "Casado(a)",
+      "FecPar": "21/11/1954",
+      "FecRei": "13/03/2000",
+      "Carnet": "00062"
+    },
+    {
+      "CodPar": "0006202",
+      "ApePar": "ARELLANO LEONARDO",
+      "NomPar": "EDWIN  FELIX",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "17/06/1975",
+      "FecRei": "13/03/2000",
+      "Carnet": "00062"
+    },
+    {
+      "CodPar": "0006203",
+      "ApePar": "ARELLANO LEONARDO",
+      "NomPar": "YANETH LEONOR",
+      "DesPar": "Hijo(a)",
+      "DesCiv": "Soltero(a)",
+      "FecPar": "01/02/1977",
+      "FecRei": "13/03/2000",
+      "Carnet": "00062"
+    }
+  ]
