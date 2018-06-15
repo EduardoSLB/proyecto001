@@ -5,6 +5,9 @@ import _ from 'lodash';
 import * as firebase from 'firebase';
 import Aux from '../../hoc/Auxiliar';
 
+import * as actionTypes from '../../store/actions';
+import { connect } from 'react-redux';
+
 class Familias extends Component {
 
     static contextTypes = {
@@ -85,6 +88,39 @@ class Familias extends Component {
             });
         
       };
+
+      modificarUsuario = (id) =>{
+        const queryParams = [];
+        localStorage.setItem('IDITEM', id);
+        this.props.guardarIdItem(id);
+        queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("modificar"));  
+         const queryString = queryParams.join('&');
+        this.props.history.push({
+          pathname: '/modfamilia', 
+          search: '?' + queryString
+        });
+        
+      }
+
+      registrarItem = (id) => {
+      
+        const queryParams = [];/*
+        for(let i in this.state.ingredients){
+            queryParams.push(encodeURIComponent(i) + '='+encodeURIComponent(this.state.ingredients[i]));
+        }
+        queryParams.push('price='+this.state.totalPrice);
+        const queryString = queryParams.join('&');
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString  
+        }); */
+       queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("nuevo")); 
+       const queryString = queryParams.join('&');
+      this.props.history.push({
+        pathname: '/modFamilia', 
+        search: '?' + queryString
+      });
+    }
 
     componentDidMount() {
         let token = localStorage.getItem('token');
@@ -190,7 +226,7 @@ class Familias extends Component {
             />
             {nohayregistros}
             <div style={{textAlign: "center"}}>
-            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{alert("En proceso...")}}>Registar familiar</button>
+            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarItem("nuevo")}}>Registar familiar</button>
             <button
              style={{padding: "16px", fontSize: "16px", margin: " 10px"}} 
             onClick={this.context.router.history.goBack}>
@@ -203,4 +239,18 @@ class Familias extends Component {
 
 }
 
-export default withRouter(Familias);
+const mapStateToProps = state =>{
+  return {
+    idComunero: state.idComunero, 
+  };
+}
+
+const mapDispatchToProps = dispatch =>{
+  return {
+    guardarIdItem: (result) => dispatch({type: actionTypes.ID_ITEM, id: result}),
+
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Familias));

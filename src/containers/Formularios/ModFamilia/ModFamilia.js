@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 
-import Button from "../../components/UI/Button/Button";
+import Button from "../../../components/UI/Button/Button";
 import classes from "./Modelo.css";
 import axios from "axios";
 import _ from 'lodash';
 import * as firebase from 'firebase';
 import { withRouter } from "react-router-dom";
-
+import * as actionTypes from '../../../store/actions';
+import { connect } from 'react-redux';
 class ModFamilia extends Component {
   state = {
     tipo: null,
@@ -57,48 +58,49 @@ class ModFamilia extends Component {
   };
 
   componentDidMount = () => {
+
     let token = localStorage.getItem("token");
     this.setState({ token: token });
     let expirationDate = new Date(localStorage.getItem("expirationDate"));
 
     if (!(token && expirationDate > new Date())) {
-      this.props.history.push("/");
+      this.props.history.push("/");    
     } else {
       const query = new URLSearchParams(this.props.location.search);
       let varHayTipo = null;
-      let idCom = null;
+      let idItem = null;
       for (let param of query.entries()) {
         if (param[0] === "tipo") {
           varHayTipo = param[1];
           this.setState({ tipo: param[1] });
         }
-        if (param[0] === "id") {
-          idCom = param[1];
-        }
+       
       }
+      idItem = this.props.idItem;
 
       if (varHayTipo === "nuevo") {
         this.setState({ tipo: varHayTipo, mostrarEliminar: false });
-      } else if (varHayTipo === "modificar" && idCom) {
+      } else if (varHayTipo === "modificar" && idItem) {
+        let id_comunero = localStorage.getItem('IDCOMUNERO');
+        let id_item = localStorage.getItem('IDITEM');
+        console.log("Comuero" + id_comunero + " ITEM: " + id_item)
         axios
           .get(
-            "https://proyecto-tarma.firebaseio.com/comuneros/" +
-              idCom +
+            "https://proyecto-tarma.firebaseio.com/familias/" +
+              id_comunero +"/"+ id_item +
               "/.json?auth=" +
               token
           )
           .then(response => {
-            this.setState({ persona: response.data });
-            /*const obje = {"tipo": "antiguoo"}
-                axios.patch('https://proyecto-tarma.firebaseio.com/comuneros/-LCo9OSE5nDH-552kbsK/.json?auth='+ token, obje).then((response)=>{
-                    console.log(response);
-                });*/
+            console.log(response.data)
           });
       } else {
-        this.props.history.push("/");
+        this.props.history.push("/");alert("ModFamilia"); alert(idItem)
       }
     }
   };
+
+  
 
   cambiar = (evt, identi) => {
     let nuevo = {
@@ -817,4 +819,18 @@ class ModFamilia extends Component {
   }
 }
 
-export default withRouter(ModFamilia);
+const mapStateToProps = state =>{
+  return {
+    idItem: state.id_item, 
+    idComunero: state.idComunero
+  };
+}
+
+const mapDispatchToProps = dispatch =>{
+  return {
+    guardarComuneros: (result) => dispatch({type: actionTypes.TOTAL_COMUNEROS, comuneros: result}),
+    guardarIDComunero: (result) => dispatch({type: actionTypes.ID_COMUNERO, idComunero: result})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ModFamilia));

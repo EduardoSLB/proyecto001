@@ -8,7 +8,8 @@ import { withRouter } from 'react-router-dom';
 //import classes from '../../assets/react-table.css';
 import * as firebase from 'firebase';
 //import noraxios from 'axios';
-
+import * as actionTypes from '../../store/actions';
+import { connect } from 'react-redux';
 
 class BurgerBuilder extends Component {
 
@@ -22,8 +23,9 @@ class BurgerBuilder extends Component {
           loading: true, 
           variable: false, 
         //loading: false,
-        idToken: null
+          idToken: null
         };
+
         this.fetchData = this.fetchData.bind(this);
       }
 
@@ -32,7 +34,8 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount() {
-        
+
+
         let tokenleido = localStorage.getItem('token');
        
         let expirationDate = new Date(localStorage.getItem('expirationDate'));
@@ -40,7 +43,8 @@ class BurgerBuilder extends Component {
        
         if(tokenleido && (new Date()<expirationDate)){
          
-          const datosComuneros=[];
+            if(this.props.totalComuneros.length===0){
+              const datosComuneros=[];
             axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth='+this.state.idToken).then((res)=>{
               if(res){   
                 
@@ -53,12 +57,17 @@ class BurgerBuilder extends Component {
                     
                 }
                 this.setState({datodos: datosComuneros, variable: !this.state.variable, loading: false});
-                
+                this.props.guardarComuneros(datosComuneros);
               }else{
                 this.props.history.push('/auth');
               }
 
             });
+            }else{
+              this.setState({datodos: this.props.totalComuneros, variable: !this.state.variable})
+            }
+
+          
     } else{
       localStorage.removeItem('token');
       localStorage.removeItem('expirationDate');
@@ -143,11 +152,14 @@ class BurgerBuilder extends Component {
     }
 
     logout = ()=>{
+
+      alert(this.props.totalComuneros.length)
+      /*
         localStorage.removeItem('token');
         localStorage.removeItem('expirationDate');
         firebase.auth().signOut();
         this.setState({idToken: null});
-        this.props.history.push('/auth');
+        this.props.history.push('/auth');*/
     }
 
     abrirPruebas = () =>{
@@ -175,6 +187,8 @@ class BurgerBuilder extends Component {
     }
 
     modificarUsuario = (id) =>{
+      
+      localStorage.setItem('IDCOMUNERO', id);
       const queryParams = [];
        queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("modificar")); 
        queryParams.push(encodeURIComponent("id")+ '=' + encodeURIComponent(id)); 
@@ -183,9 +197,12 @@ class BurgerBuilder extends Component {
         pathname: '/modelo', 
         search: '?' + queryString
       });
+      this.props.guardarIDComunero(id);
     }
     
     verInfo = (tipo, id) => {
+      alert(id + "IDCOMUNERO")
+      localStorage.setItem('IDCOMUNERO', id);
       const queryParams = [];
        queryParams.push(encodeURIComponent("id")+ '=' + encodeURIComponent(id)); 
        const queryString = queryParams.join('&');
@@ -414,5 +431,19 @@ class BurgerBuilder extends Component {
     /*<button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.abrirPruebas()}}>Pruebas</button>*/
 }
 
-export default withRouter(withErrorHandler(BurgerBuilder, axios));
+const mapStateToProps = state =>{
+  return {
+    idComunero: state.idComunero, 
+    totalComuneros: state.totalComuneros
+  };
+}
+
+const mapDispatchToProps = dispatch =>{
+  return {
+    guardarComuneros: (result) => dispatch({type: actionTypes.TOTAL_COMUNEROS, comuneros: result}),
+    guardarIDComunero: (result) => dispatch({type: actionTypes.ID_COMUNERO, idComunero: result})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(withErrorHandler(BurgerBuilder, axios)));
 

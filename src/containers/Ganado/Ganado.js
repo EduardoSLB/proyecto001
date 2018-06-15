@@ -86,6 +86,19 @@ class Ganado extends Component {
         
       };
 
+      modificarUsuario = (id) =>{
+        const queryParams = [];
+        alert("click")
+        queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("modificar")); 
+         queryParams.push(encodeURIComponent("id")+ '=' + encodeURIComponent(id)); 
+         const queryString = queryParams.join('&');
+        this.props.history.push({
+          pathname: '/modfamilia', 
+          search: '?' + queryString
+        });
+        
+      }
+
     componentDidMount() {
         let token = localStorage.getItem('token');
             if(token){const query = new URLSearchParams(this.props.location.search);

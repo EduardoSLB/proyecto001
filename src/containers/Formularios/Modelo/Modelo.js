@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 
-import Button from "../../components/UI/Button/Button";
+import Button from "../../../components/UI/Button/Button";
 import classes from "./Modelo.css";
 import axios from "axios";
-import _ from 'lodash';
-import * as firebase from 'firebase';
 import { withRouter } from "react-router-dom";
 
-class ModFamilia extends Component {
+class Modelo extends Component {
   state = {
     tipo: null,
     persona: {
@@ -53,6 +51,46 @@ class ModFamilia extends Component {
     token: null,
     verificacion: false,
     idCom: null,
+    limpio: {
+      NomUsu: "",
+      ApeUsu: "",
+      CodUsu: "",
+      NomAne: "COCHAPATA",
+      DesCiv: "Soltero(a)",
+      Sexo: "M",
+      FecNac: "",
+      DesOcu: "Agricultor(a)",
+      GraIns: "",
+      NomDis: "Palca",
+      NomPro: "Tarma",
+      NomDep: "Junín",
+      DirUsu: "",
+      FecIng: "",
+      tipo: "Antiguo",
+      PadUsu: "",
+      AsaSes: "Asamblea",
+      NomHer: "",
+      FecRei: "",
+      DesDoc: "D.N.I",
+      NumDoc: "",
+      Activo: "Si",
+      Activo04: "No",
+      FecRei04: "",
+      Activo06: "No",
+      FecRei06: "",
+      Activo08: "No",
+      FecRei08: "",
+      Activo10: "No",
+      FecRei10: "",
+      Activo12: "No",
+      FecRei12: "",
+      Activo14: "No",
+      FecRei14: "",
+      Activo16: "No",
+      FecRei16: "",
+      Activo18: "No",
+      FecRei18: ""
+    },
     mostrarEliminar: true
   };
 
@@ -141,6 +179,7 @@ class ModFamilia extends Component {
             )
             .then(response => {
               alert("Usuario registrado exitosamente");
+              this.setState({ persona: this.state.limpio });
 
               this.context.router.history.goBack();
             });
@@ -817,4 +856,4 @@ class ModFamilia extends Component {
   }
 }
 
-export default withRouter(ModFamilia);
+export default withRouter(Modelo);
