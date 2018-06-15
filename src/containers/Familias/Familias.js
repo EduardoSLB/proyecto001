@@ -237,6 +237,8 @@ class Familias extends Component {
         )
     }
 
+
+    
 }
 
 const mapStateToProps = state =>{
