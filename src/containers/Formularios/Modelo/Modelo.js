@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import Button from "../../../components/UI/Button/Button";
 import classes from "./Modelo.css";
+import PropTypes from 'prop-types';
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 
@@ -45,8 +46,9 @@ class Modelo extends Component {
       FecRei14: "",
       Activo16: "No",
       FecRei16: "",
+      FecRei18: "",
       Activo18: "No",
-      FecRei18: ""
+      
     },
     token: null,
     verificacion: false,
@@ -89,7 +91,7 @@ class Modelo extends Component {
       Activo16: "No",
       FecRei16: "",
       Activo18: "No",
-      FecRei18: ""
+      FecRei18: "",
     },
     mostrarEliminar: true
   };
@@ -126,7 +128,9 @@ class Modelo extends Component {
               token
           )
           .then(response => {
-            this.setState({ persona: response.data });
+            let hola = response.data;
+            hola.FecRei18 = ''
+            this.setState({ persona: hola });
             /*const obje = {"tipo": "antiguoo"}
                 axios.patch('https://proyecto-tarma.firebaseio.com/comuneros/-LCo9OSE5nDH-552kbsK/.json?auth='+ token, obje).then((response)=>{
                     console.log(response);
@@ -267,8 +271,8 @@ class Modelo extends Component {
   };
 
   static contextTypes = {
-    router: () => true
-  };
+    router:  PropTypes.object
+  }
 
   render() {
     const formElementsArray = [];
@@ -633,6 +637,7 @@ class Modelo extends Component {
             <div className="pure-control-group">
               <label>¿Activo 04?</label>
               <select
+              value={this.state.persona.Activo04}
                 style={{ width: "45%", marginLeft: "14px" }}
                 className="pure-input-1-2"
                 onChange={evt => {
@@ -657,6 +662,7 @@ class Modelo extends Component {
             <div className="pure-control-group">
               <label>¿Activo 06?</label>
               <select
+              value={this.state.persona.Activo06}
                 style={{ width: "45%", marginLeft: "14px" }}
                 className="pure-input-1-2"
                 onChange={evt => {
@@ -681,6 +687,7 @@ class Modelo extends Component {
             <div className="pure-control-group">
               <label>¿Activo 08?</label>
               <select
+              value={this.state.persona.Activo08}
                 style={{ width: "45%", marginLeft: "14px" }}
                 className="pure-input-1-2"
                 onChange={evt => {
@@ -705,6 +712,7 @@ class Modelo extends Component {
             <div className="pure-control-group">
               <label>¿Activo 10?</label>
               <select
+              value={this.state.persona.Activo10}
                 style={{ width: "45%", marginLeft: "14px" }}
                 className="pure-input-1-2"
                 onChange={evt => {
@@ -729,6 +737,7 @@ class Modelo extends Component {
             <div className="pure-control-group">
               <label>¿Activo 12?</label>
               <select
+              value={this.state.persona.Activo12}
                 style={{ width: "45%", marginLeft: "14px" }}
                 className="pure-input-1-2"
                 onChange={evt => {
@@ -753,6 +762,7 @@ class Modelo extends Component {
             <div className="pure-control-group">
               <label>¿Activo 14?</label>
               <select
+              value={this.state.persona.Activo14}
                 style={{ width: "45%", marginLeft: "14px" }}
                 className="pure-input-1-2"
                 onChange={evt => {
@@ -777,6 +787,7 @@ class Modelo extends Component {
             <div className="pure-control-group">
               <label>¿Activo 16?</label>
               <select
+              value={this.state.persona.Activo16}
                 style={{ width: "45%", marginLeft: "14px" }}
                 className="pure-input-1-2"
                 onChange={evt => {
@@ -802,6 +813,7 @@ class Modelo extends Component {
             <div className="pure-control-group">
               <label>¿Activo 18?</label>
               <select
+              value={this.state.persona.Activo18}
                 style={{ width: "45%", marginLeft: "14px" }}
                 className="pure-input-1-2"
                 onChange={evt => {

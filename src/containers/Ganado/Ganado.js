@@ -3,13 +3,14 @@ import ReactTable from 'react-table';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import * as firebase from 'firebase';
+import PropTypes from 'prop-types';
 import Aux from '../../hoc/Auxiliar';
 
 class Ganado extends Component {
 
-    static contextTypes = {
-        router: () => true, // replace with PropTypes.object if you use them
-      }
+  static contextTypes = {
+    router:  PropTypes.object
+  }
 
     constructor() {
         super();
@@ -88,16 +89,26 @@ class Ganado extends Component {
 
       modificarUsuario = (id) =>{
         const queryParams = [];
-        alert("click")
+        localStorage.setItem('IDITEM', id);
         queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("modificar")); 
-         queryParams.push(encodeURIComponent("id")+ '=' + encodeURIComponent(id)); 
+          
          const queryString = queryParams.join('&');
         this.props.history.push({
-          pathname: '/modfamilia', 
+          pathname: '/modGanado', 
           search: '?' + queryString
         });
         
       }
+
+      registrarItem = (id) => {
+        const queryParams = [];
+       queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("nuevo")); 
+       const queryString = queryParams.join('&');
+      this.props.history.push({
+        pathname: '/modGanado', 
+        search: '?' + queryString
+      });
+    }
 
     componentDidMount() {
         let token = localStorage.getItem('token');
@@ -111,8 +122,10 @@ class Ganado extends Component {
                     });
                 }
             }
+          
+            //console.log("-LCo8GTHkhzwY_yhq691"===id_comunero)
             const DataSacada = []
-            const rootRef = firebase.database().ref().child('ganado').child(id);
+            const rootRef = firebase.database().ref().child('ganado').child(id) ;
             rootRef.on('value', snap=>{
                 var items = snap.val();
                 for(let key in items){
@@ -125,6 +138,8 @@ class Ganado extends Component {
                 if(DataSacada.length===0){
                     this.setState({vacio: true})
                 }
+                //console.log(DataSacada) 
+                //console.log(localStorage.getItem('IDCOMUNERO'))//-LCo8GTHkhzwY_yhq691
                 this.setState({datodos: DataSacada, variable: !this.state.variable, loading: false})
             });}
             else{
@@ -166,7 +181,7 @@ class Ganado extends Component {
               },
               {
                 Header: "Cantidad",
-                accessor: "CanGan"
+                accessor: "CanGa"
               },
               {
                 Header: "Color",
@@ -216,7 +231,7 @@ class Ganado extends Component {
             />
             {nohayregistros}
             <div style={{textAlign: "center"}}>
-            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{alert("En proceso...")}}>Registar Ganado</button>
+            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarItem("nuevo")}}>Registar Ganado</button>
             <button
              style={{padding: "16px", fontSize: "16px", margin: " 10px"}} 
             onClick={this.context.router.history.goBack}>

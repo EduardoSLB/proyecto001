@@ -12,9 +12,13 @@ import { Provider } from 'react-redux';
 import reducer from './store/reducers/todo'
 
 /*TODO:
-1.1) Guardar los ID's, comunero e item, en localstorage
-3) Mostrar la información en un componente cualquiera, el que ya está
-4) Arreglar el FORMS de cada item*/ 
+1) Que funcione para meter nuevos datos, tal vez tenemos que hacerlo con Firebase para que funcione. Eso he visto, axios y firebase pueden tener interferencias. No es seguro, probémoslo, en el caso de que ni así funcione, utilicemos axios para pedir los datos sin firebase.
+Lo importante es tener algo que funcione. Luego arreglamos los errores.
+Después de agregar, eliminar y editar items, imprimir los 3 reportes
+Pedir nueva paga
+Por último, la parte de obligaciones
+Pedir prórroga
+Listo*/ 
 
 const store = createStore(reducer);
 

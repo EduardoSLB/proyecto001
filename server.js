@@ -32,11 +32,11 @@ const server = createServer(app);
 server.listen(PORT, err=>{
     if(err) throw err;
 
-    console.log('Server started');
+    //console.log('Server started');
 });
 
 server.close(() => {
-    console.log('Server closed !!! ');
+    //console.log('Server closed !!! ');
     process.exit();
   });
   

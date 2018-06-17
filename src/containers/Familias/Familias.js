@@ -4,15 +4,15 @@ import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import * as firebase from 'firebase';
 import Aux from '../../hoc/Auxiliar';
-
+import PropTypes from 'prop-types';
 import * as actionTypes from '../../store/actions';
 import { connect } from 'react-redux';
 
 class Familias extends Component {
 
-    static contextTypes = {
-        router: () => true, // replace with PropTypes.object if you use them
-      }
+  static contextTypes = {
+    router:  PropTypes.object
+  }
 
     constructor() {
         super();
@@ -103,17 +103,7 @@ class Familias extends Component {
       }
 
       registrarItem = (id) => {
-      
-        const queryParams = [];/*
-        for(let i in this.state.ingredients){
-            queryParams.push(encodeURIComponent(i) + '='+encodeURIComponent(this.state.ingredients[i]));
-        }
-        queryParams.push('price='+this.state.totalPrice);
-        const queryString = queryParams.join('&');
-        this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString  
-        }); */
+        const queryParams = [];
        queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("nuevo")); 
        const queryString = queryParams.join('&');
       this.props.history.push({
@@ -240,6 +230,7 @@ class Familias extends Component {
 
     
 }
+
 
 const mapStateToProps = state =>{
   return {

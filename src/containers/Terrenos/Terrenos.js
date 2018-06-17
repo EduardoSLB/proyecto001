@@ -3,13 +3,14 @@ import ReactTable from 'react-table';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import * as firebase from 'firebase';
+import PropTypes from 'prop-types';
 import Aux from '../../hoc/Auxiliar';
 
 class Terrenos extends Component {
 
-    static contextTypes = {
-        router: () => true, // replace with PropTypes.object if you use them
-      }
+  static contextTypes = {
+    router:  PropTypes.object
+  }
 
     constructor() {
         super();
@@ -88,16 +89,35 @@ class Terrenos extends Component {
 
       modificarUsuario = (id) =>{
         const queryParams = [];
-        alert("click")
+        localStorage.setItem('IDITEM', id);
         queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("modificar")); 
-         queryParams.push(encodeURIComponent("id")+ '=' + encodeURIComponent(id)); 
          const queryString = queryParams.join('&');
         this.props.history.push({
-          pathname: '/modfamilia', 
+          pathname: '/modterrenos', 
           search: '?' + queryString
         });
         
       }
+
+      registrarItem = (id) => {
+        const queryParams = [];
+       queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("nuevo")); 
+       const queryString = queryParams.join('&');
+      this.props.history.push({
+        pathname: '/modterrenos', 
+        search: '?' + queryString
+      });
+    }
+      
+      registrarItem = (id) => {
+        const queryParams = [];
+       queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("nuevo")); 
+       const queryString = queryParams.join('&');
+      this.props.history.push({
+        pathname: '/modTerrenos', 
+        search: '?' + queryString
+      });
+    }
 
     componentDidMount() {
         let token = localStorage.getItem('token');
@@ -231,7 +251,7 @@ class Terrenos extends Component {
             />
             {nohayregistros}
             <div style={{textAlign: "center"}}>
-            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{alert("En proceso...")}}>Registar Terreno</button>
+            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarItem("nuevo")}}>Registar Terreno</button>
             <button
              style={{padding: "16px", fontSize: "16px", margin: " 10px"}} 
             onClick={this.context.router.history.goBack}>

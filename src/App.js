@@ -10,6 +10,8 @@ import Familias from './containers/Familias/Familias';
 import Ganado from './containers/Ganado/Ganado';
 import Terrenos from './containers/Terrenos/Terrenos';
 import ModFamilia from './containers/Formularios/ModFamilia/ModFamilia';
+import ModGanado from './containers/Formularios/ModGanado/ModGanado';
+import ModTerreno from './containers/Formularios/ModTerreno/ModTerreno';
 
 class App extends Component {
   
@@ -41,6 +43,8 @@ class App extends Component {
           <Switch>
             <Route path="/modelo" component={Modelo} />
             <Route path="/modfamilia" component={ModFamilia}/>
+            <Route path="/modganado" component={ModGanado}/>
+            <Route path="/modterrenos" component={ModTerreno}/>
             <Route path="/auth" component={Auth} />
             <Route path="/pruebas" component={Pruebas} />
             <Route path="/familias" component={Familias}/>

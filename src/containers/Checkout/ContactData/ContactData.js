@@ -15,7 +15,7 @@ class ContactData extends Component {
 
     orderHandler = (event) => {
         event.preventDefault();
-        console.log(this.props.ingredients);
+        //console.log(this.props.ingredients);
         //axios.post('orders.json', order).then(response=>{this.setState(); this.props.history.push('/')}).catch(error=>{this.setState({loading: false })});
         this.props.history.push('/');
     }
