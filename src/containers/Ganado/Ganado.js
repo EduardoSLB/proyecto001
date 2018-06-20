@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import Aux from '../../hoc/Auxiliar';
 

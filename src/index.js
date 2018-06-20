@@ -4,7 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -12,13 +14,10 @@ import { Provider } from 'react-redux';
 import reducer from './store/reducers/todo'
 
 /*TODO:
-1) Que funcione para meter nuevos datos, tal vez tenemos que hacerlo con Firebase para que funcione. Eso he visto, axios y firebase pueden tener interferencias. No es seguro, probémoslo, en el caso de que ni así funcione, utilicemos axios para pedir los datos sin firebase.
-Lo importante es tener algo que funcione. Luego arreglamos los errores.
-Después de agregar, eliminar y editar items, imprimir los 3 reportes
-Pedir nueva paga
-Por último, la parte de obligaciones
-Pedir prórroga
-Listo*/ 
+- Hacer documento de carné
+- Hacer documento de obligaciones
+- Hacer documento de constancia de obligaciones
+*/ 
 
 const store = createStore(reducer);
 

@@ -12,7 +12,7 @@ import {
   withRouter
 } from 'react-router-dom';
 //import classes from '../../assets/react-table.css';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 //import noraxios from 'axios';
 import * as actionTypes from '../../store/actions';
 import {

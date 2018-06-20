@@ -4,7 +4,7 @@ import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import classes from './Auth.css';
 import axios from 'axios';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 
 class Auth extends Component {
     state = {

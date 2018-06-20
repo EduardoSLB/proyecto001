@@ -4,7 +4,7 @@ import Button from "../../../components/UI/Button/Button";
 import classes from "./Modelo.css";
 import axios from "axios";
 import PropTypes from 'prop-types';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import { withRouter } from "react-router-dom";
 
 class ModTerreno extends Component {
@@ -101,7 +101,7 @@ class ModTerreno extends Component {
     let token = localStorage.getItem("token");
     this.setState({ token: token });
     let expirationDate = new Date(localStorage.getItem("expirationDate"));
-
+    const rootRef =firebase.database().ref()
     if (this.state.verificacion) {
       if (!(token && expirationDate > new Date())) {
         this.props.history.push("/");
@@ -109,7 +109,7 @@ class ModTerreno extends Component {
         if (this.state.tipo === "nuevo") {
           const obje = this.state.terreno;
 
-          const rootRef =firebase.database().ref().child('terrenos').child(localStorage.getItem('IDCOMUNERO'));
+          rootRef.child('terrenos').child(localStorage.getItem('IDCOMUNERO'));
 
           rootRef.push().set(obje).then(()=>{
             alert("Terreno registrado exitosamente");
@@ -128,8 +128,8 @@ class ModTerreno extends Component {
           }
 
           const obje = this.state.terreno;
-          const rootRef =firebase.database().ref().child('terrenos').child(localStorage.getItem('IDCOMUNERO'));
-          rootRef.child(localStorage.getItem('IDITEM')).update(obje).then(()=>{
+          
+          rootRef.child('terrenos').child(localStorage.getItem('IDCOMUNERO')).child(localStorage.getItem('IDITEM')).update(obje).then(()=>{
             alert("Terreno modificado exitosamente");
             this.context.router.history.goBack();
           });

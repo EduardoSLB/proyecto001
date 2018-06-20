@@ -4,7 +4,7 @@ import Button from "../../../components/UI/Button/Button";
 import classes from "./Modelo.css";
 import axios from "axios";
 import PropTypes from 'prop-types';
-import * as firebase from 'firebase';
+import firebase from 'firebase/app'
 import { withRouter } from "react-router-dom";
 
 class ModGanado extends Component {

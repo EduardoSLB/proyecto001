@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { withRouter } from "react-router-dom";
 
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 
 //import familias from '../../assets/familias7.json';
 //import ganado from '../../assets/ganado.json';
