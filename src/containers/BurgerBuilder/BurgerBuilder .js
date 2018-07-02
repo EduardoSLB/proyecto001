@@ -19,8 +19,6 @@ import {
   connect
 } from 'react-redux';
 
-
-
 class BurgerBuilder extends Component {
 
   constructor() {
