@@ -1,23 +1,17 @@
-import React, {
-  Component
-} from 'react';
-
+import React, { Component } from 'react';
 import * as jsPDF from 'jspdf';
 import _ from 'lodash';
 import Aux from '../../hoc/Auxiliar'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import ReactTable from 'react-table';
 import axios from '../../axios-orders';
-import {
-  withRouter
-} from 'react-router-dom';
-//import classes from '../../assets/react-table.css';
+import { withRouter } from 'react-router-dom';
 import * as firebase from 'firebase/app';
-//import noraxios from 'axios';
 import * as actionTypes from '../../store/actions';
-import {
-  connect
-} from 'react-redux';
+import { connect } from 'react-redux';
+
+//import noraxios from 'axios';
+//import classes from '../../assets/react-table.css';
 
 class BurgerBuilder extends Component {
 
@@ -463,6 +457,11 @@ class BurgerBuilder extends Component {
 
   verInfo = (tipo, id) => {
 
+    if(tipo === 'obligaciones'){
+      this.props.history.push("obligaciones")  ;
+      return;
+    }
+
     localStorage.setItem('IDCOMUNERO', id);
     const queryParams = [];
     queryParams.push(encodeURIComponent("id") + '=' + encodeURIComponent(id));
@@ -684,6 +683,7 @@ class BurgerBuilder extends Component {
         className="-striped -highlight"
         />
         <div style={{textAlign: "center"}}>
+        <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('obligaciones')}}>Obligaciones</button>
         <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarUsuario("nuevo")}}>Registar usuario</button>
         <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={this.logout}>Cerrar Sesión</button>
         </div>
