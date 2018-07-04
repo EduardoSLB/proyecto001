@@ -45,13 +45,12 @@ class ModObligacion extends Component {
         this.setState({ tipo: varHayTipo, mostrarEliminar: false });
 
       } else if (varHayTipo === "modificar" && localStorage.getItem('IDITEM')) {
-        let id_comunero = localStorage.getItem('IDCOMUNERO');
         let id_item = localStorage.getItem('IDITEM');
 
         axios
           .get(
-            "https://proyecto-tarma.firebaseio.com/obligacion/" +
-              id_comunero + "/" + id_item +
+            "https://proyecto-tarma.firebaseio.com/obligaciones/" +
+            id_item +
               "/.json?auth=" +
               token
           )
@@ -98,7 +97,6 @@ class ModObligacion extends Component {
         this.props.history.push("/");
       } else {
         if (this.state.tipo === "nuevo") {
-          const obje = this.state.obligacion;
 
           const rootRef =firebase.database().ref().child('obligaciones').child(this.state.obligacion.CodObl);
 
@@ -115,8 +113,7 @@ class ModObligacion extends Component {
           
           axios
             .patch(
-              "https://proyecto-tarma.firebaseio.com/ganado/" +
-              localStorage.getItem('IDCOMUNERO') + "/" + localStorage.getItem('IDITEM')+ 
+              "https://proyecto-tarma.firebaseio.com/obligaciones/" + localStorage.getItem('IDITEM')+ 
                 "/.json?auth=" +
                 token,
               obje
@@ -124,6 +121,7 @@ class ModObligacion extends Component {
             .then(response => {
               alert("Ganado modificado exitosamente");
               this.setState({ verificacion: false });
+              this.context.router.history.goBack();
             });
         }
       }
@@ -157,28 +155,11 @@ class ModObligacion extends Component {
           }
 
     
-          const rootRef =firebase.database().ref().child('ganado').child(localStorage.getItem('IDCOMUNERO'));
+          const rootRef =firebase.database().ref().child('obligaciones')
           rootRef.child(localStorage.getItem('IDITEM')).remove().then(()=>{
-            alert("Ganado eliminado correctamente");
+            alert("Obligación eliminado correctamente");
             this.context.router.history.goBack();
           });
-          /*axios
-            .delete(
-              "https://proyecto-tarma.firebaseio.com/comuneros/" +
-                idCom +
-                "/.json?auth=" +
-                token,
-              obje
-            )
-            .then(response => {
-              alert("Usuario eliminado correctamente");
-              this.context.router.history.goBack();
-            })
-            .catch(err => {
-              alert(
-                "No se pudo eliminar al usuario. Puede que haya sido eliminado previamente"
-              );
-            });*/
         }
       }
     } else {

@@ -96,7 +96,7 @@ class Obligaciones extends Component {
         queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("modificar"));  
          const queryString = queryParams.join('&');
         this.props.history.push({
-          pathname: '/modfamilia', 
+          pathname: '/modobligacion', 
           search: '?' + queryString
         });
         
@@ -208,7 +208,8 @@ class Obligaciones extends Component {
               
               return (
                 <div>
-                  <button style={{marginLeft:"10px", padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.modificarUsuario(row.original.id)}}>Administrar Obligación</button>
+                  <button style={{marginLeft:"10px", padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.administrar(row.original.id)}}>Administrar Obligación</button>
+                  <button style={{marginLeft:"10px", padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.modificarUsuario(row.original.CodObl)}}>Editar Obligación</button>
                 </div>       
             )
             }}
@@ -224,6 +225,7 @@ class Obligaciones extends Component {
             {nohayregistros}
             <div style={{textAlign: "center"}}>
             <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarItem("nuevo")}}>Crear Nueva Obligación</button>
+            
             <button
              style={{padding: "16px", fontSize: "16px", margin: " 10px"}} 
             onClick={this.context.router.history.goBack}>
