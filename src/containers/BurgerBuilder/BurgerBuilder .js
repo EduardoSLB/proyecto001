@@ -289,7 +289,7 @@ class BurgerBuilder extends Component {
         const datosComuneros = [];
         axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth=' + this.state.idToken).then((res) => {
           if (res) {
-
+            console.log(res.data)
             for (let key in res.data) {
               let objeto = {
                 ...res.data[key],

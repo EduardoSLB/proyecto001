@@ -7,7 +7,7 @@ import Aux from '../../hoc/Auxiliar';
 import PropTypes from 'prop-types';
 import * as actionTypes from '../../store/actions';
 import { connect } from 'react-redux';
-
+import axios from '../../axios-orders';
 class Obligaciones extends Component {
 
   static contextTypes = {
@@ -89,6 +89,26 @@ class Obligaciones extends Component {
         
       };
 
+      pruebas = () => {
+        console.log("Pruebas presionado")
+        let datosComuneros = [];
+        axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth=' + localStorage.getItem('token')).then((res) => {
+          if (res) {
+            for (let key in res.data) {
+            
+              let superId = res.data[key].CodUsu;
+              datosComuneros.superId = res.data[key].NomUsu;
+            
+            }
+           
+            console.log(datosComuneros);
+          } else {
+            this.props.history.push('/auth');
+
+          }
+        });
+      }
+ 
       modificarUsuario = (id) =>{
         const queryParams = [];
         localStorage.setItem('IDITEM', id);
@@ -225,6 +245,7 @@ class Obligaciones extends Component {
             {nohayregistros}
             <div style={{textAlign: "center"}}>
             <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarItem("nuevo")}}>Crear Nueva Obligación</button>
+            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.pruebas()}}>Botón pruebas</button>
             
             <button
              style={{padding: "16px", fontSize: "16px", margin: " 10px"}} 

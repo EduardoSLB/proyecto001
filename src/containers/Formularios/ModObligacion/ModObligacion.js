@@ -142,19 +142,9 @@ class ModObligacion extends Component {
       if (!(token && expirationDate > new Date())) {
         this.props.history.push("/");
       } else {
-        if (this.state.tipo === "nuevo") {
-          alert("No hay a quien eliminar");
-        } else if (this.state.tipo === "modificar") {
+        if (this.state.tipo === "modificar") {
           const query = new URLSearchParams(this.props.location.search);
 
-          
-          for (let param of query.entries()) {
-            if (param[0] === "tipo") {
-            }
-            
-          }
-
-    
           const rootRef =firebase.database().ref().child('obligaciones')
           rootRef.child(localStorage.getItem('IDITEM')).remove().then(()=>{
             alert("Obligación eliminado correctamente");
@@ -183,7 +173,7 @@ class ModObligacion extends Component {
     if (this.state.mostrarEliminar) {
       botonEliminar = (
         <Button clicked={this.eliminar} btnType="Danger">
-          Eliminar Usuario
+          Eliminar Obligación
         </Button>
       );
     }
