@@ -96,14 +96,45 @@ class ModObligacion extends Component {
       if (!(token && expirationDate > new Date())) {
         this.props.history.push("/");
       } else {
+        let objeto
+
         if (this.state.tipo === "nuevo") {
 
-          const rootRef =firebase.database().ref().child('obligaciones').child(this.state.obligacion.CodObl);
+          let datosComuneros = [];
 
-          rootRef.set(this.state.obligacion).then(()=>{
-            alert("Obligación registrada exitosamente");
-            this.context.router.history.goBack();
-          });
+          
+          axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth=' + localStorage.getItem('token')).then((res) => {
+          if (res) {
+            for (let key in res.data) {
+              let superId = res.data[key].CodUsu;
+              datosComuneros[superId] = res.data[key].NomUsu + " " + res.data[key].ApeUsu;
+            }
+            
+
+            const rootRef =firebase.database().ref().child('obligaciones').child(this.state.obligacion.CodObl);
+
+
+            rootRef.set(this.state.obligacion).then(()=>{
+              console.log(this.state.obligacion)
+            });
+            
+            const rootRef2 = firebase.database().ref().child('deudores').child(this.state.obligacion.CodObl)
+
+            rootRef2.set(datosComuneros).then(()=>{
+              console.log(datosComuneros)  
+              this.context.router.history.goBack();
+            })
+
+
+
+          } else {
+            alert("Hubo un error");
+
+          }
+        });
+
+        
+         
           
         } else if (this.state.tipo === "modificar") {
           
@@ -160,6 +191,7 @@ class ModObligacion extends Component {
   static contextTypes = {
     router:  PropTypes.object
   }
+
 
   render() {
     const formElementsArray = [];

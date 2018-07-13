@@ -14,6 +14,7 @@ import ModFamilia from './containers/Formularios/ModFamilia/ModFamilia';
 import ModGanado from './containers/Formularios/ModGanado/ModGanado';
 import ModTerreno from './containers/Formularios/ModTerreno/ModTerreno';
 import ModObligacion from './containers/Formularios/ModObligacion/ModObligacion';
+import AdmiObliga from './containers/AdmiObliga/AdmiObliga';
 
 class App extends Component {
   
@@ -53,6 +54,7 @@ class App extends Component {
             <Route path="/familias" component={Familias}/>
             <Route path="/ganado" component={Ganado}/>
             <Route path="/obligaciones" component={Obligaciones}/>
+            <Route path="/admiobligaciones" component={AdmiObliga}/>
             <Route path="/terrenos" component={Terrenos}/>            
             <Route path="/" component={BurgerBuilder}/>
           </Switch>

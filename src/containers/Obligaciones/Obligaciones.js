@@ -55,7 +55,7 @@ class Obligaciones extends Component {
         return new Promise((resolve, reject) => {
           
           let filteredData = this.state.datodos;
-        
+          console.log("Llamado")
             if (filtered.length) {
               filteredData = filtered.reduce((filteredSoFar, nextFilter) => {
                 return filteredSoFar.filter(row => {
@@ -79,11 +79,11 @@ class Obligaciones extends Component {
               sorted.map(d => (d.desc ? "desc" : "asc"))
             );
       
-        
             const res = {
               rows: sortedData.slice(pageSize * page, pageSize * page + pageSize),
               pages: Math.ceil(filteredData.length / pageSize)
             };
+            
             setTimeout(() => resolve(res), 750);
             });
         
@@ -97,7 +97,7 @@ class Obligaciones extends Component {
             for (let key in res.data) {
             
               let superId = res.data[key].CodUsu;
-              datosComuneros.superId = res.data[key].NomUsu;
+              datosComuneros[superId] = res.data[key].NomUsu + " " + res.data[key].ApeUsu;
             
             }
            
@@ -122,6 +122,13 @@ class Obligaciones extends Component {
         
       }
 
+      administrar = (idObliga) =>{
+        localStorage.setItem("idObliga", idObliga)
+
+        this.props.history.push('admiobligaciones');
+
+    }
+
       registrarItem = (id) => {
         const queryParams = [];
        queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("nuevo")); 
@@ -142,8 +149,17 @@ class Obligaciones extends Component {
 
         const rootRef = firebase.database().ref().child('obligaciones');
         rootRef.on('value', snap=>{
-            console.log(snap.val())
-            this.setState({datodos: snap.val(),variable: !this.state.variable})
+            let datosObligaciones = [];
+            for (let key in snap.val()) {
+              let objeto = {
+                ...snap.val()[key],
+                id: key
+              }
+              datosObligaciones.push(objeto);
+
+            }
+            this.setState({datodos: datosObligaciones,variable: !this.state.variable})
+            console.log(this.state.datodos)
         });
         /*
         let token = localStorage.getItem('token');
@@ -239,7 +255,7 @@ class Obligaciones extends Component {
                 asc: {variable}
               }
             ]}
-            defaultPageSize={5}
+            defaultPageSize={10}
             className="-striped -highlight"
             />
             {nohayregistros}
