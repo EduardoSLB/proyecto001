@@ -96,7 +96,7 @@ class ModObligacion extends Component {
       if (!(token && expirationDate > new Date())) {
         this.props.history.push("/");
       } else {
-        let objeto
+        
 
         if (this.state.tipo === "nuevo") {
 
@@ -115,13 +115,13 @@ class ModObligacion extends Component {
 
 
             rootRef.set(this.state.obligacion).then(()=>{
-              console.log(this.state.obligacion)
+            
             });
             
             const rootRef2 = firebase.database().ref().child('deudores').child(this.state.obligacion.CodObl)
 
             rootRef2.set(datosComuneros).then(()=>{
-              console.log(datosComuneros)  
+              alert("Obligación Registrada Exitosamente")  
               this.context.router.history.goBack();
             })
 
@@ -174,7 +174,7 @@ class ModObligacion extends Component {
         this.props.history.push("/");
       } else {
         if (this.state.tipo === "modificar") {
-          const query = new URLSearchParams(this.props.location.search);
+
 
           const rootRef =firebase.database().ref().child('obligaciones')
           rootRef.child(localStorage.getItem('IDITEM')).remove().then(()=>{

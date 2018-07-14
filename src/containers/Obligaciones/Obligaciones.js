@@ -7,7 +7,8 @@ import Aux from '../../hoc/Auxiliar';
 import PropTypes from 'prop-types';
 import * as actionTypes from '../../store/actions';
 import { connect } from 'react-redux';
-import axios from '../../axios-orders';
+
+
 class Obligaciones extends Component {
 
   static contextTypes = {
@@ -55,7 +56,7 @@ class Obligaciones extends Component {
         return new Promise((resolve, reject) => {
           
           let filteredData = this.state.datodos;
-          console.log("Llamado")
+        
             if (filtered.length) {
               filteredData = filtered.reduce((filteredSoFar, nextFilter) => {
                 return filteredSoFar.filter(row => {
@@ -89,7 +90,7 @@ class Obligaciones extends Component {
         
       };
 
-      pruebas = () => {
+      /*pruebas = () => {
         console.log("Pruebas presionado")
         let datosComuneros = [];
         axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth=' + localStorage.getItem('token')).then((res) => {
@@ -107,7 +108,7 @@ class Obligaciones extends Component {
 
           }
         });
-      }
+      }*/
  
       modificarUsuario = (id) =>{
         const queryParams = [];
@@ -140,7 +141,7 @@ class Obligaciones extends Component {
     }
 
     componentDidMount() {
-        console.log("Ahora estás en obligaciones");
+        
         /*
         const rootRef = firebase.database().ref().child('obligaciones');
         var objeto = {CodObl: 49, DesObl: "Asamblea", FecObl:"13/23/____" , Valor: "3", Asunto: "NNN"};
@@ -159,7 +160,7 @@ class Obligaciones extends Component {
 
             }
             this.setState({datodos: datosObligaciones,variable: !this.state.variable})
-            console.log(this.state.datodos)
+            
         });
         /*
         let token = localStorage.getItem('token');
@@ -261,7 +262,7 @@ class Obligaciones extends Component {
             {nohayregistros}
             <div style={{textAlign: "center"}}>
             <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarItem("nuevo")}}>Crear Nueva Obligación</button>
-            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.pruebas()}}>Botón pruebas</button>
+            
             
             <button
              style={{padding: "16px", fontSize: "16px", margin: " 10px"}} 

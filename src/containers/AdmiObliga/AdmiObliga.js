@@ -27,7 +27,9 @@ class AdmiObliga extends Component {
             idItem: null,
             vacio: false,
             datosDeudores: [],
-            datosPagados: []
+            datosPagados: [], 
+            verificacionUno: false,
+            verificacionDos: false
         };
         this.fetchData = this.fetchData.bind(this);
     }
@@ -92,7 +94,10 @@ class AdmiObliga extends Component {
         
       };
 
-    
+      decirHola = (mensaje)=>{
+        console.log("Hola "+mensaje)
+      }
+
       componentDidMount() {
 
         const rootRef2 = firebase.database().ref().child('deudores').child(localStorage.getItem("idObliga"));
@@ -111,6 +116,7 @@ class AdmiObliga extends Component {
         });
         
         const rootRef3 = firebase.database().ref().child('pagados').child(localStorage.getItem("idObliga"));
+        
         rootRef3.on('value', snap=>{
           let pagadosListos =[]
           for(let key in snap.val()){
@@ -120,13 +126,15 @@ class AdmiObliga extends Component {
             }
             pagadosListos.push(object)
           }
+
+          this.setState({datosPagados: pagadosListos})
+          this.setState({datosPagados: pagadosListos})
           
-          this.setState({datosPagados: pagadosListos})
-          this.setState({datosPagados: pagadosListos})
         });
-
     }
+    
 
+     
     render() {
 
 
@@ -137,6 +145,9 @@ class AdmiObliga extends Component {
 
         return(
             <Aux>
+              <div style={{textAlign: "center", width: "100%", height: "auto", margin: "0px"}}>
+              <h1 style={{margin: "0px"}}>Obligación N°: {localStorage.getItem("idObliga")}</h1></div>
+
               <div style={{display: "flex"}}>
               <h1 style={{textAlign:"center", width: "47%", marginLeft: "2%"}}>Deudores</h1>
               <div style={{width: "2%"}}></div>
@@ -144,15 +155,18 @@ class AdmiObliga extends Component {
               </div>
               <div style={{display: "flex"}}>
               <div style={{width: "2%"}}></div>  
-           <TblDeudores dataDeudas = {this.state.datosDeudores}/>
+           <TblDeudores dataDeudas = {this.state.datosDeudores} verificacion={this.state.verificacionUno}/>
 
             <div style={{width: "2%"}}></div>
 
-            <TblPagados dataPagas = {this.state.datosPagados}
+            <TblPagados dataPagas = {this.state.datosPagados} mencionar = {this.decirHola} verificacion={this.state.verificacionDos}
             />
               <div style={{width: "2%"}}></div>
             </div>
             {nohayregistros}
+            
+            
+          
             <div style={{textAlign: "center"}}>
             
             <button

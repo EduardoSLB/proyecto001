@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import Aux from '../../hoc/Auxiliar';
 import PropTypes from 'prop-types';
+import * as firebase from 'firebase/app';
 
 class TblDeudores extends Component {
 
@@ -23,7 +24,8 @@ class TblDeudores extends Component {
             //loading: false,
             idToken: null,
             idItem: null,
-            vacio: false
+            vacio: false,
+            verificacion: false
         };
         this.fetchData = this.fetchData.bind(this);
     }
@@ -50,7 +52,8 @@ class TblDeudores extends Component {
 
       
 
-      requestData = (pageSize, page, sorted, filtered) => {
+    
+    requestData = (pageSize, page, sorted, filtered) => {
         return new Promise((resolve, reject) => {
           
           let filteredData = this.state.datodos;
@@ -88,9 +91,33 @@ class TblDeudores extends Component {
       };
 
     
-      componentWillReceiveProps() {
+    componentWillReceiveProps() {
         this.setState({datodos: this.props.dataDeudas, variable: !this.state.variable})
     }
+
+    agregarAPagados = (id) => {
+        if(this.state.verificacion){
+        const rootRef = firebase.database().ref().child('pagados').child(localStorage.getItem("idObliga"));
+        let object = {}
+        object[id["codigo"]] = id["nombre"]
+
+        rootRef.update(object)
+
+    }
+    else {
+        alert("Marque casilla de verificación primero")
+    }
+    }
+
+    sleep = (milliseconds) => {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+          if ((new Date().getTime() - start) > milliseconds){
+            break;
+          }
+        }
+      }
+  
 
     render() {
 
@@ -102,9 +129,10 @@ class TblDeudores extends Component {
         }
 
         return(
-            <Aux>
-            
-           <ReactTable style ={{width:"47%",textAlign: "center"}}
+            <Aux >
+                
+             <div style={{display: "flex", flexDirection: "column", width: "47%"}}>
+           <ReactTable style ={{width:"100%",textAlign: "center"}}
 
             columns={[
               {
@@ -124,6 +152,15 @@ class TblDeudores extends Component {
             loading={loading} // Display the loading overlay when we need it
             onFetchData={this.fetchData} // Request new data when things change
             filterable
+            SubComponent={row => {
+              
+                return (
+                  <div>
+                    <button style={{marginLeft:"10px", padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.agregarAPagados(row.original)}}>Agregar a Pagados</button>
+               
+                  </div>       
+              )
+              }}
             defaultSorted={[
               {
                 id: "CodUsu",
@@ -133,9 +170,25 @@ class TblDeudores extends Component {
             defaultPageSize={10}
             className="-striped -highlight"
             />
+            <div style={{textAlign: "center", width: "100%", marginTop: "1%"}}>
+        <input  
+        type="checkbox"
+        checked={this.state.verificacion} name="vehicle" value="Bike"
+        onChange={evt => {
+            if (evt.target.checked) {
+              this.setState({ verificacion: true });
+            } else {
+              this.setState({ verificacion: false });
+            }
+          }}
+        /> Verificación de Seguridad
+        </div>
+        
             
-
-
+        
+        </div>
+            
+              
             {nohayregistros}
             
             

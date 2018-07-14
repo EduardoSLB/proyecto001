@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import Aux from '../../hoc/Auxiliar';
 import PropTypes from 'prop-types';
+import * as firebase from 'firebase/app';
 
 class TblPagados extends Component {
 
@@ -23,7 +24,8 @@ class TblPagados extends Component {
             //loading: false,
             idToken: null,
             idItem: null,
-            vacio: false
+            vacio: false,
+            verificacion: false
         };
         this.fetchData = this.fetchData.bind(this);
     }
@@ -88,7 +90,19 @@ class TblPagados extends Component {
         
       };
 
-    
+      eliminarDePagados = (object)=>{
+          if(this.state.verificacion){
+        const rootRef = firebase.database().ref().child('pagados').child(localStorage.getItem("idObliga"));
+        
+        rootRef.child(object["codigo"]).remove().then(()=>{
+            console.log("Removido:")
+            console.log(object)
+        });
+    }else{
+        alert("Marque casilla de verificación primero")
+    }
+      }
+
       componentWillReceiveProps() {
         this.setState({datodos: this.props.dataPagas , variable: !this.state.variable})
     }
@@ -104,8 +118,8 @@ class TblPagados extends Component {
 
         return(
             <Aux>
-            
-           <ReactTable style ={{width:"47%", textAlign: "center"}} 
+            <div style={{display: "flex", flexDirection: "column", width: "47%"}}>
+           <ReactTable style ={{width:"100%", textAlign: "center"}} 
 
             columns={[
               {
@@ -125,6 +139,15 @@ class TblPagados extends Component {
             loading={loading} // Display the loading overlay when we need it
             onFetchData={this.fetchData} // Request new data when things change
             filterable
+            SubComponent={row => {
+              
+                return (
+                  <div>
+                    <button style={{marginLeft:"10px", padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.eliminarDePagados(row.original)}}>Eliminar de la lista Pagados</button>
+               
+                  </div>       
+              )
+              }}
             defaultSorted={[
               {
                 id: "CodUsu",
@@ -133,11 +156,28 @@ class TblPagados extends Component {
             ]}
             defaultPageSize={10}
             className="-striped -highlight"
-            />
+             />
             
-
-
-            {nohayregistros}
+        <div style={{textAlign: "center", width: "100%", marginTop: "1%"}}>
+        <input  
+        type="checkbox"
+        checked={this.state.verificacion} name="vehicle" value="Bike"
+        onChange={evt => {
+            if (evt.target.checked) {
+              this.setState({ verificacion: true });
+            } else {
+              this.setState({ verificacion: false });
+            }
+          }}
+        /> Verificación de Seguridad
+        </div>
+        
+        <div style={{textAlign: "center", width: "100%", fontSize: "9px"}}>
+        <h1>(Para ver los cambios efectuados actualice la página)</h1>
+        </div>
+        
+        </div>
+        {nohayregistros}
             
             
             </Aux>

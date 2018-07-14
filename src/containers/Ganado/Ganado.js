@@ -141,7 +141,8 @@ class Ganado extends Component {
                 //console.log(DataSacada) 
                 //console.log(localStorage.getItem('IDCOMUNERO'))//-LCo8GTHkhzwY_yhq691
                 this.setState({datodos: DataSacada, variable: !this.state.variable, loading: false})
-            });}
+            });
+          }
             else{
             
                 this.props.history.push('/');
