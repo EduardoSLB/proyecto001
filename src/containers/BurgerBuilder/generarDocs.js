@@ -1,108 +1,6 @@
 import * as jsPDF from 'jspdf';
 
-export function generarCarne(original) {
-    var doc = new jsPDF({
-        unit: 'mm',
-    })
-    /*
-    doc.rect(9,78,116.5, 75)
-    doc.rect(14, 101, 33, 38)
-    */
-    //marco
-    doc.setDrawColor("#85b517")
-    doc.rect(9, 30, 116.5, 75)
-    //foto
-    doc.rect(14, 53, 33, 38)
 
-    doc.setTextColor("#85b517")
-    doc.setFont('helvetica')
-    doc.setFontType('bold')
-    doc.setFontSize(13)
-
-    doc.text("Fotografía", 19.5, 72)
-    doc.text("COMUNIDAD CAMPESINA DE PALCA", 13.5, 40)
-    doc.setFontType('bold')
-    doc.setFontSize(10)
-    //doc.rect(99,34,22.5,12)
-    doc.text("CARNET N°: ", 100, 39)
-    doc.setFontSize(8)
-
-    doc.text("RECONOCIDA OFICIALMENTE EL 28 DE DICIEMBRE DE 1933", 14, 44.5)
-    doc.setFontSize(7)
-    doc.text("Sede Social San Martin 510 - PALCA - TARMA", 29, 48)
-    doc.setFontSize(8)
-    doc.text("APELLIDOS:", 50, 55)
-    doc.text("FECHA DE INSCRIPCIÓN", 88, 55)
-    doc.rect(87, 52, 37, 10)
-    doc.rect(87, 62, 37, 10)
-    doc.rect(87, 72, 37, 10)
-    doc.rect(91, 93, 29, 0.1)
-    doc.text("NOMBRES:", 50, 70)
-    doc.text("FECHA DE RATIFICACIÓN", 88, 65)
-    doc.text("FECHA DE CADUCIDAD", 88, 75)
-    doc.text("Voto Presiente", 96, 96)
-    doc.text("ANEXO O BARRIO:", 50, 85)
-
-    doc.text(original.DesDoc + ":", 50, 95)
-
-    let apes = original.ApeUsu.split(' ');
-
-
-    doc.setTextColor("#000000")
-    doc.setFontSize(9)
-    doc.text(apes[0] + "", 54, 60)
-    doc.text(original.FecIng + "", 96, 60)
-    doc.text(original.FecRei16 + "", 96, 70)
-    doc.text("31/12/2018", 96, 80)
-    if (apes[1])
-        doc.text(apes[1] + "", 54, 65)
-
-    let noms = original.NomUsu.split(' ');
-
-    doc.text(noms[0], 54, 75)
-    if (noms[1]) {
-        if (noms[2]) {
-            doc.text(noms[1] + "" + noms[2], 54, 80)
-        } else {
-            doc.text(noms[1], 54, 80)
-        }
-    }
-
-    doc.text(original.NomAne + "", 54, 90)
-    doc.text(original.NumDoc + "", 60, 95)
-    doc.setFontSize(12)
-    let carne = original.CodUsu + ""
-    if (carne.length < 5) {
-        let n = carne.length
-        for (var i = n; 5 - i !== 0; i++) {
-            carne = "0" + carne
-        }
-    }
-    doc.text(carne + "", 104, 44.5)
-
-    doc.rect(9, 120, 116.5, 75)
-    doc.setFontSize(12)
-    doc.setTextColor("#85b517")
-    doc.text("REGISTRO DE COMUNEROS CALIFICADOS", 20, 130)
-    doc.setFontStyle("normal")
-    doc.text("Ley N° 24656 D.S. 008 91 TR", 40, 135)
-    doc.setFontSize(8)
-    doc.text("Distrito", 20, 165)
-    doc.text("Provincia", 60, 165)
-    doc.text("Departamento", 100, 165)
-    doc.setFontSize(10)
-    doc.setFontStyle("bold")
-    doc.text(original.NomDis + "", 20, 170)
-    doc.text(original.NomPro + "", 60, 170)
-    doc.text(original.NomDep + "", 100, 170)
-    doc.setFontSize(9)
-    doc.text("Este documento constituye la identidad personal del", 30, 187)
-    doc.text("Comunero inscrito en el padrón general", 38, 192)
-    let apeee = original.ApeUsu.split(' ')
-    let nomss = original.NomUsu.split(' ')
-    doc.save(apeee[0] + ", " + nomss[0] + " [Carne].pdf")
-
-}
 
 export function generarDocumento(original) {
     //console.log(original)
@@ -235,7 +133,111 @@ export function generarDocumento(original) {
     doc.save(original.ApeUsu + " " + original.NomUsu + ' [Cédula].pdf')
 }
 
-export function generarResumen(original, terrenos, ganado) {
+export function generarCarne(original) {
+    var doc = new jsPDF({
+        unit: 'mm',
+    })
+    /*
+    doc.rect(9,78,116.5, 75)
+    doc.rect(14, 101, 33, 38)
+    */
+    //marco
+    doc.setDrawColor("#85b517")
+    doc.rect(9, 30, 116.5, 75)
+    //foto
+    doc.rect(14, 53, 33, 38)
+
+    doc.setTextColor("#85b517")
+    doc.setFont('helvetica')
+    doc.setFontType('bold')
+    doc.setFontSize(13)
+
+    doc.text("Fotografía", 19.5, 72)
+    doc.text("COMUNIDAD CAMPESINA DE PALCA", 13.5, 40)
+    doc.setFontType('bold')
+    doc.setFontSize(10)
+    //doc.rect(99,34,22.5,12)
+    doc.text("CARNET N°: ", 100, 39)
+    doc.setFontSize(8)
+
+    doc.text("RECONOCIDA OFICIALMENTE EL 28 DE DICIEMBRE DE 1933", 14, 44.5)
+    doc.setFontSize(7)
+    doc.text("Sede Social San Martin 510 - PALCA - TARMA", 29, 48)
+    doc.setFontSize(8)
+    doc.text("APELLIDOS:", 50, 55)
+    doc.text("FECHA DE INSCRIPCIÓN", 88, 55)
+    doc.rect(87, 52, 37, 10)
+    doc.rect(87, 62, 37, 10)
+    doc.rect(87, 72, 37, 10)
+    doc.rect(91, 93, 29, 0.1)
+    doc.text("NOMBRES:", 50, 70)
+    doc.text("FECHA DE RATIFICACIÓN", 88, 65)
+    doc.text("FECHA DE CADUCIDAD", 88, 75)
+    doc.text("Voto Presiente", 96, 96)
+    doc.text("ANEXO O BARRIO:", 50, 85)
+
+    doc.text(original.DesDoc + ":", 50, 95)
+
+    let apes = original.ApeUsu.split(' ');
+
+
+    doc.setTextColor("#000000")
+    doc.setFontSize(9)
+    doc.text(apes[0] + "", 54, 60)
+    doc.text(original.FecIng + "", 96, 60)
+    doc.text(original.FecRei16 + "", 96, 70)
+    doc.text("31/12/2018", 96, 80)
+    if (apes[1])
+        doc.text(apes[1] + "", 54, 65)
+
+    let noms = original.NomUsu.split(' ');
+
+    doc.text(noms[0], 54, 75)
+    if (noms[1]) {
+        if (noms[2]) {
+            doc.text(noms[1] + "" + noms[2], 54, 80)
+        } else {
+            doc.text(noms[1], 54, 80)
+        }
+    }
+
+    doc.text(original.NomAne + "", 54, 90)
+    doc.text(original.NumDoc + "", 60, 95)
+    doc.setFontSize(12)
+    let carne = original.CodUsu + ""
+    if (carne.length < 5) {
+        let n = carne.length
+        for (var i = n; 5 - i !== 0; i++) {
+            carne = "0" + carne
+        }
+    }
+    doc.text(carne + "", 104, 44.5)
+
+    doc.rect(9, 120, 116.5, 75)
+    doc.setFontSize(12)
+    doc.setTextColor("#85b517")
+    doc.text("REGISTRO DE COMUNEROS CALIFICADOS", 20, 130)
+    doc.setFontStyle("normal")
+    doc.text("Ley N° 24656 D.S. 008 91 TR", 40, 135)
+    doc.setFontSize(8)
+    doc.text("Distrito", 20, 165)
+    doc.text("Provincia", 60, 165)
+    doc.text("Departamento", 100, 165)
+    doc.setFontSize(10)
+    doc.setFontStyle("bold")
+    doc.text(original.NomDis + "", 20, 170)
+    doc.text(original.NomPro + "", 60, 170)
+    doc.text(original.NomDep + "", 100, 170)
+    doc.setFontSize(9)
+    doc.text("Este documento constituye la identidad personal del", 30, 187)
+    doc.text("Comunero inscrito en el padrón general", 38, 192)
+    let apeee = original.ApeUsu.split(' ')
+    let nomss = original.NomUsu.split(' ')
+    doc.save(apeee[0] + ", " + nomss[0] + " [Carne].pdf")
+
+}
+
+export function generarResumen(original, terrenos, ganado, obligaciones, deudas) {
     var doc = new jsPDF({
         unit: 'mm',
         orientation: 'landscape'
@@ -243,10 +245,20 @@ export function generarResumen(original, terrenos, ganado) {
     let apeee = original.ApeUsu.split(' ')
     let nomss = original.NomUsu.split(' ')
     doc.save(apeee[0] + ", " + nomss[0] + " [Resumen].pdf")
-    
+    /*console.log("Original")
+    console.log(original)
+    console.log("Terrenos")
+    console.log(terrenos)
+    console.log("Ganado")
+    console.log(ganado)
+    console.log("Obligaciones")
+    console.log(obligaciones)
+    console.log("Deudas")
+    console.log(deudas)
+    */
 }
 
-export function generarTerrenos(original) {
+export function generarTerrenos(original, terrenos) {
     var doc = new jsPDF({
         unit: 'mm',
         orientation: 'landscape'
@@ -254,9 +266,10 @@ export function generarTerrenos(original) {
     let apeee = original.ApeUsu.split(' ')
     let nomss = original.NomUsu.split(' ')
     doc.save(apeee[0] + ", " + nomss[0] + " [Terrenos].pdf")
+    console.log(terrenos)
 }
 
-export function generarGanado(original) {
+export function generarGanado(original, ganado) {
     var doc = new jsPDF({
         unit: 'mm',
         orientation: 'landscape'
@@ -264,8 +277,18 @@ export function generarGanado(original) {
     let apeee = original.ApeUsu.split(' ')
     let nomss = original.NomUsu.split(' ')
     doc.save(apeee[0] + ", " + nomss[0] + " [Ganado].pdf")
+    console.log(ganado)
 }
 
-export function reporteObligacion(){
+export function generarAnexo(nombre) {
+    var doc = new jsPDF({
+        unit: 'mm'
+    })
+
+    doc.save("Reporte " + nombre + ".pdf")
+}
+
+
+export function reporteObligacion() {
     //Pendiente, importante los primeros tres. Mañana los números automáticos, las fotos, y listo. Pedir paga y explicar el pequeño problema
 }

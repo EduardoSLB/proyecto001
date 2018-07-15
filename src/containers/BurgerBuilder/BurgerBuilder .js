@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import _ from 'lodash';
 import Aux from '../../hoc/Auxiliar'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import ReactTable from 'react-table';
 import axios from '../../axios-orders';
-import { withRouter } from 'react-router-dom';
+import {
+  withRouter
+} from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import * as actionTypes from '../../store/actions';
-import { connect } from 'react-redux';
+import {
+  connect
+} from 'react-redux';
 import * as MyDocs from './generarDocs';
 
 class BurgerBuilder extends Component {
@@ -22,19 +28,15 @@ class BurgerBuilder extends Component {
       loading: true,
       variable: false,
       //loading: false,
-      idToken: null, 
+      idToken: null,
       ganadoL: false,
       terrenoL: false,
-      obligacionesL: false, 
+      obligacionesL: false,
+      deudasL: false,
       ganado: [],
       terrenos: [],
       obligaciones: [],
-      deudas: [],
-      pagados: [],
-      obligacionesB: [],
-      deudasL: false,
-      pagadosL: false,
-      obligacionesBL: false
+      deudas: []
     };
 
     this.fetchData = this.fetchData.bind(this);
@@ -44,8 +46,35 @@ class BurgerBuilder extends Component {
     idToken: null
   }
 
+  bajarData = () => {
+    localStorage.removeItem("COMUNEROS")
+    const datosComuneros = [];
+    axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth=' + this.state.idToken).then((res) => {
+      if (res) {
+
+        for (let key in res.data) {
+          let objeto = {
+            ...res.data[key],
+            id: key
+          }
+          datosComuneros.push(objeto);
+
+        }
+        this.setState({
+          datodos: datosComuneros,
+          variable: !this.state.variable,
+          loading: false
+        });
+        localStorage.setItem("COMUNEROS", JSON.stringify(datosComuneros))
+        this.props.guardarComuneros(datosComuneros);
+      } else {
+        this.props.history.push('/auth');
+      }
+
+    });
+  }
   componentDidMount() {
-    
+
 
     let tokenleido = localStorage.getItem('token');
 
@@ -55,35 +84,18 @@ class BurgerBuilder extends Component {
     });
 
     if (tokenleido && (new Date() < expirationDate)) {
+      let dataGuardada = JSON.parse(localStorage.getItem("COMUNEROS"))
 
-      if (this.props.totalComuneros.length === 0) {
-        const datosComuneros = [];
-        axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth=' + this.state.idToken).then((res) => {
-          if (res) {
-          
-            for (let key in res.data) {
-              let objeto = {
-                ...res.data[key],
-                id: key
-              }
-              datosComuneros.push(objeto);
+      if(dataGuardada===null)
+      dataGuardada = []
 
-            }
-            this.setState({
-              datodos: datosComuneros,
-              variable: !this.state.variable,
-              loading: false
-            });
-            this.props.guardarComuneros(datosComuneros);
-          } else {
-            this.props.history.push('/auth');
-          }
-
-        });
+      if (this.props.totalComuneros.length === 0 && dataGuardada.length === 0) {
+        this.bajarData()
       } else {
         this.setState({
-          datodos: this.props.totalComuneros,
-          variable: !this.state.variable
+          datodos: dataGuardada,
+          variable: !this.state.variable,
+          loading: false
         })
       }
 
@@ -242,65 +254,111 @@ class BurgerBuilder extends Component {
   llamarAResumen(original){
     const rootRef = firebase.database().ref().child('ganado').child(original.id);
           rootRef.on('value', snap=>{
-                this.setState({ganado: snap.val(), ganadoL: true})
-                this.mandarCrearDocumento(original)
+                this.setState({ganado: snap.val(), ganadoL: true}, ()=>{
+                  this.mandarCrearDocumento(original)
+                })
+                
             });
     const rootRef2 = firebase.database().ref().child('terrenos').child(original.id);
           rootRef2.on('value', snap=>{
-                this.setState({terrenos: snap.val(), terrenoL: true})
-                this.mandarCrearDocumento(original)
+                this.setState({terrenos: snap.val(), terrenoL: true}, ()=>{
+                  this.mandarCrearDocumento(original)
+                })
+                
             });
 
     const rootRef3 = firebase.database().ref().child('obligaciones');
           rootRef3.on('value', snap=>{
-                this.setState({obligacionesB: snap.val(), obligacionesBL: true})
-                this.generarObligaciones(original)
+                this.setState({obligaciones: snap.val(), obligacionesL: true}, ()=>{
+                  this.mandarCrearDocumento(original)
+                })
+                
             });
     const rootRef4 = firebase.database().ref().child('deudores');
           rootRef4.on('value', snap=>{
-                this.setState({deudas: snap.val(), deudasL: true})
-                this.generarObligaciones(original)
-            });
-    const rootRef5 = firebase.database().ref().child('pagados');
-          rootRef5.on('value', snap=>{
-                this.setState({pagados: snap.val(), pagadosL: true})
-                this.generarObligaciones(original)
+                this.setState({deudas: snap.val(), deudasL: true}, ()=>{
+                  this.mandarCrearDocumento(original)
+                })
             });
   }
 
   generarObligaciones(original){
     let uno, dos, tres
-    if(this.state.deudas.length!==0)
+    if(this.state.deudasL)
       uno=true
-    if(this.state.pagados.length!==0)
+    if(this.state.pagadosL)
       dos=true
-    if(this.state.obligacionesB.length!==0)
+    if(this.state.obligacionesBL)
       tres=true
+      
     /*console.log("____")
     console.log(uno)
     console.log(dos)
     console.log(tres)*/
     if(uno && dos && tres ){
-      this.setState({obligacionesL: true}, ()=>{
-        console.log(Object.keys(this.state.deudas))
-        console.log(this.state.pagados)
-        console.log(this.state.obligacionesB)
-        this.mandarCrearDocumento(original)
+      let codigo = original.CodUsu+""
+      let arrayObliga= []
+      for(let key in this.state.obligacionesB){
+        console.log(key)
+        if(this.state.deudas[key][codigo]!==undefined){//Está en deudores?
+          console.log("Deuda pendiente " + key)  
+          if(this.state.pagados[key]!==undefined){
+          if(this.state.pagados[key][codigo]!==undefined){//Si está en deudores, también está en pagados?
+              console.log("Ha pagado " + key)  
+            //Como ha pagado no hacemos nada
+            }else{//Si debe, pero no ha pagado, creamos un registro de la deuda
+              let object = this.state.obligacionesB[key]  
+              arrayObliga.push(object)
+              console.log("Deuda registrada")
+              console.log(this.state.obligacionesB[key])  
+            }
+          }else{//Si no hay ningun registro de ese pago se registra la deuda
+            let object = this.state.obligacionesB[key]  
+              arrayObliga.push(object)
+              console.log("Deuda registrada")
+          }
+        }//Sino que siga revisando el otro
+      }
+      this.setState({obligaciones: arrayObliga}, ()=>{
+        console.log("Obligaciones")
+        console.log(this.state.obligaciones)
+        //this.mandarCrearDocumento(original)
       })
-    
     }
   }
 
+  imprimirGanado = (original) => {
+    const rootRef = firebase.database().ref().child('ganado').child(original.id);
+          rootRef.on('value', snap=>{
+                this.setState({ganado: snap.val(), ganadoL: true}, ()=>{
+                  MyDocs.generarTerrenos(original, this.state.ganado)
+                })
+            });
+  }
+
+  imprimirTerrenos = (original) => {
+    const rootRef2 = firebase.database().ref().child('terrenos').child(original.id);
+          rootRef2.on('value', snap=>{
+                this.setState({terrenos: snap.val(), terrenoL: true}, ()=>{
+                  MyDocs.generarGanado(original, this.state.terrenos)
+                })
+            });
+  }
+
+  reportePorAnexo = () => {
+  
+    this.props.history.push("poranexos")  ;
+  }
 
   mandarCrearDocumento(original){
-    let uno, dos, tres;
+    let uno, dos, tres, cuatro;
     uno = this.state.ganadoL;
     dos= this.state.terrenoL;
     tres = this.state.obligacionesL;
-    if(uno && dos && tres){
-      this.setState({ganadoL: false, terrenoL: false, obligacionesL: false})
-      MyDocs.generarResumen(original, this.state.terrenos, this.state.ganado, this.state.obligaciones)
-      console.log("Llegamos hasta el final")
+    cuatro = this.state.deudasL;
+    if(uno && dos && tres && cuatro){
+      this.setState({ganadoL: false, terrenoL: false, obligacionesL: false, deudasL: false})
+      MyDocs.generarResumen(original, this.state.terrenos, this.state.ganado, this.state.obligaciones, this.state.deudas)
     }
   }
 
@@ -498,7 +556,7 @@ class BurgerBuilder extends Component {
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('familias',row.original.id)}}>Ver Familia</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('ganado',row.original.id)}}>Ver Ganado</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('terrenos',row.original.id)}}>Ver Terrenos</button>
-              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{MyDocs.generarTerrenos(row.original)}}>Imprimir Terrenos</button>  <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{MyDocs.generarGanado(row.original)}}>Imprimir Ganado</button>  
+              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirTerrenos(row.original)}}>Imprimir Terrenos</button>  <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirGanado(row.original)}}>Imprimir Ganado</button>  
               
               </div>
           
@@ -516,6 +574,8 @@ class BurgerBuilder extends Component {
         <div style={{textAlign: "center"}}>
         <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('obligaciones')}}>Obligaciones</button>
         <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarUsuario("nuevo")}}>Registar usuario</button>
+        <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.reportePorAnexo()}}>Reporte Por Anexo</button>
+        <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={this.bajarData}>Actualizar tabla</button>
         <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={this.logout}>Cerrar Sesión</button>
         </div>
         </Aux>

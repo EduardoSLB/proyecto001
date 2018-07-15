@@ -1,11 +1,14 @@
-import React, { Component } from "react";
-
+import React, {
+  Component
+} from "react";
 import Button from "../../../components/UI/Button/Button";
 import classes from "./Modelo.css";
 import axios from "axios";
 import PropTypes from 'prop-types';
 import firebase from 'firebase/app'
-import { withRouter } from "react-router-dom";
+import {
+  withRouter
+} from "react-router-dom";
 
 
 class ModObligacion extends Component {
@@ -26,7 +29,9 @@ class ModObligacion extends Component {
 
   componentDidMount = () => {
     let token = localStorage.getItem("token");
-    this.setState({ token: token });
+    this.setState({
+      token: token
+    });
     let expirationDate = new Date(localStorage.getItem("expirationDate"));
 
     if (!(token && expirationDate > new Date())) {
@@ -37,12 +42,17 @@ class ModObligacion extends Component {
       for (let param of query.entries()) {
         if (param[0] === "tipo") {
           varHayTipo = param[1];
-          this.setState({ tipo: param[1] });
+          this.setState({
+            tipo: param[1]
+          });
         }
       }
 
       if (varHayTipo === "nuevo") {
-        this.setState({ tipo: varHayTipo, mostrarEliminar: false });
+        this.setState({
+          tipo: varHayTipo,
+          mostrarEliminar: false
+        });
 
       } else if (varHayTipo === "modificar" && localStorage.getItem('IDITEM')) {
         let id_item = localStorage.getItem('IDITEM');
@@ -51,12 +61,14 @@ class ModObligacion extends Component {
           .get(
             "https://proyecto-tarma.firebaseio.com/obligaciones/" +
             id_item +
-              "/.json?auth=" +
-              token
+            "/.json?auth=" +
+            token
           )
           .then(response => {
-            this.setState({ obligacion: response.data });
-            
+            this.setState({
+              obligacion: response.data
+            });
+
           });
       } else {
         this.props.history.push("/");
@@ -64,7 +76,7 @@ class ModObligacion extends Component {
     }
   };
 
-  
+
 
   cambiar = (evt, identi) => {
     let nuevo = {
@@ -77,7 +89,9 @@ class ModObligacion extends Component {
       }
     }
 
-    this.setState({ obligacion: nuevo });
+    this.setState({
+      obligacion: nuevo
+    });
     if (this.state.obligacion.NomUsu === "DesarrolladoPo") {
       alert(
         'Proyecto desarrollado por "Lévano Bezada, Eduardo Sebastian 7263479692" Lima - Perú'
@@ -86,49 +100,49 @@ class ModObligacion extends Component {
   };
 
   submitHandler = event => {
-    event.preventDefault();
-    
-    let token = localStorage.getItem("token");
-    this.setState({ token: token });
-    let expirationDate = new Date(localStorage.getItem("expirationDate"));
+      event.preventDefault();
 
-    if (this.state.verificacion) {
-      if (!(token && expirationDate > new Date())) {
-        this.props.history.push("/");
-      } else {
-        
+      let token = localStorage.getItem("token");
+      this.setState({
+        token: token
+      });
+      let expirationDate = new Date(localStorage.getItem("expirationDate"));
 
-        if (this.state.tipo === "nuevo") {
-
-          let datosComuneros = [];
-
-          
-          axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth=' + localStorage.getItem('token')).then((res) => {
-          if (res) {
-            for (let key in res.data) {
-              let superId = res.data[key].CodUsu;
-              datosComuneros[superId] = res.data[key].NomUsu + " " + res.data[key].ApeUsu;
-            }
-            
-
-            const rootRef =firebase.database().ref().child('obligaciones').child(this.state.obligacion.CodObl);
+      if (this.state.verificacion) {
+        if (!(token && expirationDate > new Date())) {
+          this.props.history.push("/");
+        } else {
 
 
-            rootRef.set(this.state.obligacion).then(()=>{
-            
-            });
-            
-            const rootRef2 = firebase.database().ref().child('deudores').child(this.state.obligacion.CodObl)
+          if (this.state.tipo === "nuevo") {
 
-            rootRef2.set(datosComuneros).then(()=>{
-              alert("Obligación Registrada Exitosamente")  
-              this.context.router.history.goBack();
-            })
+            let datosComuneros = [];
 
 
+            axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth=' + localStorage.getItem('token')).then((res) => {
+                  if (res) {
+                    for (let key in res.data) {
+                      let superId = res.data[key].CodUsu;
+                      datosComuneros[superId] = "1";
+                    }
 
-          } else {
-            alert("Hubo un error");
+
+                    const rootRef = firebase.database().ref().child('obligaciones').child(this.state.obligacion.CodObl);
+
+
+                    rootRef.set(this.state.obligacion);
+                    
+                    const rootRef2 = firebase.database().ref().child('deudores').child(this.state.obligacion.CodObl)
+
+                    rootRef2.set(datosComuneros).then(() => {
+                      alert("Obligación Registrada Exitosamente")
+                      this.context.router.history.goBack();
+                    })
+
+
+
+                  } else {
+                    alert("Hubo un error");
 
           }
         });

@@ -9,6 +9,7 @@ import Pruebas from './containers/Pruebas/Pruebas';
 import Familias from './containers/Familias/Familias';
 import Ganado from './containers/Ganado/Ganado';
 import Terrenos from './containers/Terrenos/Terrenos';
+import PorAnexos from './containers/PorAnexos/PorAnexos';
 import Obligaciones from './containers/Obligaciones/Obligaciones';
 import ModFamilia from './containers/Formularios/ModFamilia/ModFamilia';
 import ModGanado from './containers/Formularios/ModGanado/ModGanado';
@@ -55,7 +56,8 @@ class App extends Component {
             <Route path="/ganado" component={Ganado}/>
             <Route path="/obligaciones" component={Obligaciones}/>
             <Route path="/admiobligaciones" component={AdmiObliga}/>
-            <Route path="/terrenos" component={Terrenos}/>            
+            <Route path="/terrenos" component={Terrenos}/>
+            <Route path="/poranexos" component={PorAnexos}/>            
             <Route path="/" component={BurgerBuilder}/>
           </Switch>
         </Layout>

@@ -211,6 +211,7 @@ class Modelo extends Component {
             .then(response => {
               alert("Usuario modificado exitosamente");
               this.setState({ verificacion: false });
+              this.context.router.history.goBack();
             });
         }
       }

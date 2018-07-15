@@ -147,7 +147,6 @@ class Obligaciones extends Component {
         var objeto = {CodObl: 49, DesObl: "Asamblea", FecObl:"13/23/____" , Valor: "3", Asunto: "NNN"};
         rootRef.child(objeto.CodObl).set(objeto).then(console.log(objeto));
         */
-
         const rootRef = firebase.database().ref().child('obligaciones');
         rootRef.on('value', snap=>{
             let datosObligaciones = [];
