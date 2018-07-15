@@ -331,7 +331,7 @@ class BurgerBuilder extends Component {
     const rootRef = firebase.database().ref().child('ganado').child(original.id);
           rootRef.on('value', snap=>{
                 this.setState({ganado: snap.val(), ganadoL: true}, ()=>{
-                  MyDocs.generarTerrenos(original, this.state.ganado)
+                  MyDocs.generarGanado(original, this.state.ganado)
                 })
             });
   }
@@ -340,7 +340,7 @@ class BurgerBuilder extends Component {
     const rootRef2 = firebase.database().ref().child('terrenos').child(original.id);
           rootRef2.on('value', snap=>{
                 this.setState({terrenos: snap.val(), terrenoL: true}, ()=>{
-                  MyDocs.generarGanado(original, this.state.terrenos)
+                  MyDocs.generarTerrenos(original, this.state.terrenos)
                 })
             });
   }
@@ -549,6 +549,7 @@ class BurgerBuilder extends Component {
           return (
             <div style={{textAlign:"left", marginLeft: "180px" }}>
               
+              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirTerrenos(row.original)}}>Imprimir Terrenos</button>
               <button style={{marginLeft:"10px", padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.modificarUsuario(row.original.id)}}>Editar</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.llamarAResumen(row.original)}}>Imprimir Resumen General</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{MyDocs.generarDocumento(row.original)}}>Imprimir Certificado</button>
@@ -556,7 +557,7 @@ class BurgerBuilder extends Component {
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('familias',row.original.id)}}>Ver Familia</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('ganado',row.original.id)}}>Ver Ganado</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('terrenos',row.original.id)}}>Ver Terrenos</button>
-              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirTerrenos(row.original)}}>Imprimir Terrenos</button>  <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirGanado(row.original)}}>Imprimir Ganado</button>  
+                <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirGanado(row.original)}}>Imprimir Ganado</button>  
               
               </div>
           

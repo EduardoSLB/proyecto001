@@ -259,14 +259,149 @@ export function generarResumen(original, terrenos, ganado, obligaciones, deudas)
 }
 
 export function generarTerrenos(original, terrenos) {
+    let limite = 10
+    let aTerrenos = []
+    for (let key in terrenos) {
+        aTerrenos.push(terrenos[key])
+    }
+
     var doc = new jsPDF({
         unit: 'mm',
         orientation: 'landscape'
     })
+
+    let Pages = Math.ceil(aTerrenos.length / limite)
+
+    for (let p = 0; p < Pages; p++) {
+        if (p !== 0)
+            doc.addPage()
+
+        //Imagen chévere
+        doc.setFontStyle("Roman")
+        doc.rect(9, 6, 113, 12.5, 'S')
+        doc.setTextColor("#0e6600")
+        doc.setFontSize(18)
+        doc.text('COMUNIDAD CAMPESINA DE PALCA', 10, 12)
+        doc.setFontSize(10)
+        doc.text('Reconocido Oficialmente el 28 de Diciembre de 1933', 12, 16)
+        //Titulo
+        doc.setFontSize(25)
+        doc.setTextColor("#002966")
+        doc.setFontStyle('bold')
+        doc.text('CÉDULA DE MIS TERRENOS', 90, 32)
+        doc.rect(21, 33.5, 255, 1.5)
+        //Código
+        doc.setTextColor("#000000")
+        doc.setFontSize(14)
+        doc.text("CARNET N°", 246, 8)
+        doc.setFontSize(18)
+        let carne = original.CodUsu + ""
+        if (carne.length < 5) {
+            let n = carne.length
+            for (var i = n; 5 - i !== 0; i++) {
+                carne = "0" + carne
+            }
+        }
+        doc.text(carne + "", 250, 17)
+        doc.rect(240, 10, 37, 10)
+
+
+        //Cabecera de la tabla
+        doc.setFontSize(11)
+        doc.rect(18, 47, 262, 12)
+
+        doc.rect(18, 47, 22, 12)
+        doc.text("Código", 20, 54)
+
+        doc.rect(40, 47, 32, 12)
+        doc.text("Lugar", 42, 54)
+
+        doc.rect(72, 47, 35, 12)
+        doc.text("Punto Denominado", 74, 54)
+
+        doc.rect(107, 47, 32, 12)
+        doc.text("Norte", 109, 54)
+
+        doc.rect(139, 47, 32, 12)
+        doc.text("Sur", 141, 54)
+
+        doc.rect(171, 47, 32, 12)
+        doc.text("Este", 173, 54)
+
+        doc.rect(203, 47, 32, 12)
+        doc.text("Oeste", 205, 54)
+
+        doc.rect(235, 47, 24, 12)
+        doc.text("Tongos", 237, 54)
+
+        doc.text("M2", 261, 54)
+
+        //Bucle para los datos de la tabla
+        let y = 0
+        for(let m = p*limite; m<(p+1)*limite&&m<aTerrenos.length; m++){
+        //Generar Cuadrículas
+        doc.setFontSize(10)
+        doc.rect(18, 59+y*5, 262, 5)
+        
+        doc.rect(18, 59+y*5, 22, 5)//codigo
+        doc.text(aTerrenos[m]["CodTerr"]+"", 20, 63+y*5)
+
+        doc.rect(40, 59+y*5, 32, 5)//lugar
+        doc.text(aTerrenos[m]["NomAne"]+"", 42, 63+y*5)
+
+        doc.rect(72, 59+y*5, 35, 5)//punto denominado
+        doc.text(aTerrenos[m]["NomBar"]+"", 74, 63+y*5)
+
+        doc.rect(107, 59+y*5, 32, 5)//norte
+        doc.text(aTerrenos[m]["ColNor"]+"", 109, 63+y*5)
+
+        doc.rect(139, 59+y*5, 32, 5)//sur
+        doc.text(aTerrenos[m]["ColSur"]+"", 141, 63+y*5)
+
+        doc.rect(171, 59+y*5, 32, 5)//este
+        doc.text(aTerrenos[m]["ColEst"]+"", 173, 63+y*5)
+
+        doc.rect(203, 59+y*5, 32, 5)//oeste
+        doc.text(aTerrenos[m]["ColOes"]+"", 205, 63+y*5)
+
+        doc.rect(235, 59+y*5, 24, 5)//tongos
+        doc.text(aTerrenos[m]["ExtTer"]+"", 237, 63+y*5)
+
+        //M2
+        doc.text(aTerrenos[m]["M2"]+"", 261, 63+y*5)
+        y++
+        }
+        
+
+        //Fecha de Impresión
+
+        //Mensaje Declaro poseer Tongos M2 Equivalente a 
+
+        //Fecha de Ratificación Actual
+
+        //Fecha de Ratificación Actual  
+
+        //Mensaje de Compromiso Primera Línea
+
+        //Mensaje de Compromiso Segunda Línea
+
+        //Firmas
+
+
+
+        //Límite 10 por tabla
+
+
+
+        //Número de página
+
+
+    }
     let apeee = original.ApeUsu.split(' ')
     let nomss = original.NomUsu.split(' ')
     doc.save(apeee[0] + ", " + nomss[0] + " [Terrenos].pdf")
-    console.log(terrenos)
+
+
 }
 
 export function generarGanado(original, ganado) {
