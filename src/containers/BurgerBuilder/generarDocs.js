@@ -238,24 +238,206 @@ export function generarCarne(original) {
 }
 
 export function generarResumen(original, terrenos, ganado, obligaciones, deudas) {
+    let reporteDeudas = generarReporteObligacionesResumen(obligaciones, deudas, original.CodUsu)
     var doc = new jsPDF({
         unit: 'mm',
         orientation: 'landscape'
     })
+
+    let Pages = 3
+
+    for (let p = 0; p < Pages; p++) {
+        if (p !== 0)
+            doc.addPage()
+
+        //Imagen chévere
+        doc.setFontStyle("Roman")
+        doc.rect(9, 6, 113, 12.5, 'S')
+        doc.setTextColor("#0e6600")
+        doc.setFontSize(18)
+        doc.text('COMUNIDAD CAMPESINA DE PALCA', 10, 12)
+        doc.setFontSize(10)
+        doc.text('Reconocido Oficialmente el 28 de Diciembre de 1933', 12, 16)
+        //Titulo
+        doc.setFontSize(25)
+        doc.setTextColor("#002966")
+        doc.setFontStyle('bold')
+        doc.text('RESUMEN GENERAL', 110, 32)
+        doc.rect(21, 33.5, 255, 1.5)
+        //Código
+        doc.setTextColor("#000000")
+        doc.setFontSize(14)
+        doc.text("CARNET N°", 246, 8)
+        doc.setFontSize(18)
+        let carne = original.CodUsu + ""
+        if (carne.length < 5) {
+            let n = carne.length
+            for (var i = n; 5 - i !== 0; i++) {
+                carne = "0" + carne
+            }
+        }
+        doc.text(carne + "", 250, 17)
+        doc.rect(240, 10, 37, 10)
+
+        //Datos personales
+        doc.setFontSize(13)
+        doc.text("Nombres: ", 20, 47)
+        doc.text(original.NomUsu, 45, 47)
+        doc.text("Apellidos: ", 20, 57)
+        doc.text(original.ApeUsu, 45, 57)
+        doc.text("Código: ", 140, 47)
+        doc.text(carne + "", 180, 47)
+        doc.text("Anexo o Barrio: ", 140, 57)
+        doc.text(original.NomAne, 180, 57)
+
+        //Cabecera de la tabla
+
+        doc.setFontSize(11)
+        doc.rect(18, 67, 262, 7)
+
+        doc.rect(18, 67, 90, 7)
+        doc.text("Terrenos", 20, 72)
+
+        doc.rect(108, 67, 80, 7)
+        doc.text("Ganado", 110, 72)
+
+        doc.text("Obligaciones", 190, 72)
+        doc.setFontSize(10)
+
+        doc.rect(18, 74, 262, 7)
+        //Terreno
+        doc.rect(18, 74, 15, 7) //Codigo
+        doc.text("Código", 20, 79)
+
+        doc.rect(33, 74, 30, 7) //Lugar
+        doc.text("Lugar", 35, 79)
+
+        doc.rect(63, 74, 24, 7) //Observaciones
+        doc.text("Observ.", 65, 79)
+
+        doc.rect(87, 74, 10, 7) //Extensión
+        doc.text("Ext.", 89, 79)
+
+        doc.rect(97, 74, 11, 7) //Costo
+        doc.text("Costo", 98, 79)
+
+        //Ganado
+        doc.rect(108, 74, 15, 7) //Codigo
+        doc.text("Código", 110, 79)
+
+
+        doc.rect(123, 74, 30, 7) //Lugar
+        doc.text("Tipo", 125, 79)
+
+        doc.rect(153, 74, 11, 7) //Cantidad
+        doc.text("Cant.", 154, 79)
+
+
+        doc.rect(164, 74, 11, 7) //Costo
+        doc.text("Costo", 165, 79)
+
+        doc.rect(175, 74, 13, 7) //Total
+        doc.text("Total", 176, 79)
+
+
+        //Obligaciones
+        doc.rect(188, 74, 15, 7) //Codigo
+        doc.text("Código", 190, 79)
+
+
+        doc.rect(203, 74, 30, 7) //Obligación
+        doc.text("Obligación", 205, 79)
+
+        doc.rect(233, 74, 20, 7) //Fecha
+        doc.text("Fecha", 235, 79)
+
+
+        doc.rect(253, 74, 13, 7) //AsiFae
+        doc.text("AsiFae", 255, 79)
+
+        doc.rect(266, 74, 14, 7) //Valor
+        doc.text("Valor", 268, 79)
+
+
+        //Bucle para los datos de la tabla
+        //Terreno
+
+        doc.rect(18, 74, 15, 7) //Codigo
+        doc.text("Código", 20, 79)
+
+        doc.rect(33, 74, 30, 7) //Lugar
+        doc.text("Lugar", 35, 79)
+
+        doc.rect(63, 74, 24, 7) //Observaciones
+        doc.text("Observ.", 65, 79)
+
+        doc.rect(87, 74, 10, 7) //Extensión
+        doc.text("Ext.", 89, 79)
+
+        doc.rect(97, 74, 11, 7) //Costo
+        doc.text("Costo", 98, 79)
+
+        //Fecha de Impresión
+
+        doc.setFontSize(11)
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+
+        doc.text("Fecha de Impresión: " + today, 220, 45)
+
+        let pagina = p * 1 + 1
+        doc.text("N° Pág: " + pagina, 260, 193)
+
+    }
+
+    //Nombre del documento 
     let apeee = original.ApeUsu.split(' ')
     let nomss = original.NomUsu.split(' ')
+
     doc.save(apeee[0] + ", " + nomss[0] + " [Resumen].pdf")
-    /*console.log("Original")
-    console.log(original)
-    console.log("Terrenos")
-    console.log(terrenos)
-    console.log("Ganado")
-    console.log(ganado)
-    console.log("Obligaciones")
-    console.log(obligaciones)
-    console.log("Deudas")
-    console.log(deudas)
-    */
+
+
+
+
+}
+
+function generarReporteObligacionesResumen(obligaciones, deudas, codigo) {
+
+    let reporteDeudas = []
+
+    for (let key in obligaciones) {
+
+        if (deudas[key][codigo] === "1") {
+            let object = {
+                ...obligaciones[key],
+                pago: false
+            }
+            reporteDeudas.push(object)
+        }
+        if (deudas[key][codigo] === "0") {
+            let object = {
+                ...obligaciones[key],
+                pago: true
+            }
+            reporteDeudas.push(object)
+        }
+
+
+    }
+
+    return reporteDeudas
 }
 
 export function generarTerrenos(original, terrenos) {
@@ -271,7 +453,9 @@ export function generarTerrenos(original, terrenos) {
     })
 
     let Pages = Math.ceil(aTerrenos.length / limite)
-
+    if (Pages === 0) {
+        Pages = 1
+    }
     for (let p = 0; p < Pages; p++) {
         if (p !== 0)
             doc.addPage()
@@ -338,81 +522,293 @@ export function generarTerrenos(original, terrenos) {
 
         //Bucle para los datos de la tabla
         let y = 0
-        for(let m = p*limite; m<(p+1)*limite&&m<aTerrenos.length; m++){
-        //Generar Cuadrículas
-        doc.setFontSize(10)
-        doc.rect(18, 59+y*5, 262, 5)
-        
-        doc.rect(18, 59+y*5, 22, 5)//codigo
-        doc.text(aTerrenos[m]["CodTerr"]+"", 20, 63+y*5)
+        for (let m = p * limite; m < (p + 1) * limite && m < aTerrenos.length; m++) {
+            //Generar Cuadrículas
+            doc.setFontSize(10)
+            doc.rect(18, 59 + y * 5, 262, 5)
 
-        doc.rect(40, 59+y*5, 32, 5)//lugar
-        doc.text(aTerrenos[m]["NomAne"]+"", 42, 63+y*5)
+            doc.rect(18, 59 + y * 5, 22, 5) //codigo
+            doc.text(aTerrenos[m]["CodTerr"] + "", 20, 63 + y * 5)
 
-        doc.rect(72, 59+y*5, 35, 5)//punto denominado
-        doc.text(aTerrenos[m]["NomBar"]+"", 74, 63+y*5)
+            doc.rect(40, 59 + y * 5, 32, 5) //lugar
+            doc.text(aTerrenos[m]["NomAne"] + "", 42, 63 + y * 5)
 
-        doc.rect(107, 59+y*5, 32, 5)//norte
-        doc.text(aTerrenos[m]["ColNor"]+"", 109, 63+y*5)
+            doc.rect(72, 59 + y * 5, 35, 5) //punto denominado
+            doc.text(aTerrenos[m]["NomBar"] + "", 74, 63 + y * 5)
 
-        doc.rect(139, 59+y*5, 32, 5)//sur
-        doc.text(aTerrenos[m]["ColSur"]+"", 141, 63+y*5)
+            doc.rect(107, 59 + y * 5, 32, 5) //norte
+            doc.text(aTerrenos[m]["ColNor"] + "", 109, 63 + y * 5)
 
-        doc.rect(171, 59+y*5, 32, 5)//este
-        doc.text(aTerrenos[m]["ColEst"]+"", 173, 63+y*5)
+            doc.rect(139, 59 + y * 5, 32, 5) //sur
+            doc.text(aTerrenos[m]["ColSur"] + "", 141, 63 + y * 5)
 
-        doc.rect(203, 59+y*5, 32, 5)//oeste
-        doc.text(aTerrenos[m]["ColOes"]+"", 205, 63+y*5)
+            doc.rect(171, 59 + y * 5, 32, 5) //este
+            doc.text(aTerrenos[m]["ColEst"] + "", 173, 63 + y * 5)
 
-        doc.rect(235, 59+y*5, 24, 5)//tongos
-        doc.text(aTerrenos[m]["ExtTer"]+"", 237, 63+y*5)
+            doc.rect(203, 59 + y * 5, 32, 5) //oeste
+            doc.text(aTerrenos[m]["ColOes"] + "", 205, 63 + y * 5)
 
-        //M2
-        doc.text(aTerrenos[m]["M2"]+"", 261, 63+y*5)
-        y++
+            doc.rect(235, 59 + y * 5, 24, 5) //tongos
+            doc.text(aTerrenos[m]["ExtTer"] + "", 237, 63 + y * 5)
+
+            //M2
+            doc.text(aTerrenos[m]["M2"] + "", 261, 63 + y * 5)
+            y++
         }
-        
+
 
         //Fecha de Impresión
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+
+        doc.text("Fecha de Impresión: " + today, 240, 45)
 
         //Mensaje Declaro poseer Tongos M2 Equivalente a 
+        let totalTongos = 0,
+            m2Total = 0
+        for (let u in aTerrenos) {
+            totalTongos = totalTongos + aTerrenos[u]["ExtTer"] + 0
+            m2Total = m2Total + aTerrenos[u]["M2"] + 0
+        }
 
-        //Fecha de Ratificación Actual
+        let hectareas = m2Total * 0.0001
+        doc.text("Declaro poseer la siguiente cantidad de terrenos     " + totalTongos + " Tongos  igual a    " + m2Total + " M2 equivalente a " + hectareas + "Hás.", 18, 120)
 
-        //Fecha de Ratificación Actual  
+        //Fecha de Ratificación Actual y Anterior
+        doc.text("Fecha de Ratificación Actual (2012): " + original.FecRei12, 210, 120)
+        doc.text("Fecha de Ratificación Anterior (2010): " + original.FecRei10, 210, 130)
 
         //Mensaje de Compromiso Primera Línea
-
+        doc.text("Así mismo me comprometo a no transferir ni arrendar, sin el Conocimiento y Autorización del Consejo de Administración", 40, 140)
         //Mensaje de Compromiso Segunda Línea
-
+        doc.text("En caso de incumplimiento perderé mis derechos de Comunero", 80, 150)
         //Firmas
 
-
-
-        //Límite 10 por tabla
-
-
-
+        //Primera
+        let apeee = original.ApeUsu.split(' ')
+        let nomss = original.NomUsu.split(' ')
+        doc.rect(38, 180, 40, .1)
+        doc.text(apeee[0] + ", " + nomss[0], 38, 185)
+        doc.text("(Comunero)", 41, 188)
+        //Segunda
+        doc.rect(120, 180, 63, .1)
+        doc.text("Presidente Consejo Administración", 120, 185)
+        //Tercera
+        doc.rect(200, 180, 63, .1)
+        doc.text("Secretario Consejo Administración", 200, 185)
         //Número de página
-
+        let pagina = p * 1 + 1
+        doc.text("N° Pág: " + pagina, 260, 193)
 
     }
+
+    //Nombre del documento
     let apeee = original.ApeUsu.split(' ')
     let nomss = original.NomUsu.split(' ')
     doc.save(apeee[0] + ", " + nomss[0] + " [Terrenos].pdf")
 
-
 }
 
 export function generarGanado(original, ganado) {
+    let limite = 10
+    let aGanado = []
+    for (let key in ganado) {
+        aGanado.push(ganado[key])
+    }
+
     var doc = new jsPDF({
         unit: 'mm',
         orientation: 'landscape'
     })
+
+    let Pages = Math.ceil(aGanado.length / limite)
+    if (Pages === 0) {
+        Pages = 1
+    }
+    console.log(aGanado)
+
+    for (let p = 0; p < Pages; p++) {
+        if (p !== 0)
+            doc.addPage()
+
+        //Imagen chévere
+        doc.setFontStyle("Roman")
+        doc.rect(9, 6, 113, 12.5, 'S')
+        doc.setTextColor("#0e6600")
+        doc.setFontSize(18)
+        doc.text('COMUNIDAD CAMPESINA DE PALCA', 10, 12)
+        doc.setFontSize(10)
+        doc.text('Reconocido Oficialmente el 28 de Diciembre de 1933', 12, 16)
+        //Titulo
+        doc.setFontSize(25)
+        doc.setTextColor("#002966")
+        doc.setFontStyle('bold')
+        doc.text('CÉDULA DE MIS GANADOS', 90, 32)
+        doc.rect(21, 33.5, 255, 1.5)
+        //Código
+        doc.setTextColor("#000000")
+        doc.setFontSize(14)
+        doc.text("CARNET N°", 246, 8)
+        doc.setFontSize(18)
+        let carne = original.CodUsu + ""
+        if (carne.length < 5) {
+            let n = carne.length
+            for (var i = n; 5 - i !== 0; i++) {
+                carne = "0" + carne
+            }
+        }
+        doc.text(carne + "", 250, 17)
+        doc.rect(240, 10, 37, 10)
+
+
+        //Cabecera de la tabla
+        doc.setFontSize(11)
+        doc.rect(18, 47, 262, 8)
+
+        doc.rect(18, 47, 10, 8)
+        doc.text("N°", 20, 52)
+
+        doc.rect(28, 47, 26, 8)
+        doc.text("Código", 30, 52)
+
+        doc.rect(54, 47, 32, 8)
+        doc.text("Descripción", 56, 52)
+
+        doc.rect(86, 47, 10, 8)
+        doc.text("Sexo", 87, 52)
+
+        doc.rect(96, 47, 20, 8)
+        doc.text("Edad", 98, 52)
+
+        doc.rect(116, 47, 12, 8)
+        doc.text("Cant", 118, 52)
+
+        doc.rect(128, 47, 46, 8)
+        doc.text("Color", 130, 52)
+
+        doc.rect(174, 47, 34, 8)
+        doc.text("Marca", 176, 52)
+
+        doc.rect(208, 47, 34, 8)
+        doc.text("Señal", 210, 52)
+
+        doc.rect(242, 47, 18, 8)
+        doc.text("Vendido", 244, 52)
+
+        doc.text("Muerto", 262, 52)
+
+        //Bucle para los datos de la tabla
+        let y = 0
+        let altura = 6
+        for (let m = p * limite; m < (p + 1) * limite && m < aGanado.length; m++) {
+            
+            doc.setFontSize(10)
+            doc.rect(18, 55 + y * altura, 262, altura)
+
+            doc.rect(18, 55 + y * altura, 10, altura)
+            let number = m + 1
+            doc.text(number + "", 20, 59 + y * altura)
+
+            doc.rect(28, 55 + y * altura, 26, altura)
+            doc.text(aGanado[m]["CodGan"] + "", 30, 59 + y * altura)
+
+            doc.rect(54, 55 + y * altura, 32, altura)
+            doc.text(aGanado[m]["DesGan"], 56, 59 + y * altura)
+
+            doc.rect(86, 55 + y * altura, 10, altura)
+            doc.text(aGanado[m]["SexoGa"], 87, 59 + y * altura)
+
+            doc.rect(96, 55 + y * altura, 20, altura)
+            doc.text(aGanado[m]["EdadGa"], 98, 59 + y * altura)
+
+            doc.rect(116, 55 + y * altura, 12, altura)
+            doc.text(aGanado[m]["CanGan"] + "", 118, 59 + y * altura)
+
+            doc.rect(128, 55 + y * altura, 46, altura)
+            doc.text(aGanado[m]["ColGan"], 130, 59 + y * altura)
+
+            doc.rect(174, 55 + y * altura, 34, altura)
+            doc.text(aGanado[m]["MarcaGa"], 176, 59 + y * altura)
+
+            doc.rect(208, 55 + y * altura, 34, altura)
+            doc.text(aGanado[m]["SenalGa"], 210, 59 + y * altura)
+
+            doc.rect(242, 55 + y * altura, 18, altura)
+
+            y++
+        }
+
+
+
+        //Fecha de Impresión
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+
+        doc.text("Fecha de Impresión: " + today, 240, 45)
+
+        //Fecha de Ratificación Actual y Anterior
+        doc.text("Fecha de Ratificación Actual (2012): " + original.FecRei12, 210, 120)
+        doc.text("Fecha de Ratificación Anterior (2010): " + original.FecRei10, 210, 130)
+
+        //Mensaje de Compromiso Primera Línea y Total Ganado
+        let ganadoTotal = 0
+        for (let llave in aGanado) {
+            ganadoTotal = ganadoTotal + aGanado[llave]["CanGan"]
+        }
+        doc.text("Cantidad total de ganado: " + ganadoTotal, 40, 140)
+        doc.text("Declaro bajo juramento que los datos, consignados son verdaderos; los excedentes pasarán a ser patrimonio de la Comunidad", 40, 155)
+        //Mensaje de Compromiso Segunda Línea
+
+        //Firmas
+
+        //Primera
+        let apeee = original.ApeUsu.split(' ')
+        let nomss = original.NomUsu.split(' ')
+        doc.rect(38, 180, 40, .1)
+        doc.text(apeee[0] + ", " + nomss[0], 38, 185)
+        doc.text("(Comunero)", 41, 188)
+        //Segunda
+        doc.rect(120, 180, 63, .1)
+        doc.text("Presidente Consejo de Administración", 120, 185)
+        //Tercera
+        doc.rect(200, 180, 63, .1)
+        doc.text("Secretario Consejo de Administración", 200, 185)
+        //Número de página
+        let pagina = p * 1 + 1
+        doc.text("N° Pág: " + pagina, 260, 193)
+
+    }
+
+
+    //Nombre documento
     let apeee = original.ApeUsu.split(' ')
     let nomss = original.NomUsu.split(' ')
     doc.save(apeee[0] + ", " + nomss[0] + " [Ganado].pdf")
-    console.log(ganado)
+
 }
 
 export function generarAnexo(nombre) {
@@ -420,9 +816,14 @@ export function generarAnexo(nombre) {
         unit: 'mm'
     })
 
+    let comuneros = JSON.parse(localStorage.getItem("COMUNEROS"))
+    //Filtrar a los comuneros con el anexo necesario
+    console.log(comuneros)
+
+
+    //Nombre del documento
     doc.save("Reporte " + nombre + ".pdf")
 }
-
 
 export function reporteObligacion() {
     //Pendiente, importante los primeros tres. Mañana los números automáticos, las fotos, y listo. Pedir paga y explicar el pequeño problema
