@@ -100,7 +100,14 @@ class Modelo extends Component {
     let token = localStorage.getItem("token");
     this.setState({ token: token });
     let expirationDate = new Date(localStorage.getItem("expirationDate"));
-
+    
+    let numeroFinal = localStorage.getItem("NUMEROFINAL")
+    let object = {
+      ...this.state.persona,
+      CodUsu: numeroFinal
+    }
+    this.setState({persona: object})
+ 
     if (!(token && expirationDate > new Date())) {
       this.props.history.push("/");
     } else {
@@ -167,7 +174,7 @@ class Modelo extends Component {
     let token = localStorage.getItem("token");
     this.setState({ token: token });
     let expirationDate = new Date(localStorage.getItem("expirationDate"));
-
+    
     if (this.state.verificacion) {
       if (!(token && expirationDate > new Date())) {
         this.props.history.push("/");
@@ -182,9 +189,13 @@ class Modelo extends Component {
               obje
             )
             .then(response => {
-              alert("Usuario registrado exitosamente");
-              this.setState({ persona: this.state.limpio });
+              alert("Usuario registrado exitosamente, recuerde actualizar la tabla para ver los cambios");
 
+              let numero = localStorage.getItem("NUMEROFINAL")
+              numero++
+              localStorage.setItem("NUMEROFINAL", numero)
+
+              this.setState({ persona: this.state.limpio });
               this.context.router.history.goBack();
             });
         } else if (this.state.tipo === "modificar") {
@@ -256,7 +267,7 @@ class Modelo extends Component {
               obje
             )
             .then(response => {
-              alert("Usuario eliminado correctamente");
+              alert("Usuario eliminado correctamente, recuerde actualizar la tabla para evitar errores");
               this.context.router.history.goBack();
             })
             .catch(err => {
@@ -301,11 +312,8 @@ class Modelo extends Component {
           <fieldset>
             <div className="pure-control-group">
               <label htmlFor="NomUsu">Código</label>
-              <input required
+              <input required 
                 value={this.state.persona.CodUsu}
-                onChange={evt => {
-                  this.cambiar(evt, "CodUsu");
-                }}
                 type="text"
                 placeholder="17**"
               />

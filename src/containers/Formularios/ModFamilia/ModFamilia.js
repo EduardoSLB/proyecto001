@@ -32,6 +32,12 @@ class ModFamilia extends Component {
     this.setState({ token: token });
     let expirationDate = new Date(localStorage.getItem("expirationDate"));
 
+    let numeroFinal = localStorage.getItem("NUMEROFAMILIA")*1 
+    let object = {
+      ...this.state.familiar,
+      CodPar: numeroFinal
+    }
+    this.setState({familiar: object})
     if (!(token && expirationDate > new Date())) {
       this.props.history.push("/");    
     } else {
@@ -109,6 +115,9 @@ class ModFamilia extends Component {
               obje
             )
             .then(response => {
+              let numero = localStorage.getItem("NUMEROFAMILIA")
+              numero++
+              localStorage.setItem("NUMEROFAMILIA", numero)
               alert("Familiar registrado exitosamente");
               this.context.router.history.goBack();
             });

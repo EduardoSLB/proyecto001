@@ -158,6 +158,16 @@ class Obligaciones extends Component {
               datosObligaciones.push(objeto);
 
             }
+            if(datosObligaciones.length===0){
+              this.setState({vacio: true})
+              localStorage.setItem("NUMEROOBLIGACION", 0)
+              
+            }else{
+              let numeroFinal = datosObligaciones[datosObligaciones.length-1]["CodObl"] * 1 +1
+              localStorage.setItem("NUMEROOBLIGACION", numeroFinal)
+           
+              }
+            
             this.setState({datodos: datosObligaciones,variable: !this.state.variable})
             
         });

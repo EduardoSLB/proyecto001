@@ -137,8 +137,17 @@ class Familias extends Component {
                 }
                 if(DataSacada.length===0){
                     this.setState({vacio: true})
+                    
+                    let numeroFinal =  localStorage.getItem("CODIGOCOMUNERO") * 100 + 1  
+                    localStorage.setItem("NUMEROFAMILIA", numeroFinal)
+                   
+                }else{
+                  let numeroFinal = DataSacada[DataSacada.length-1]["CodPar"] * 1 +1
+                localStorage.setItem("NUMEROFAMILIA", numeroFinal)
+                
                 }
                 this.setState({datodos: DataSacada, variable: !this.state.variable, loading: false})
+                
             });}
             else{
             

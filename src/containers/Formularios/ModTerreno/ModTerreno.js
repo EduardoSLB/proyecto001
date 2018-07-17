@@ -39,6 +39,14 @@ class ModTerreno extends Component {
     this.setState({ token: token });
     let expirationDate = new Date(localStorage.getItem("expirationDate"));
 
+    let numeroFinal = localStorage.getItem("NUMEROTERRENO")
+    let object = {
+      ...this.state.terreno,
+      CodTerr: numeroFinal
+    }
+    this.setState({terreno: object})
+
+
     if (!(token && expirationDate > new Date())) {
       this.props.history.push("/");
     } else {
@@ -109,10 +117,9 @@ class ModTerreno extends Component {
         if (this.state.tipo === "nuevo") {
           const obje = this.state.terreno;
 
-          rootRef.child('terrenos').child(localStorage.getItem('IDCOMUNERO'));
-
-          rootRef.push().set(obje).then(()=>{
+          rootRef.child('terrenos').child(localStorage.getItem('IDCOMUNERO')).push().set(obje).then(()=>{
             alert("Terreno registrado exitosamente");
+         
             this.context.router.history.goBack();
           });
           

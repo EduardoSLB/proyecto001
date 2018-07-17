@@ -137,6 +137,13 @@ class Ganado extends Component {
                 }
                 if(DataSacada.length===0){
                     this.setState({vacio: true})
+                    let numeroFinal =  localStorage.getItem("CODIGOCOMUNERO") * 100 + 1  
+                    localStorage.setItem("NUMEROGANADO", numeroFinal)
+                    
+                }else{
+                  let numeroFinal = DataSacada[DataSacada.length-1]["CodGan"] * 1 + 1
+                localStorage.setItem("NUMEROGANADO", numeroFinal)
+                
                 }
                 //console.log(DataSacada) 
                 //console.log(localStorage.getItem('IDCOMUNERO'))//-LCo8GTHkhzwY_yhq691

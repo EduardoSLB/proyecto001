@@ -252,12 +252,7 @@ export function generarResumen(original, terrenos, ganado, obligaciones, deudas)
         aTerrenos.push(terrenos[key])
     }
 
-    console.log("Reporte Deudas")
-    console.log(reporteDeudas)
-    console.log("Terrenos")
-    console.log(terrenos)
-    console.log("Ganado")
-    console.log(ganado)
+  
 
     //Calcular páginas en total
     let sganado = aGanado.length
@@ -944,7 +939,7 @@ export function generarAnexo(nombre) {
     for (let key in comuneros) {
         if (comuneros[key]["NomAne"] === nombre)
             seleccion.push(comuneros[key])
-            
+
     }
 
     var doc = new jsPDF({
@@ -981,7 +976,7 @@ export function generarAnexo(nombre) {
         doc.setFontSize(14)
         doc.text("Anexo: " + nombre, 79, 45)
         doc.rect(10, 47, 194, .3)
-        console.log(seleccion)
+        
         doc.setFontSize(10)
         //Cabecera
         doc.rect(12, 49, 191, 7)
@@ -1015,7 +1010,14 @@ export function generarAnexo(nombre) {
             doc.text(number + "", 13, 60 + y * altura)
             //Codigo
             doc.rect(20, 56 + y * altura, 18, altura)
-            doc.text(comunero["CodUsu"] + "", 21, 60 + y * altura)
+            let carne = comunero["CodUsu"] + ""
+            if (carne.length < 5) {
+                let n = carne.length
+                for (var i = n; 5 - i !== 0; i++) {
+                    carne = "0" + carne
+                }
+            }
+            doc.text(carne, 21, 60 + y * altura)
             //Apellidos 
             doc.rect(38, 56 + y * altura, 60, altura)
             doc.text(comunero["ApeUsu"] + "", 40, 60 + y * altura)

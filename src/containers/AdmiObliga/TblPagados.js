@@ -98,7 +98,7 @@ class TblPagados extends Component {
 
   eliminarDePagados = (object) => {
     if (this.state.verificacion) {
-      console.log(object)
+      
       const rootRef = firebase.database().ref().child('deudores').child(localStorage.getItem("idObliga"));
       let objectA = {}
       objectA[object["codigo"]] = "1"

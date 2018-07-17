@@ -100,9 +100,6 @@ class AdmiObliga extends Component {
 
   };
 
-  decirHola = (mensaje) => {
-    console.log("Hola " + mensaje)
-  }
 
   componentDidMount() {
     let nombres = JSON.parse(localStorage.getItem("COMUNEROS"))

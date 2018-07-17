@@ -144,8 +144,19 @@ class Terrenos extends Component {
                 }
                 if(DataSacada.length===0){
                     this.setState({vacio: true})
+                    let numeroFinal =  localStorage.getItem("CODIGOCOMUNERO") * 100 + 1  
+                    localStorage.setItem("NUMEROTERRENO", numeroFinal)
+                    
+                }else{
+                  let numeroFinal = DataSacada[DataSacada.length-1]["CodTerr"] * 1 + 1
+                  localStorage.setItem("NUMEROTERRENO", numeroFinal)
+                  
                 }
+                
                 this.setState({datodos: DataSacada, variable: !this.state.variable, loading: false})
+
+
+
             });}
             else{
             

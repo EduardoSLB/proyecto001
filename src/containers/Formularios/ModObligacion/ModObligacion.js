@@ -34,6 +34,14 @@ class ModObligacion extends Component {
     });
     let expirationDate = new Date(localStorage.getItem("expirationDate"));
 
+    let numeroFinal = localStorage.getItem("NUMEROOBLIGACION")
+    let object = {
+      ...this.state.obligacion,
+      CodObl: numeroFinal
+    }
+    this.setState({obligacion: object})
+ 
+
     if (!(token && expirationDate > new Date())) {
       this.props.history.push("/");
     } else {
@@ -189,10 +197,12 @@ class ModObligacion extends Component {
       } else {
         if (this.state.tipo === "modificar") {
 
-
           const rootRef =firebase.database().ref().child('obligaciones')
           rootRef.child(localStorage.getItem('IDITEM')).remove().then(()=>{
-            alert("Obligación eliminado correctamente");
+          });
+          const rootRef2 =firebase.database().ref().child('deudores')
+          rootRef2.child(localStorage.getItem('IDITEM')).remove().then(()=>{
+            alert("Obligación eliminada correctamente");
             this.context.router.history.goBack();
           });
         }

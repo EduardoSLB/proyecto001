@@ -48,6 +48,7 @@ class BurgerBuilder extends Component {
 
   bajarData = () => {
     localStorage.removeItem("COMUNEROS")
+    localStorage.removeItem("PROHIBIDOS")
     const datosComuneros = [];
     axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth=' + this.state.idToken).then((res) => {
       if (res) {
@@ -66,6 +67,8 @@ class BurgerBuilder extends Component {
           loading: false
         });
         localStorage.setItem("COMUNEROS", JSON.stringify(datosComuneros))
+        let numeroFinal = datosComuneros[datosComuneros.length-1]["CodUsu"] * 1 + 1
+        localStorage.setItem("NUMEROFINAL", numeroFinal)
         this.props.guardarComuneros(datosComuneros);
       } else {
         this.props.history.push('/auth');
@@ -234,7 +237,7 @@ class BurgerBuilder extends Component {
     this.props.guardarIDComunero(id);
   }
 
-  verInfo = (tipo, id) => {
+  verInfo = (tipo, id, codigo) => {
 
     if(tipo === 'obligaciones'){
       this.props.history.push("obligaciones")  ;
@@ -242,6 +245,7 @@ class BurgerBuilder extends Component {
     }
 
     localStorage.setItem('IDCOMUNERO', id);
+    localStorage.setItem('CODIGOCOMUNERO', codigo);
     const queryParams = [];
     queryParams.push(encodeURIComponent("id") + '=' + encodeURIComponent(id));
     const queryString = queryParams.join('&');
@@ -372,6 +376,8 @@ class BurgerBuilder extends Component {
     for(let key in disabledInfo){
         disabledInfo[key] = disabledInfo[key] <= 0
     }
+
+
 
     return (
         <Aux>
@@ -553,12 +559,11 @@ class BurgerBuilder extends Component {
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{MyDocs.generarDocumento(row.original)}}>Imprimir Certificado</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{MyDocs.generarCarne(row.original)}}>Imprimir carnet</button>
               <button style={{marginLeft:"10px", padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.modificarUsuario(row.original.id)}}>Editar</button>
-              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('familias',row.original.id)}}>Ver Familia</button>
-              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('ganado',row.original.id)}}>Ver Ganado</button>
+              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('familias',row.original.id, row.original.CodUsu)}}>Ver Familia</button>
+              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('ganado',row.original.id, row.original.CodUsu)}}>Ver Ganado</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirGanado(row.original)}}>Imprimir Ganado</button>
-              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('terrenos',row.original.id)}}>Ver Terrenos</button>
+              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('terrenos',row.original.id, row.original.CodUsu)}}>Ver Terrenos</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirTerrenos(row.original)}}>Imprimir Terrenos</button>
-                  
               
               </div>
           
@@ -575,7 +580,7 @@ class BurgerBuilder extends Component {
         />
         <div style={{textAlign: "center"}}>
         <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('obligaciones')}}>Obligaciones</button>
-        <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarUsuario("nuevo")}}>Registar usuario</button>
+        <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarUsuario("nuevo")}}>Registar comunero</button>
         <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.reportePorAnexo()}}>Reporte Por Anexo</button>
         <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={this.bajarData}>Actualizar tabla</button>
         <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={this.logout}>Cerrar Sesión</button>

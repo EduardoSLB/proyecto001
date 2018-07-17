@@ -34,6 +34,13 @@ class ModGanado extends Component {
     this.setState({ token: token });
     let expirationDate = new Date(localStorage.getItem("expirationDate"));
 
+    let numeroFinal = localStorage.getItem("NUMEROGANADO")
+    let object = {
+      ...this.state.ganado,
+      CodGan: numeroFinal
+    }
+    this.setState({ganado: object})
+   
     if (!(token && expirationDate > new Date())) {
       this.props.history.push("/");
     } else {
@@ -128,6 +135,7 @@ class ModGanado extends Component {
             .then(response => {
               alert("Ganado modificado exitosamente");
               this.setState({ verificacion: false });
+              this.context.router.history.goBack();
             });
         }
       }
