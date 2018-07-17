@@ -550,9 +550,9 @@ class BurgerBuilder extends Component {
             <div style={{textAlign:"left", marginLeft: "180px" }}>
               
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.llamarAResumen(row.original)}}>Imprimir Resumen General</button>
-              <button style={{marginLeft:"10px", padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.modificarUsuario(row.original.id)}}>Editar</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{MyDocs.generarDocumento(row.original)}}>Imprimir Certificado</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{MyDocs.generarCarne(row.original)}}>Imprimir carnet</button>
+              <button style={{marginLeft:"10px", padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.modificarUsuario(row.original.id)}}>Editar</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('familias',row.original.id)}}>Ver Familia</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('ganado',row.original.id)}}>Ver Ganado</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirGanado(row.original)}}>Imprimir Ganado</button>
