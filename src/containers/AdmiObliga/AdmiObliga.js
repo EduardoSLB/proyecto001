@@ -118,8 +118,9 @@ class AdmiObliga extends Component {
             codigo: key,
             nombre: nombres[key].NomUsu + nombres[key].ApeUsu
           }
-
+          if(snap.val()[key]==="1")
           deudoresListos.push(object)
+
           if (snap.val()[key] === "0") { //1, no han pagado; 0, han pagado
             pagadosListos.push(object)
           }
@@ -146,7 +147,6 @@ class AdmiObliga extends Component {
   }
      
     render() {
-
 
         var nohayregistros = null;
         if(this.state.vacio){

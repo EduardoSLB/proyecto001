@@ -1,7 +1,5 @@
 import * as jsPDF from 'jspdf';
 
-
-
 export function generarDocumento(original) {
     var doc = new jsPDF({
         unit: 'mm'
@@ -245,12 +243,12 @@ export function generarResumen(original, terrenos, ganado, obligaciones, deudas)
     })
 
     let aGanado = []
-    for(let key in ganado){
+    for (let key in ganado) {
         aGanado.push(ganado[key])
     }
 
     let aTerrenos = []
-    for (let key in terrenos){
+    for (let key in terrenos) {
         aTerrenos.push(terrenos[key])
     }
 
@@ -266,16 +264,16 @@ export function generarResumen(original, terrenos, ganado, obligaciones, deudas)
     let sdeudas = reporteDeudas.length
     let sterrenos = aTerrenos.length
     let Pages
-    if(sganado>sdeudas&&sganado>sterrenos){
-        Pages = Math.ceil(sganado/limite)
-    }
-    
-    if(sdeudas>sganado&& sdeudas>sterrenos){
-        Pages = Math.ceil(sdeudas/limite)
+    if (sganado > sdeudas && sganado > sterrenos) {
+        Pages = Math.ceil(sganado / limite)
     }
 
-    if(sterrenos>sganado&&sterrenos>sdeudas){
-        Pages = Math.ceil(sterrenos/limite)
+    if (sdeudas > sganado && sdeudas > sterrenos) {
+        Pages = Math.ceil(sdeudas / limite)
+    }
+
+    if (sterrenos > sganado && sterrenos > sdeudas) {
+        Pages = Math.ceil(sterrenos / limite)
     }
 
     if (Pages === 0) {
@@ -398,111 +396,111 @@ export function generarResumen(original, terrenos, ganado, obligaciones, deudas)
         //Bucle para los datos de la tabla
         let y = 0
         let altura = 7
-        
-        for (let m = p * limite; m < (p + 1) * limite &&m<sterrenos; m++) {
+
+        for (let m = p * limite; m < (p + 1) * limite && m < sterrenos; m++) {
             //doc.rect(18, 81 + y * altura, 262, 7)
             //Terreno
             doc.rect(18, 81 + y * altura, 15, 7) //Codigo
-            doc.text(aTerrenos[m]["CodTerr"]+"", 20, 85 + y * altura)
+            doc.text(aTerrenos[m]["CodTerr"] + "", 20, 85 + y * altura)
 
             doc.rect(33, 81 + y * altura, 30, 7) //Lugar
-            doc.text(aTerrenos[m]["NomAne"]+"", 35, 85 + y * altura)
+            doc.text(aTerrenos[m]["NomAne"] + "", 35, 85 + y * altura)
 
             doc.rect(63, 81 + y * altura, 24, 7) //Observaciones
-            let texto = aTerrenos[m]["Observa"]+""
-            if(texto.length>13){
-                texto = texto.substring(0, 10)+"..."
+            let texto = aTerrenos[m]["Observa"] + ""
+            if (texto.length > 13) {
+                texto = texto.substring(0, 10) + "..."
             }
             doc.text(texto, 65, 85 + y * altura)
 
             doc.rect(87, 81 + y * altura, 10, 7) //Extensión
-            doc.text(aTerrenos[m]["ExtTer"]+"", 89, 85 + y * altura)
+            doc.text(aTerrenos[m]["ExtTer"] + "", 89, 85 + y * altura)
 
             doc.rect(97, 81 + y * altura, 11, 7) //Costo
-            doc.text(aTerrenos[m]["CostoT"]+"", 98, 85 + y * altura)
+            doc.text(aTerrenos[m]["CostoT"] + "", 98, 85 + y * altura)
             y++
         }
 
         let x = 0
-        for (let m = p * limite; m < (p + 1) * limite&&m<sganado; m++) {
+        for (let m = p * limite; m < (p + 1) * limite && m < sganado; m++) {
             //doc.rect(18, 81 + x * altura, 262, 7)
             //Ganado
             let terreno = aGanado[m]
             doc.rect(108, 81 + x * altura, 15, 7) //Codigo
-            doc.text(terreno["CodGan"]+"", 110, 85 + x * altura)
+            doc.text(terreno["CodGan"] + "", 110, 85 + x * altura)
 
 
             doc.rect(123, 81 + x * altura, 30, 7) //Lugar
-            doc.text(terreno["DesGan"]+"", 125, 85 + x * altura)
+            doc.text(terreno["DesGan"] + "", 125, 85 + x * altura)
 
             doc.rect(153, 81 + x * altura, 11, 7) //Cantidad
-            doc.text(terreno["CanGan"]+"", 154, 85 + x * altura)
+            doc.text(terreno["CanGan"] + "", 154, 85 + x * altura)
 
 
             doc.rect(164, 81 + x * altura, 11, 7) //Costo
-            doc.text(terreno["CostoG"]+"", 165, 85 + x * altura)
+            doc.text(terreno["CostoG"] + "", 165, 85 + x * altura)
 
             doc.rect(175, 81 + x * altura, 13, 7) //Total
-            doc.text((terreno["CanGan"]*terreno["CostoG"])+"", 176, 85 + x * altura)
+            doc.text((terreno["CanGan"] * terreno["CostoG"]) + "", 176, 85 + x * altura)
             x++
         }
 
         let z = 0
-        for (let m = p * limite; m < (p + 1) * limite && m<sdeudas ; m++) {
+        for (let m = p * limite; m < (p + 1) * limite && m < sdeudas; m++) {
             //doc.rect(18, 81 + z * altura, 262, 7)
             //Obligaciones
             let obligacion = reporteDeudas[m]
             doc.rect(188, 81 + z * altura, 15, 7) //Codigo
-            doc.text(obligacion["CodObl"]+"", 190, 85+ z*altura)
+            doc.text(obligacion["CodObl"] + "", 190, 85 + z * altura)
 
 
             doc.rect(203, 81 + z * altura, 30, 7) //Obligación
-            doc.text(obligacion["DesObl"]+"", 205, 85+ z*altura)
+            doc.text(obligacion["DesObl"] + "", 205, 85 + z * altura)
 
             doc.rect(233, 81 + z * altura, 20, 7) //Fecha
-            doc.text(obligacion["FecObl"]+"", 235, 85+ z*altura)
+            doc.text(obligacion["FecObl"] + "", 235, 85 + z * altura)
 
 
             doc.rect(253, 81 + z * altura, 13, 7) //AsiFae
             let mensaje = ""
-            if(obligacion["pago"]){
+            if (obligacion["pago"]) {
                 mensaje = "Sí"
-            }else{
+            } else {
                 mensaje = "No"
             }
-            doc.text(mensaje, 255, 85+ z*altura)
+            doc.text(mensaje, 255, 85 + z * altura)
 
             doc.rect(266, 81 + z * altura, 14, 7) //Valor
-            doc.text(obligacion["Valor"]+"", 268, 85+ z*altura)
+            doc.text(obligacion["Valor"] + "", 268, 85 + z * altura)
             z++
         }
 
         doc.setFontSize(12)
         //Costo por Terrenos
-        if(p===Pages-1){
-        let costoTerrenos = 0
-        for(let key in aTerrenos){
-            costoTerrenos = costoTerrenos + aTerrenos[key]["CostoT"]
-        }
-        doc.text("Costo por Terrenos: S./ " + costoTerrenos, 40,170)
-        //Costo por Ganado
-        let costoGanado = 0
-        for(let key in aGanado){
-            costoGanado = costoGanado + aGanado[key]["CanGan"]*aGanado[key]["CostoG"]
-        }
-        doc.text("Costo por Ganado: S./ "+ costoGanado, 140, 170 )
-        //Costo por Obligaciones
-        let costoObl = 0
-        for(let key in reporteDeudas){
-            if(!reporteDeudas[key]["pago"])
-            costoObl = costoObl + reporteDeudas[key]["Valor"]*1
-        }
-        doc.text("Costo por Obligaciones: S./ " + costoObl, 200, 170 )
+        if (p === Pages - 1) {
+            let costoTerrenos = 0
+            for (let key in aTerrenos) {
+                costoTerrenos = costoTerrenos + aTerrenos[key]["CostoT"]
+            }
+            doc.text("Costo por Terrenos: S./ " + costoTerrenos, 40, 170)
+            //Costo por Ganado
+            let costoGanado = 0
+            for (let key in aGanado) {
+                costoGanado = costoGanado + aGanado[key]["CanGan"] * aGanado[key]["CostoG"]
+            }
+            doc.text("Costo por Ganado: S./ " + costoGanado, 140, 170)
+            //Costo por Obligaciones
+            let costoObl = 0
+            for (let key in reporteDeudas) {
+                if (!reporteDeudas[key]["pago"])
+                    costoObl = costoObl + reporteDeudas[key]["Valor"] * 1
+            }
+            doc.text("Costo por Obligaciones: S./ " + costoObl, 200, 170)
 
-        //Costo Total
-        let total = costoTerrenos + costoGanado + costoObl
-        doc.text("Total Deuda: S./ " + total, 140, 180)
-    }
+            //Costo Total
+            let total = costoTerrenos + costoGanado + costoObl
+            doc.text("Total Deuda: S./ " + total, 140, 180)
+        }
 
         //Fecha de Impresión
 
@@ -938,13 +936,108 @@ export function generarGanado(original, ganado) {
 }
 
 export function generarAnexo(nombre) {
+
+    let limite = 30
+    let comuneros = JSON.parse(localStorage.getItem("COMUNEROS"))
+    //Filtrar a los comuneros con el anexo necesario
+    let seleccion = []
+    for (let key in comuneros) {
+        if (comuneros[key]["NomAne"] === nombre)
+            seleccion.push(comuneros[key])
+            
+    }
+
     var doc = new jsPDF({
         unit: 'mm'
     })
 
-    let comuneros = JSON.parse(localStorage.getItem("COMUNEROS"))
-    //Filtrar a los comuneros con el anexo necesario
-    console.log(comuneros)
+    let Pages = Math.ceil(seleccion.length / limite)
+    if (Pages === 0) {
+        Pages = 1
+    }
+
+    for (let p = 0; p < Pages; p++) {
+        if (p !== 0)
+            doc.addPage()
+
+
+        //Imagen chévere
+        doc.setFontStyle("Roman")
+        doc.rect(39, 6, 130, 12.5, 'S')
+        doc.setTextColor("#0e6600")
+        doc.setFontSize(18)
+        doc.text('COMUNIDAD CAMPESINA DE PALCA', 50, 12)
+        doc.setFontSize(10)
+        doc.text('Reconocido Oficialmente el 28 de Diciembre de 1933', 62, 16)
+        //Titulo
+        doc.setFontSize(25)
+        doc.setTextColor("#002966")
+        doc.setFontStyle('bold')
+        doc.text('PADRÓN GENERAL DE COMUNEROS', 30, 32)
+        doc.rect(21, 33.5, 175, 1.5)
+
+        //Anexo
+        doc.setTextColor("#000000")
+        doc.setFontSize(14)
+        doc.text("Anexo: " + nombre, 79, 45)
+        doc.rect(10, 47, 194, .3)
+        console.log(seleccion)
+        doc.setFontSize(10)
+        //Cabecera
+        doc.rect(12, 49, 191, 7)
+        //Numero
+        doc.rect(12, 49, 8, 7)
+        doc.text("N°", 13, 54)
+        //Codigo
+        doc.rect(20, 49, 18, 7)
+        doc.text("CARNET", 21, 54)
+        //Apellidos
+        doc.rect(38, 49, 60, 7)
+        doc.text("APELLIDOS", 40, 54)
+        //Nombres
+        doc.rect(98, 49, 60, 7)
+        doc.text("NOMBRES", 100, 54)
+        //DOC IDEN N°
+        doc.rect(158, 49, 26, 7)
+        doc.text("DOC IDEN N°", 160, 54)
+        //FIRMA
+        doc.text("FIRMAS", 186, 54)
+
+        //Bucle para los datos
+        let y = 0
+        let altura = 7
+        for (let m = p * limite; m < (p + 1) * limite && m < seleccion.length; m++) {
+            let comunero = seleccion[m]
+            doc.rect(12, 56 + y * altura, 191, altura)
+
+            doc.rect(12, 56 + y * altura, 8, altura)
+            let number = m + 1
+            doc.text(number + "", 13, 60 + y * altura)
+            //Codigo
+            doc.rect(20, 56 + y * altura, 18, altura)
+            doc.text(comunero["CodUsu"] + "", 21, 60 + y * altura)
+            //Apellidos 
+            doc.rect(38, 56 + y * altura, 60, altura)
+            doc.text(comunero["ApeUsu"] + "", 40, 60 + y * altura)
+            //Nombres   
+            doc.rect(98, 56 + y * altura, 60, altura)
+            doc.text(comunero["NomUsu"] + "", 100, 60 + y * altura)
+            //DOC IDEN N°   
+            doc.rect(158, 56 + y * altura, 26, altura)
+            doc.text(comunero["NumDoc"] + "", 160, 60 + y * altura)
+            y++
+        }
+
+
+        //PIE DE PÁGINA
+        doc.setFontSize(10)
+        let pagina = p * 1 + 1
+        doc.text("N° Pág: " + pagina, 185, 280)
+        if (Pages !== 1)
+            doc.text(pagina + "/" + Pages, 8, 280)
+
+    }
+
 
 
     //Nombre del documento
