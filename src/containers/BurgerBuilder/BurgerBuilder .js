@@ -553,7 +553,7 @@ class BurgerBuilder extends Component {
         SubComponent={row => {
           
           return (
-            <div style={{textAlign:"left", marginLeft: "180px" }}>
+            <div style={{textAlign:"left", marginLeft: "40px" }}>
               
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.llamarAResumen(row.original)}}>Imprimir Resumen General</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{MyDocs.generarDocumento(row.original)}}>Imprimir Certificado</button>
@@ -575,7 +575,7 @@ class BurgerBuilder extends Component {
             asc: {variable}
           }
         ]}
-        defaultPageSize={20}
+        defaultPageSize={10}
         className="-striped -highlight"
         />
         <div style={{textAlign: "center"}}>

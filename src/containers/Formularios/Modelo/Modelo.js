@@ -156,16 +156,18 @@ class Modelo extends Component {
 
     for (let key in nuevo) {
       if (key === identi) {
-        nuevo[key] = evt.target.value;
+        if(identi.includes("Fec")||identi.includes("Can")||identi.includes("Cod")){
+          if(evt.target.value.match("^[/0-9]+$")||evt.target.value===""){
+            nuevo[key] = evt.target.value;    
+          }
+        }else{
+          nuevo[key] = evt.target.value;    
+      }
       }
     }
 
     this.setState({ persona: nuevo });
-    if (this.state.persona.NomUsu === "DesarrolladoPo") {
-      alert(
-        'Proyecto desarrollado por "Lévano Bezada, Eduardo Sebastian 7263479692" Lima - Perú'
-      );
-    }
+    
   };
 
   submitHandler = event => {

@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 import firebase from 'firebase/app'
 import { withRouter } from "react-router-dom";
 
+
+
 class ModGanado extends Component {
   state = {
     tipo: null,
@@ -16,7 +18,7 @@ class ModGanado extends Component {
       DesGan: "Ovino",
       SexoGa: "M",
       EdadGa: "",
-      CanGa: "1",
+      CanGan: "1",
       ColGan: "",
       MarcaGa: "",
       SenalGa: "",
@@ -85,16 +87,18 @@ class ModGanado extends Component {
 
     for (let key in nuevo) {
       if (key === identi) {
-        nuevo[key] = evt.target.value;
+        if(identi.includes("Fec")||identi.includes("Can")||identi.includes("Cod")){
+          if(evt.target.value.match("^[/0-9]+$")||evt.target.value===""){
+            nuevo[key] = evt.target.value;    
+          }
+        }else{
+          nuevo[key] = evt.target.value;    
+      }
       }
     }
 
     this.setState({ ganado: nuevo });
-    if (this.state.ganado.NomUsu === "DesarrolladoPo") {
-      alert(
-        'Proyecto desarrollado por "Lévano Bezada, Eduardo Sebastian 7263479692" Lima - Perú'
-      );
-    }
+
   };
 
   submitHandler = event => {
@@ -257,7 +261,7 @@ class ModGanado extends Component {
             </div>
             
             <div className="pure-control-group">
-              <label htmlFor="state">Descripción</label>
+              <label htmlFor="state">Sexo</label>
               <select
                 style={{ width: "45%", marginLeft: "14px" }}
                 value={this.state.ganado.SexoGa}
@@ -287,9 +291,9 @@ class ModGanado extends Component {
             <div className="pure-control-group">
               <label htmlFor="NomUsu">Cantidad</label>
               <input required
-                value={this.state.ganado.CanGa}
+                value={this.state.ganado.CanGan}
                 onChange={evt => {
-                  this.cambiar(evt, "CanGa");
+                  this.cambiar(evt, "CanGan");
                 }}
                 type="text"
                 placeholder="05"
@@ -309,7 +313,7 @@ class ModGanado extends Component {
             </div> 
             
             <div className="pure-control-group">
-              <label htmlFor="NomUsu">Color</label>
+              <label htmlFor="NomUsu">Marca</label>
               <input required
                 value={this.state.ganado.MarcaGa}
                 onChange={evt => {
@@ -331,6 +335,8 @@ class ModGanado extends Component {
                 placeholder="S/S"
               />
             </div> 
+
+
 
 <div className="pure-control-group">
               <label>Fecha Reingreso</label>

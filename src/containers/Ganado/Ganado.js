@@ -189,7 +189,7 @@ class Ganado extends Component {
               },
               {
                 Header: "Cantidad",
-                accessor: "CanGa"
+                accessor: "CanGan"
               },
               {
                 Header: "Color",

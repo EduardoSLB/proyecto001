@@ -91,7 +91,13 @@ class ModTerreno extends Component {
 
     for (let key in nuevo) {
       if (key === identi) {
-        nuevo[key] = evt.target.value;
+        if(identi.includes("Fec")||identi.includes("Can")||identi.includes("Cod")||identi.includes("Ext")||identi.includes("M2")||identi.includes("Costo")){
+          if(evt.target.value.match("^[/0-9]+$")||evt.target.value===""){
+            nuevo[key] = evt.target.value;    
+          }
+        }else{
+          nuevo[key] = evt.target.value;    
+      }
       }
     }
 
