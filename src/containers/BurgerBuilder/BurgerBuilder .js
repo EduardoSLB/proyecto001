@@ -125,12 +125,14 @@ class BurgerBuilder extends Component {
         }, filteredData);
       }
       let d = JSON.parse(localStorage.getItem("FILTRO"))
-      if(d.length){
+      if(d!=null)
+      {if(d.length){
         filteredData = d.reduce((filteredSoFar, nextFilter) => {
           return filteredSoFar.filter(row => {
             return (row[nextFilter.id] + "").includes(nextFilter.value);
           });
         }, filteredData);
+      }
       }
 
       const sortedData = _.orderBy(

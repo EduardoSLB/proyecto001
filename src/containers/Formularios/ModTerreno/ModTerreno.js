@@ -146,18 +146,7 @@ class ModTerreno extends Component {
             alert("Terreno modificado exitosamente");
             this.context.router.history.goBack();
           });
-          /*axios
-            .patch(
-              "https://proyecto-tarma.firebaseio.com/comuneros/" +
-                idCom +
-                "/.json?auth=" +
-                token,
-              obje
-            )
-            .then(response => {
-              alert("Usuario modificado exitosamente");
-              this.setState({ verificacion: false });
-            });*/
+          
         }
       }
     } else {
