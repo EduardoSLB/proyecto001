@@ -222,7 +222,7 @@ class ModFamilia extends Component {
             
             <div className="pure-control-group">
               <label htmlFor="NomUsu">Código</label>
-              <input required
+              <input required disabled
                 value={this.state.familiar.CodPar}
                 onChange={evt => {
                   this.cambiar(evt, "CodPar");

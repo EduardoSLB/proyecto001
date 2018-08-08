@@ -5,6 +5,7 @@ import _ from 'lodash';
 import * as firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import Aux from '../../hoc/Auxiliar';
+import * as MyDocs from '../BurgerBuilder/generarDocs';
 
 class Ganado extends Component {
 
@@ -86,6 +87,14 @@ class Ganado extends Component {
             });
         
       };
+
+      imprimirGanado = () => {
+        let original = JSON.parse(localStorage.getItem("ORIGINAL"))
+        const rootRef = firebase.database().ref().child('ganado').child(localStorage.getItem("IDCOMUNERO"));
+          rootRef.on('value', snap=>{  
+                  MyDocs.generarGanado(original, snap.val())
+            });
+      }
 
       modificarUsuario = (id) =>{
         const queryParams = [];
@@ -240,6 +249,7 @@ class Ganado extends Component {
             {nohayregistros}
             <div style={{textAlign: "center"}}>
             <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarItem("nuevo")}}>Registar Ganado</button>
+            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirGanado()}}>Imprimir Ganado</button>
             <button
              style={{padding: "16px", fontSize: "16px", margin: " 10px"}} 
             onClick={this.context.router.history.goBack}>

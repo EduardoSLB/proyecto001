@@ -250,7 +250,7 @@ class ModObligacion extends Component {
             
             <div className="pure-control-group">
               <label htmlFor="NomUsu">Código</label>
-              <input required
+              <input required disabled
                 value={this.state.obligacion.CodObl}
                 onChange={evt => {
                   this.cambiar(evt, "CodObl");

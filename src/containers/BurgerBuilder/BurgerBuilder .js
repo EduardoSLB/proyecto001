@@ -88,6 +88,7 @@ class BurgerBuilder extends Component {
 
     if (tokenleido && (new Date() < expirationDate)) {
       let dataGuardada = JSON.parse(localStorage.getItem("COMUNEROS"))
+      
 
       if(dataGuardada===null)
       dataGuardada = []
@@ -118,6 +119,14 @@ class BurgerBuilder extends Component {
 
       if (filtered.length) {
         filteredData = filtered.reduce((filteredSoFar, nextFilter) => {
+          return filteredSoFar.filter(row => {
+            return (row[nextFilter.id] + "").includes(nextFilter.value);
+          });
+        }, filteredData);
+      }
+      let d = JSON.parse(localStorage.getItem("FILTRO"))
+      if(d.length){
+        filteredData = d.reduce((filteredSoFar, nextFilter) => {
           return filteredSoFar.filter(row => {
             return (row[nextFilter.id] + "").includes(nextFilter.value);
           });
@@ -237,11 +246,14 @@ class BurgerBuilder extends Component {
     this.props.guardarIDComunero(id);
   }
 
-  verInfo = (tipo, id, codigo) => {
+  verInfo = (tipo, id, codigo, original) => {
 
     if(tipo === 'obligaciones'){
       this.props.history.push("obligaciones")  ;
       return;
+    }
+    if(original){
+      localStorage.setItem("ORIGINAL", JSON.stringify(original))
     }
 
     localStorage.setItem('IDCOMUNERO', id);
@@ -286,51 +298,6 @@ class BurgerBuilder extends Component {
             });
   }
 
-  generarObligaciones(original){
-    let uno, dos, tres
-    if(this.state.deudasL)
-      uno=true
-    if(this.state.pagadosL)
-      dos=true
-    if(this.state.obligacionesBL)
-      tres=true
-      
-    /*console.log("____")
-    console.log(uno)
-    console.log(dos)
-    console.log(tres)*/
-    if(uno && dos && tres ){
-      let codigo = original.CodUsu+""
-      let arrayObliga= []
-      for(let key in this.state.obligacionesB){
-        console.log(key)
-        if(this.state.deudas[key][codigo]!==undefined){//Está en deudores?
-          console.log("Deuda pendiente " + key)  
-          if(this.state.pagados[key]!==undefined){
-          if(this.state.pagados[key][codigo]!==undefined){//Si está en deudores, también está en pagados?
-              console.log("Ha pagado " + key)  
-            //Como ha pagado no hacemos nada
-            }else{//Si debe, pero no ha pagado, creamos un registro de la deuda
-              let object = this.state.obligacionesB[key]  
-              arrayObliga.push(object)
-              console.log("Deuda registrada")
-              console.log(this.state.obligacionesB[key])  
-            }
-          }else{//Si no hay ningun registro de ese pago se registra la deuda
-            let object = this.state.obligacionesB[key]  
-              arrayObliga.push(object)
-              console.log("Deuda registrada")
-          }
-        }//Sino que siga revisando el otro
-      }
-      this.setState({obligaciones: arrayObliga}, ()=>{
-        console.log("Obligaciones")
-        console.log(this.state.obligaciones)
-        //this.mandarCrearDocumento(original)
-      })
-    }
-  }
-
   imprimirGanado = (original) => {
     const rootRef = firebase.database().ref().child('ganado').child(original.id);
           rootRef.on('value', snap=>{
@@ -372,7 +339,7 @@ class BurgerBuilder extends Component {
         
     const disabledInfo={
         ...this.state.ingredients
-    };
+    };  
     for(let key in disabledInfo){
         disabledInfo[key] = disabledInfo[key] <= 0
     }
@@ -383,6 +350,10 @@ class BurgerBuilder extends Component {
         <Aux>
           <h1 style={{textAlign:"center", margin:"5px"}}>Comuneros</h1>
        <ReactTable style={{textAlign: "center"}}
+        onFilteredChange = {(value)=>{
+          localStorage.setItem("FILTRO", JSON.stringify(value))
+        }}
+        
         columns={[
           {
             Header: "Código",
@@ -560,10 +531,9 @@ class BurgerBuilder extends Component {
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{MyDocs.generarCarne(row.original)}}>Imprimir carnet</button>
               <button style={{marginLeft:"10px", padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.modificarUsuario(row.original.id)}}>Editar</button>
               <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('familias',row.original.id, row.original.CodUsu)}}>Ver Familia</button>
-              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('ganado',row.original.id, row.original.CodUsu)}}>Ver Ganado</button>
-              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirGanado(row.original)}}>Imprimir Ganado</button>
-              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('terrenos',row.original.id, row.original.CodUsu)}}>Ver Terrenos</button>
-              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirTerrenos(row.original)}}>Imprimir Terrenos</button>
+              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('ganado',row.original.id, row.original.CodUsu, row.original)}}>Ver Ganado</button>
+              
+              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.verInfo('terrenos',row.original.id, row.original.CodUsu, row.original)}}>Ver Terrenos</button>
               
               </div>
           
@@ -611,3 +581,11 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(withErrorHandler(BurgerBuilder, axios)));
+
+/*
+Botones sacados, no sé si querrán que los vuelva a poner
+              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirTerrenos(row.original)}}>Imprimir Terrenos</button>
+
+              <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirGanado(row.original)}}>Imprimir Ganado</button>
+
+*/

@@ -399,14 +399,18 @@ export function generarResumen(original, terrenos, ganado, obligaciones, deudas)
             doc.text(aTerrenos[m]["CodTerr"] + "", 20, 85 + y * altura)
 
             doc.rect(33, 81 + y * altura, 30, 7) //Lugar
-            doc.text(aTerrenos[m]["NomAne"] + "", 35, 85 + y * altura)
+            let lugar = aTerrenos[m]["NomAne"] + "" 
+            if (lugar.length > 10) {
+                lugar = lugar.substring(0, 10) + "."
+            }
+            doc.text(lugar, 35, 85 + y * altura)
 
             doc.rect(63, 81 + y * altura, 24, 7) //Observaciones
             let texto = aTerrenos[m]["Observa"] + ""
-            if (texto.length > 13) {
-                texto = texto.substring(0, 10) + "..."
+            if (texto.length > 14) {
+                texto = texto.substring(0, 8) + ". . ."
             }
-            doc.text(texto, 65, 85 + y * altura)
+            doc.text(texto, 64, 85 + y * altura)
 
             doc.rect(87, 81 + y * altura, 10, 7) //Extensión
             doc.text(aTerrenos[m]["ExtTer"] + "", 89, 85 + y * altura)
@@ -635,10 +639,14 @@ export function generarTerrenos(original, terrenos) {
         doc.rect(203, 47, 32, 12)
         doc.text("Oeste", 205, 54)
 
-        doc.rect(235, 47, 24, 12)
-        doc.text("Tongos", 237, 54)
+        //doc.rect(235, 47, 24, 12)
+        doc.rect(235, 47, 45, 6)
+        doc.text("Extensión", 250, 51   )
+        doc.rect(235, 53, 24, 6)
+        
+        doc.text("Tongos", 237, 57)
 
-        doc.text("M2", 261, 54)
+        doc.text("M2", 261, 57)
 
         //Bucle para los datos de la tabla
         let y = 0
@@ -850,19 +858,35 @@ export function generarGanado(original, ganado) {
             doc.text(aGanado[m]["SexoGa"], 87, 59 + y * altura)
 
             doc.rect(96, 55 + y * altura, 20, altura)
-            doc.text(aGanado[m]["EdadGa"], 98, 59 + y * altura)
+            let edad = aGanado[m]["EdadGa"]
+            if (edad.length > 9) {
+                edad = edad.substring(0, 9) + "."
+            }
+            doc.text(edad, 97, 59 + y * altura)
 
             doc.rect(116, 55 + y * altura, 12, altura)
             doc.text(aGanado[m]["CanGan"] + "", 118, 59 + y * altura)
 
             doc.rect(128, 55 + y * altura, 46, altura)
+            let color = aGanado[m]["ColGan"]
+            if (color.length > 17) {
+                color = color.substring(0, 17) + "."
+            }
             doc.text(aGanado[m]["ColGan"], 130, 59 + y * altura)
 
             doc.rect(174, 55 + y * altura, 34, altura)
+            let marca = aGanado[m]["MarcaGa"]
+            if (marca.length > 13) {
+                marca = marca.substring(0, 13) + "."
+            }
             doc.text(aGanado[m]["MarcaGa"], 176, 59 + y * altura)
 
             doc.rect(208, 55 + y * altura, 34, altura)
-            doc.text(aGanado[m]["SenalGa"], 210, 59 + y * altura)
+            let senal = aGanado[m]["SenalGa"]
+            if (senal.length > 13) {
+                senal = senal.substring(0, 13) + "."
+            }
+            doc.text(senal, 209, 59 + y * altura)
 
             doc.rect(242, 55 + y * altura, 18, altura)
 

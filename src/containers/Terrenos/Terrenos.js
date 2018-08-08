@@ -5,6 +5,7 @@ import _ from 'lodash';
 import * as firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import Aux from '../../hoc/Auxiliar';
+import * as MyDocs from '../BurgerBuilder/generarDocs';
 
 class Terrenos extends Component {
 
@@ -109,6 +110,15 @@ class Terrenos extends Component {
       });
     }
       
+  
+    imprimirTerrenos = () => {
+      let original = JSON.parse(localStorage.getItem("ORIGINAL"))
+      const rootRef2 = firebase.database().ref().child('terrenos').child(localStorage.getItem("IDCOMUNERO"));
+          rootRef2.on('value', snap=>{
+                  MyDocs.generarTerrenos(original, snap.val())
+            });
+    }
+    
       registrarItem = (id) => {
         const queryParams = [];
        queryParams.push(encodeURIComponent("tipo")+ '=' + encodeURIComponent("nuevo")); 
@@ -120,6 +130,7 @@ class Terrenos extends Component {
     }
 
     componentDidMount() {
+      
         let token = localStorage.getItem('token');
             if(token){const query = new URLSearchParams(this.props.location.search);
             let id = null;
@@ -213,12 +224,18 @@ class Terrenos extends Component {
               },
               {
                 Header: "Extensión",
-                accessor: "ExtTer"
-              },
-              {
-                Header: "M2",
-                accessor: "M2"
-              },
+                columns: [
+                  {
+                    Header: "Tongos",
+                    accessor: "ExtTer"
+                  },
+                  {
+                    Header: "M2",
+                    accessor: "M2"
+                  }  
+                ]
+              }
+              ,
               {
                 Header: "Sector",
                 accessor: "Sector"
@@ -263,6 +280,7 @@ class Terrenos extends Component {
             {nohayregistros}
             <div style={{textAlign: "center"}}>
             <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarItem("nuevo")}}>Registar Terreno</button>
+            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirTerrenos()}}>Imprimir Terrenos</button>
             <button
              style={{padding: "16px", fontSize: "16px", margin: " 10px"}} 
             onClick={this.context.router.history.goBack}>

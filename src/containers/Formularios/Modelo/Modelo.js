@@ -314,7 +314,7 @@ class Modelo extends Component {
           <fieldset>
             <div className="pure-control-group">
               <label htmlFor="NomUsu">Código</label>
-              <input required 
+              <input required disabled
                 value={this.state.persona.CodUsu}
                 type="text"
                 placeholder="17**"
@@ -623,7 +623,7 @@ class Modelo extends Component {
             </div>
             <div className="pure-control-group">
               <label>Número de Documento</label>
-              <input
+              <input required
                 value={this.state.persona.NumDoc}
                 onChange={evt => {
                   this.cambiar(evt, "NumDoc");
