@@ -129,7 +129,7 @@ class Modelo extends Component {
       } else if (varHayTipo === "modificar" && idCom) {
         axios
           .get(
-            "https://proyecto-tarma.firebaseio.com/comuneros/" +
+            "https://comunidad-palca.firebaseio.com/comuneros/" +
               idCom +
               "/.json?auth=" +
               token
@@ -138,10 +138,7 @@ class Modelo extends Component {
             let hola = response.data;
             hola.FecRei18 = ''
             this.setState({ persona: hola });
-            /*const obje = {"tipo": "antiguoo"}
-                axios.patch('https://proyecto-tarma.firebaseio.com/comuneros/-LCo9OSE5nDH-552kbsK/.json?auth='+ token, obje).then((response)=>{
-                    console.log(response);
-                });*/
+           
           });
       } else {
         this.props.history.push("/");
@@ -186,7 +183,7 @@ class Modelo extends Component {
 
           axios
             .post(
-              "https://proyecto-tarma.firebaseio.com/comuneros.json?auth=" +
+              "https://comunidad-palca.firebaseio.com/comuneros.json?auth=" +
                 token,
               obje
             )
@@ -215,7 +212,7 @@ class Modelo extends Component {
           const obje = this.state.persona;
           axios
             .patch(
-              "https://proyecto-tarma.firebaseio.com/comuneros/" +
+              "https://comunidad-palca.firebaseio.com/comuneros/" +
                 idCom +
                 "/.json?auth=" +
                 token,
@@ -262,7 +259,7 @@ class Modelo extends Component {
           const obje = this.state.persona;
           axios
             .delete(
-              "https://proyecto-tarma.firebaseio.com/comuneros/" +
+              "https://comunidad-palca.firebaseio.com/comuneros/" +
                 idCom +
                 "/.json?auth=" +
                 token,

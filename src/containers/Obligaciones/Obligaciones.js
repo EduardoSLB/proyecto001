@@ -90,25 +90,6 @@ class Obligaciones extends Component {
         
       };
 
-      /*pruebas = () => {
-        console.log("Pruebas presionado")
-        let datosComuneros = [];
-        axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth=' + localStorage.getItem('token')).then((res) => {
-          if (res) {
-            for (let key in res.data) {
-            
-              let superId = res.data[key].CodUsu;
-              datosComuneros[superId] = res.data[key].NomUsu + " " + res.data[key].ApeUsu;
-            
-            }
-           
-            console.log(datosComuneros);
-          } else {
-            this.props.history.push('/auth');
-
-          }
-        });
-      }*/
  
       modificarUsuario = (id) =>{
         const queryParams = [];

@@ -67,7 +67,7 @@ class ModObligacion extends Component {
 
         axios
           .get(
-            "https://proyecto-tarma.firebaseio.com/obligaciones/" +
+            "https://comunidad-palca.firebaseio.com/obligaciones/" +
             id_item +
             "/.json?auth=" +
             token
@@ -133,7 +133,7 @@ class ModObligacion extends Component {
             let datosComuneros = [];
 
 
-            axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth=' + localStorage.getItem('token')).then((res) => {
+            axios.get('https://comunidad-palca.firebaseio.com/comuneros.json?auth=' + localStorage.getItem('token')).then((res) => {
                   if (res) {
                     for (let key in res.data) {
                       let superId = res.data[key].CodUsu;
@@ -172,7 +172,7 @@ class ModObligacion extends Component {
           
           axios
             .patch(
-              "https://proyecto-tarma.firebaseio.com/obligaciones/" + localStorage.getItem('IDITEM')+ 
+              "https://comunidad-palca.firebaseio.com/obligaciones/" + localStorage.getItem('IDITEM')+ 
                 "/.json?auth=" +
                 token,
               obje

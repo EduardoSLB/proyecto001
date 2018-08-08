@@ -106,7 +106,7 @@ class Auth extends Component {
             
         });
 
-        axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCTi8MO-Fh2rOuDjsDOnpvUQpnVKh-vy_0', authData).then(response =>{
+        axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyDemug8MlcGOyYFP1q7hrPI3S1N5z3lpmU', authData).then(response =>{
             
             this.setState({idToken: response.data.idToken})
             localStorage.setItem('token', response.data.idToken);

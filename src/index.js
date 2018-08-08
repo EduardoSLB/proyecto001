@@ -22,12 +22,12 @@ import reducer from './store/reducers/todo'
 const store = createStore(reducer);
 
 var config = {
-    apiKey: "AIzaSyCTi8MO-Fh2rOuDjsDOnpvUQpnVKh-vy_0",
-    authDomain: "proyecto-tarma.firebaseapp.com",
-    databaseURL: "https://proyecto-tarma.firebaseio.com",
-    projectId: "proyecto-tarma",
-    storageBucket: "proyecto-tarma.appspot.com",
-    messagingSenderId: "792810804917"
+    apiKey: "AIzaSyDemug8MlcGOyYFP1q7hrPI3S1N5z3lpmU",
+    authDomain: "comunidad-palca.firebaseapp.com",
+    databaseURL: "https://comunidad-palca.firebaseio.com",
+    projectId: "comunidad-palca",
+    storageBucket: "comunidad-palca.appspot.com",
+    messagingSenderId: "429730676229"
 };
 
 firebase.initializeApp(config);

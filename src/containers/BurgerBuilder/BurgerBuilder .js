@@ -50,7 +50,7 @@ class BurgerBuilder extends Component {
     localStorage.removeItem("COMUNEROS")
     localStorage.removeItem("PROHIBIDOS")
     const datosComuneros = [];
-    axios.get('https://proyecto-tarma.firebaseio.com/comuneros.json?auth=' + this.state.idToken).then((res) => {
+    axios.get('https://comunidad-palca.firebaseio.com/comuneros.json?auth=' + this.state.idToken).then((res) => {
       if (res) {
 
         for (let key in res.data) {

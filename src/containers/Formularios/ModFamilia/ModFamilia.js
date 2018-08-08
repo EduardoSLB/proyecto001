@@ -58,7 +58,7 @@ class ModFamilia extends Component {
         
         axios
           .get(
-            "https://proyecto-tarma.firebaseio.com/familias/" +
+            "https://comunidad-palca.firebaseio.com/familias/" +
               id_comunero +"/"+ id_item +
               "/.json?auth=" +
               token
@@ -116,7 +116,7 @@ class ModFamilia extends Component {
           
           axios
             .post(
-              "https://proyecto-tarma.firebaseio.com/familias/"+ localStorage.getItem("IDCOMUNERO")+ ".json?auth=" +
+              "https://comunidad-palca.firebaseio.com/familias/"+ localStorage.getItem("IDCOMUNERO")+ ".json?auth=" +
                 token,
               obje
             )
@@ -132,7 +132,7 @@ class ModFamilia extends Component {
           const obje = this.state.familiar;
           axios
             .patch(
-              "https://proyecto-tarma.firebaseio.com/familias/" +
+              "https://comunidad-palca.firebaseio.com/familias/" +
                 localStorage.getItem('IDCOMUNERO') + "/" + localStorage.getItem('IDITEM')+ 
                 "/.json?auth=" +
                 token,
@@ -169,7 +169,7 @@ class ModFamilia extends Component {
           const obje = this.state.familiar;
           axios
             .delete(
-              "https://proyecto-tarma.firebaseio.com/familias/" +
+              "https://comunidad-palca.firebaseio.com/familias/" +
                 localStorage.getItem("IDCOMUNERO") + "/"+ localStorage.getItem("IDITEM")+
                 "/.json?auth=" +
                 token,

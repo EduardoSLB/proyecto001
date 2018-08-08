@@ -63,7 +63,7 @@ class ModGanado extends Component {
 
         axios
           .get(
-            "https://proyecto-tarma.firebaseio.com/ganado/" +
+            "https://comunidad-palca.firebaseio.com/ganado/" +
               id_comunero + "/" + id_item +
               "/.json?auth=" +
               token
@@ -130,7 +130,7 @@ class ModGanado extends Component {
           
           axios
             .patch(
-              "https://proyecto-tarma.firebaseio.com/ganado/" +
+              "https://comunidad-palca.firebaseio.com/ganado/" +
               localStorage.getItem('IDCOMUNERO') + "/" + localStorage.getItem('IDITEM')+ 
                 "/.json?auth=" +
                 token,
@@ -178,23 +178,7 @@ class ModGanado extends Component {
             alert("Ganado eliminado correctamente");
             this.context.router.history.goBack();
           });
-          /*axios
-            .delete(
-              "https://proyecto-tarma.firebaseio.com/comuneros/" +
-                idCom +
-                "/.json?auth=" +
-                token,
-              obje
-            )
-            .then(response => {
-              alert("Usuario eliminado correctamente");
-              this.context.router.history.goBack();
-            })
-            .catch(err => {
-              alert(
-                "No se pudo eliminar al usuario. Puede que haya sido eliminado previamente"
-              );
-            });*/
+         
         }
       }
     } else {

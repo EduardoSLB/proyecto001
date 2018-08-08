@@ -69,7 +69,7 @@ class ModTerreno extends Component {
 
         axios
           .get(
-            "https://proyecto-tarma.firebaseio.com/terrenos/" +
+            "https://comunidad-palca.firebaseio.com/terrenos/" +
             id_comunero + "/" + id_item +
               "/.json?auth=" +
               token
