@@ -252,7 +252,7 @@ export function generarResumen(original, terrenos, ganado, obligaciones, deudas)
         aTerrenos.push(terrenos[key])
     }
 
-  
+
 
     //Calcular páginas en total
     let sganado = aGanado.length
@@ -396,10 +396,17 @@ export function generarResumen(original, terrenos, ganado, obligaciones, deudas)
             //doc.rect(18, 81 + y * altura, 262, 7)
             //Terreno
             doc.rect(18, 81 + y * altura, 15, 7) //Codigo
-            doc.text(aTerrenos[m]["CodTerr"] + "", 20, 85 + y * altura)
+            let carne = aTerrenos[m]["CodTerr"] + ""
+        if (carne.length < 5) {
+            let n = carne.length
+            for (var f = n; 5 - f !== 0; f++) {
+                carne = "0" + carne
+            }
+        }
+            doc.text(carne, 20, 85 + y * altura)
 
             doc.rect(33, 81 + y * altura, 30, 7) //Lugar
-            let lugar = aTerrenos[m]["NomAne"] + "" 
+            let lugar = aTerrenos[m]["NomAne"] + ""
             if (lugar.length > 10) {
                 lugar = lugar.substring(0, 10) + "."
             }
@@ -426,7 +433,14 @@ export function generarResumen(original, terrenos, ganado, obligaciones, deudas)
             //Ganado
             let terreno = aGanado[m]
             doc.rect(108, 81 + x * altura, 15, 7) //Codigo
-            doc.text(terreno["CodGan"] + "", 110, 85 + x * altura)
+            let carne = terreno["CodGan"] + ""
+        if (carne.length < 5) {
+            let n = carne.length
+            for (var r = n; 5 - r !== 0; r++) {
+                carne = "0" + carne
+            }
+        }
+            doc.text(carne, 110, 85 + x * altura)
 
 
             doc.rect(123, 81 + x * altura, 30, 7) //Lugar
@@ -450,7 +464,14 @@ export function generarResumen(original, terrenos, ganado, obligaciones, deudas)
             //Obligaciones
             let obligacion = reporteDeudas[m]
             doc.rect(188, 81 + z * altura, 15, 7) //Codigo
-            doc.text(obligacion["CodObl"] + "", 190, 85 + z * altura)
+            let carne = obligacion["CodObl"] + ""
+        if (carne.length < 5) {
+            let n = carne.length
+            for (var a = n; 5 - a !== 0; a++) {
+                carne = "0" + carne
+            }
+        }
+            doc.text(carne, 190, 85 + z * altura)
 
 
             doc.rect(203, 81 + z * altura, 30, 7) //Obligación
@@ -641,9 +662,9 @@ export function generarTerrenos(original, terrenos) {
 
         //doc.rect(235, 47, 24, 12)
         doc.rect(235, 47, 45, 6)
-        doc.text("Extensión", 250, 51   )
+        doc.text("Extensión", 250, 51)
         doc.rect(235, 53, 24, 6)
-        
+
         doc.text("Tongos", 237, 57)
 
         doc.text("M2", 261, 57)
@@ -654,27 +675,61 @@ export function generarTerrenos(original, terrenos) {
             //Generar Cuadrículas
             doc.setFontSize(10)
             doc.rect(18, 59 + y * 5, 262, 5)
-
+            //
+            
+        //
             doc.rect(18, 59 + y * 5, 22, 5) //codigo
-            doc.text(aTerrenos[m]["CodTerr"] + "", 20, 63 + y * 5)
+            let carne = aTerrenos[m]["CodTerr"] + ""
+        if (carne.length < 5) {
+            let n = carne.length
+            for (var h = n; 5 - h !== 0; h++) {
+                carne = "0" + carne
+            }
+        }
+        doc.text(carne + "", 250, 17) 
+            doc.text(carne, 20, 63 + y * 5)
 
             doc.rect(40, 59 + y * 5, 32, 5) //lugar
-            doc.text(aTerrenos[m]["NomAne"] + "", 42, 63 + y * 5)
+            let lugar = aTerrenos[m]["NomAne"] + ""
+            if (lugar.length > 12) {
+                lugar = lugar.substring(0, 12) + "."
+            }
+            doc.text(lugar, 41, 63 + y * 5)
 
             doc.rect(72, 59 + y * 5, 35, 5) //punto denominado
-            doc.text(aTerrenos[m]["NomBar"] + "", 74, 63 + y * 5)
+            let punto = aTerrenos[m]["NomBar"] + ""
+            if (punto.length > 13) {
+                punto = punto.substring(0, 13) + "."
+            }
+            doc.text(punto, 73, 63 + y * 5)
 
             doc.rect(107, 59 + y * 5, 32, 5) //norte
-            doc.text(aTerrenos[m]["ColNor"] + "", 109, 63 + y * 5)
+            let norte = aTerrenos[m]["ColNor"] + ""
+            if (norte.length > 12) {
+                norte = norte.substring(0, 12) + "."
+            }
+            doc.text(norte, 108, 63 + y * 5)
 
             doc.rect(139, 59 + y * 5, 32, 5) //sur
-            doc.text(aTerrenos[m]["ColSur"] + "", 141, 63 + y * 5)
+            let sur = aTerrenos[m]["ColSur"] + ""
+            if (sur.length > 12) {
+                sur = sur.substring(0, 12) + "."
+            }
+            doc.text(sur, 140, 63 + y * 5)
 
             doc.rect(171, 59 + y * 5, 32, 5) //este
-            doc.text(aTerrenos[m]["ColEst"] + "", 173, 63 + y * 5)
+            let este = aTerrenos[m]["ColEst"] + ""
+            if (este.length > 12) {
+                este = este.substring(0, 12) + "."
+            }
+            doc.text(este, 172, 63 + y * 5)
 
             doc.rect(203, 59 + y * 5, 32, 5) //oeste
-            doc.text(aTerrenos[m]["ColOes"] + "", 205, 63 + y * 5)
+            let oeste = aTerrenos[m]["ColOes"] + ""
+            if (oeste.length > 12) {
+                oeste = oeste.substring(0, 12) + "."
+            }
+            doc.text(oeste, 204, 63 + y * 5)
 
             doc.rect(235, 59 + y * 5, 24, 5) //tongos
             doc.text(aTerrenos[m]["ExtTer"] + "", 237, 63 + y * 5)
@@ -849,7 +904,14 @@ export function generarGanado(original, ganado) {
             doc.text(number + "", 20, 59 + y * altura)
 
             doc.rect(28, 55 + y * altura, 26, altura)
-            doc.text(aGanado[m]["CodGan"] + "", 30, 59 + y * altura)
+            let carne = aGanado[m]["CodGan"] + ""
+        if (carne.length < 5) {
+            let n = carne.length
+            for (var f = n; 5 - f !== 0; f++) {
+                carne = "0" + carne
+            }
+        }
+            doc.text(carne, 30, 59 + y * altura)
 
             doc.rect(54, 55 + y * altura, 32, altura)
             doc.text(aGanado[m]["DesGan"], 56, 59 + y * altura)
@@ -1000,7 +1062,7 @@ export function generarAnexo(nombre) {
         doc.setFontSize(14)
         doc.text("Anexo: " + nombre, 79, 45)
         doc.rect(10, 47, 194, .3)
-        
+
         doc.setFontSize(10)
         //Cabecera
         doc.rect(12, 49, 191, 7)
