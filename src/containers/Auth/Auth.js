@@ -5,6 +5,7 @@ import Button from '../../components/UI/Button/Button';
 import classes from './Auth.css';
 import axios from 'axios';
 import * as firebase from 'firebase/app';
+import icono from './imagen.jpe'
 
 class Auth extends Component {
     state = {
@@ -157,8 +158,9 @@ class Auth extends Component {
         ) );
 
         return (
-            <div className={classes.Auth}>
-                <form onSubmit={this.submitHandler}>
+            <div className={classes.Auth} >
+            <img style = {{width: "84%"}} src={icono} alt=""/>
+                <form onSubmit={this.submitHandler} >
                     {form}
                     <Button btnType="Success">INICIAR SESIÓN</Button>
                 </form>

@@ -7,7 +7,9 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 class Modelo extends Component {
+  
   state = {
+    placeholder: "01/01/2018",
     tipo: null,
     persona: {
       NomUsu: "",
@@ -96,6 +98,7 @@ class Modelo extends Component {
     mostrarEliminar: true
   };
 
+
   componentDidMount = () => {
     let token = localStorage.getItem("token");
     this.setState({ token: token });
@@ -148,24 +151,31 @@ class Modelo extends Component {
 
   cambiar = (evt, identi) => {
     let nuevo = {
-      ...this.state.persona
+        ...this.state.persona
     };
 
     for (let key in nuevo) {
-      if (key === identi) {
-        if(identi.includes("Fec")||identi.includes("Can")||identi.includes("Cod")){
-          if(evt.target.value.match("^[/0-9]+$")||evt.target.value===""){
-            nuevo[key] = evt.target.value;    
-          }
-        }else{
-          nuevo[key] = evt.target.value;    
-      }
-      }
+        if (key === identi) {
+            if (identi.includes("Fec") || identi.includes("Can") || identi.includes("Cod") || identi.includes("NumDoc")) {
+                if (evt.target.value.match("^[/0-9]+$") || evt.target.value === "") {
+                    nuevo[key] = evt.target.value;
+                }
+            } else {
+                nuevo[key] = evt.target.value;
+            }
+
+            if(identi.includes("")){
+
+            }
+
+        }
     }
 
-    this.setState({ persona: nuevo });
-    
-  };
+    this.setState({
+        persona: nuevo
+    });
+
+};
 
   submitHandler = event => {
     event.preventDefault();
@@ -303,24 +313,27 @@ class Modelo extends Component {
     }
 
     return (
-      <div className={classes.Modelo}>
-        <form
+      <div className={classes.Modelo} style={{width:"70%"}}>
+        <form style={{padding: "10px", gridAutoColumns: "true"}}
           onSubmit={this.submitHandler}
           className="pure-form pure-form-aligned"
         >
           <fieldset>
-            <div className="pure-control-group">
-              <label htmlFor="NomUsu">Código</label>
-              <input required disabled
+            
+            <div style={{display:"flex", flexWrap:"nowrap", width:"70%", marginLeft: "15%", textAlign: "center"}}>
+            
+            <div className="pure-control-group" style = {{width: "33%"}}>
+              <label htmlFor="NomUsu" style={{textAlign: "center", width: "33%"}}>Código</label>
+              <input required disabled style={{width: "94%"}}
                 value={this.state.persona.CodUsu}
                 type="text"
                 placeholder="17**"
               />
             </div>
 
-            <div className="pure-control-group">
-              <label>Apellidos</label>
-              <input required
+            <div className="pure-control-group" style = {{width: "33%", textAlign: "center"}}>
+              <label style={{textAlign: "center"}}>Apellidos</label>
+              <input required style={{width: "94%"}}
                 value={this.state.persona.ApeUsu}
                 onChange={evt => {
                   this.cambiar(evt, "ApeUsu");
@@ -329,9 +342,9 @@ class Modelo extends Component {
                 placeholder="Apellido"
               />
             </div>
-            <div className="pure-control-group">
-              <label htmlFor="name">Nombres</label>
-              <input required
+            <div className="pure-control-group" style = {{width: "33%", textAlign: "center"}}>
+              <label htmlFor="name" style={{textAlign: "center"}}>Nombres</label>
+              <input required style={{width: "94%"}}
                 value={this.state.persona.NomUsu}
                 onChange={evt => {
                   this.cambiar(evt, "NomUsu");
@@ -340,10 +353,17 @@ class Modelo extends Component {
                 placeholder="Nombre"
               />
             </div>
-            <div className="pure-control-group">
-              <label htmlFor="state">Anexo</label>
+            </div>
+
+            <div style={{display:"flex", flexWrap:"nowrap", width:"70%", marginLeft: "15%", textAlign: "center", marginBottom: "10px"}}>
+            
+            <div className="pure-control-group" style = {{width: "33%", textAlign: "center"}}>
+              <label htmlFor="state" style={{textAlign: "center"}}>Anexo</label>
               <select
-                style={{ width: "45%", marginLeft: "14px" }}
+                
+
+                style={{width: "94%"}}
+
                 value={this.state.persona.NomAne}
                 id="state"
                 className="pure-input-1-2"
@@ -392,10 +412,13 @@ class Modelo extends Component {
                 <option>MATICHACRA</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label htmlFor="state">Estado Civil</label>
+            <div className="pure-control-group" style = {{width: "33%", textAlign: "center"}}>
+              <label htmlFor="state" style={{textAlign: "center"}}>Estado Civil</label>
               <select
-                style={{ width: "45%", marginLeft: "14px" }}
+                
+                style={{width: "94%"}}
+
+
                 id="state"
                 className="pure-input-1-2"
                 onChange={evt => {
@@ -409,10 +432,13 @@ class Modelo extends Component {
                 <option>Viudo(a)</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label htmlFor="state">Sexo</label>
+            <div className="pure-control-group" style = {{width: "33%", textAlign: "center"}}>
+              <label htmlFor="state" style={{textAlign: "center"}}>Sexo</label>
               <select
-                style={{ width: "45%", marginLeft: "14px" }}
+                
+                style={{width: "94%"}}
+
+
                 id="state"
                 className="pure-input-1-2"
                 onChange={evt => {
@@ -423,21 +449,28 @@ class Modelo extends Component {
                 <option>F</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>Fecha Nacimiento</label>
-              <input
+            </div>
+
+            <div style={{display:"flex", flexWrap:"nowrap", width:"80%", marginLeft: "10%", textAlign: "center"}}>
+            <div className="pure-control-group" style={{width: "25%", textAlign: "center"}}>
+              <label style={{width: "100%", marginRight: "0%", textAlign: "center"}}>Fecha Nacimiento</label>
+              <input style={{width: "94%"}}
                 value={this.state.persona.FecNac}
                 onChange={evt => {
                   this.cambiar(evt, "FecNac");
                 }}
                 type="text"
-                placeholder="01/01/2018"
+                placeholder={this.state.placeholder}
               />
             </div>
-            <div className="pure-control-group">
-              <label htmlFor="state">Ocupación</label>
-              <select
-                style={{ width: "45%", marginLeft: "14px" }}
+            <div className="pure-control-group" style={{width: "25%", textAlign: "center"}}>
+              <label style={{width: "100%", textAlign: "center"}} htmlFor="state">Ocupación</label>
+              <select style={{width: "94%", height: "40px"}}
+                
+
+
+
+
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "DesOcu");
@@ -456,9 +489,9 @@ class Modelo extends Component {
                 <option>Licenciado(a) </option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>Grado Instrucción</label>
-              <input
+            <div className="pure-control-group" style={{width: "25%", textAlign: "center"}}>
+              <label style={{width: "100%", textAlign: "center"}}>Grado Instrucción</label>
+              <input style={{width: "94%"}}
                 value={this.state.persona.GraIns}
                 onChange={evt => {
                   this.cambiar(evt, "GraIns");
@@ -467,10 +500,13 @@ class Modelo extends Component {
                 placeholder="Grado Instrucción"
               />
             </div>
-            <div className="pure-control-group">
-              <label htmlFor="state">Distrito</label>
-              <select
-                style={{ width: "45%", marginLeft: "14px" }}
+            <div className="pure-control-group" style={{width: "25%", textAlign: "center"}}>
+              <label style={{width: "100%", textAlign: "center"}} htmlFor="state">Distrito</label>
+              <select style={{width: "94%"}}
+                
+
+
+
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "NomDis");
@@ -486,10 +522,16 @@ class Modelo extends Component {
                 <option>Tarma</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label htmlFor="state">Provincia</label>
+            </div>
+
+            <div style={{display:"flex", flexWrap:"nowrap",width:"80%", marginLeft: "10%",textAlign: "center"}}>
+            <div className="pure-control-group" style={{width: "25%", textAlign: "center"}}>
+            
+              <label htmlFor="state" style={{textAlign: "center"}}>Provincia</label>
               <select
-                style={{ width: "45%", marginLeft: "14px" }}
+              
+
+              style={{width: "94%", height: "40px"}}
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "NomPro");
@@ -502,10 +544,12 @@ class Modelo extends Component {
                 <option>Junín</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label htmlFor="state">NomDep</label>
+            <div className="pure-control-group" style={{width: "25%", textAlign: "center"}}>
+              <label htmlFor="state" style={{textAlign: "center"}}>NomDep</label>
               <select
-                style={{ width: "45%", marginLeft: "14px" }}
+                
+                style={{width: "94%", height: "40px"}}
+
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "NomDep");
@@ -521,9 +565,9 @@ class Modelo extends Component {
                 <option>Loreto</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>Dirección</label>
-              <input
+            <div className="pure-control-group" style={{width: "25%", textAlign: "center"}}>
+              <label style={{textAlign: "center"}}>Dirección</label>
+              <input style={{width: "94%"}}
                 value={this.state.persona.DirUsu}
                 onChange={evt => {
                   this.cambiar(evt, "DirUsu");
@@ -532,9 +576,9 @@ class Modelo extends Component {
                 placeholder="Dirección"
               />
             </div>
-            <div className="pure-control-group">
-              <label>Fecha Ingreso</label>
-              <input
+            <div className="pure-control-group" style={{width: "25%", textAlign: "center"}}>
+              <label style={{textAlign: "center"}}>Fecha Ingreso</label>
+              <input style={{width: "94%"}}
                 value={this.state.persona.FecIng}
                 onChange={evt => {
                   this.cambiar(evt, "FecIng");
@@ -543,10 +587,15 @@ class Modelo extends Component {
                 placeholder="Fecha Ingreso"
               />
             </div>
-            <div className="pure-control-group">
-              <label htmlFor="state">tipo</label>
+            </div>
+
+            <div style={{display:"flex", flexWrap:"nowrap",width:"80%", marginLeft: "10%"}}>
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label htmlFor="state" style={{textAlign: "center"}}>tipo</label>
               <select
-                style={{ width: "45%", marginLeft: "14px" }}
+                style={{width: "94%", height: "40px"}}
+
+
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "tipo");
@@ -556,9 +605,9 @@ class Modelo extends Component {
                 <option>Nuevo</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>PadUsu</label>
-              <input
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label style={{textAlign: "center"}}>PadUsu</label>
+              <input style={{width: "94%"}}
                 value={this.state.persona.PadUsu}
                 onChange={evt => {
                   this.cambiar(evt, "PadUsu");
@@ -567,10 +616,14 @@ class Modelo extends Component {
                 placeholder="PadUsu"
               />
             </div>
-            <div className="pure-control-group">
-              <label htmlFor="state">Escogido</label>
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label htmlFor="state" style={{textAlign: "center"}}>Escogido</label>
               <select
-                style={{ width: "45%", marginLeft: "14px" }}
+              
+
+              style={{width: "94%"}}
+
+
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "AsaSes");
@@ -580,9 +633,9 @@ class Modelo extends Component {
                 <option>Sesión</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>Herederos</label>
-              <input
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label style={{textAlign: "center"}}>Herederos</label>
+              <input style={{width: "94%"}}
                 value={this.state.persona.NomHer}
                 onChange={evt => {
                   this.cambiar(evt, "NomHer");
@@ -591,21 +644,29 @@ class Modelo extends Component {
                 placeholder="Herederos"
               />
             </div>
-            <div className="pure-control-group">
-              <label>Fecha Reingreso</label>
-              <input
+            </div>
+
+
+
+            <div style={{display:"flex", flexWrap:"nowrap",width:"80%", marginLeft: "10%", marginBottom: "10px"}}>
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label style={{textAlign: "center"}}>Fecha Reingreso</label>
+              <input style={{width: "94%"}}
                 value={this.state.persona.FecRei}
                 onChange={evt => {
                   this.cambiar(evt, "FecRei");
                 }}
                 type="text"
-                placeholder="01/01/2018"
+                placeholder={this.state.placeholder}
               />
             </div>
-            <div className="pure-control-group">
-              <label htmlFor="state">Tipo Documento</label>
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label htmlFor="state" style={{textAlign: "center"}}>Tipo Documento</label>
               <select
-                style={{ width: "45%", marginLeft: "14px" }}
+                
+
+                style={{width: "94%", height: "40px"}}
+
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "DesDoc");
@@ -618,9 +679,9 @@ class Modelo extends Component {
                 <option>C. E.</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>Número de Documento</label>
-              <input required
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label style={{textAlign: "center"}}>Número de Doc</label>
+              <input required style={{width: "94%"}}
                 value={this.state.persona.NumDoc}
                 onChange={evt => {
                   this.cambiar(evt, "NumDoc");
@@ -629,10 +690,13 @@ class Modelo extends Component {
                 placeholder="Número de Documento"
               />
             </div>
-            <div className="pure-control-group">
-              <label htmlFor="state">¿Activo?</label>
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label htmlFor="state" style={{textAlign: "center"}}>¿Activo?</label>
               <select
-                style={{ width: "45%", marginLeft: "14px" }}
+                
+                style={{width: "94%"}}
+
+
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "Activo");
@@ -642,36 +706,45 @@ class Modelo extends Component {
                 <option>Si</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>¿Activo 04?</label>
+            </div>
+
+            <div style={{display:"flex", flexWrap:"nowrap",width:"80%", marginLeft: "10%"}}>
+            <div className="pure-control-group" style={{marginRight: "5%", marginLeft: "5%", width: "15%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>¿Activo 04?</label>
               <select
               value={this.state.persona.Activo04}
-                style={{ width: "45%", marginLeft: "14px" }}
+                  
+              style={{ width: "100%", textAlign: "center", height: "40px"}}
+
+
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "Activo04");
                 }}
               >
-                <option>No</option>
+                <option >No</option>
                 <option>Si</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>Fecha Reingreso 04</label>
-              <input
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>Fecha Reingreso 04</label>
+              <input disabled = {!(this.state.persona.Activo04==="Si")} style={{ width: "94%"}}
                 value={this.state.persona.FecRei04}
                 onChange={evt => {
                   this.cambiar(evt, "FecRei04");
                 }}
                 type="text"
-                placeholder="01/01/2018"
+                placeholder={this.state.placeholder}
               />
             </div>
-            <div className="pure-control-group">
-              <label>¿Activo 06?</label>
-              <select
+            <div className="pure-control-group" style={{marginRight: "5%", marginLeft: "5%", width: "15%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>¿Activo 06?</label>
+              <select 
               value={this.state.persona.Activo06}
-                style={{ width: "45%", marginLeft: "14px" }}
+                
+
+              style={{ width: "100%", textAlign: "center", height: "40px"}}
+
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "Activo06");
@@ -681,22 +754,25 @@ class Modelo extends Component {
                 <option>Si</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>Fecha Reingreso 06</label>
-              <input
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>Fecha Reingreso 06</label>
+              <input disabled = {!(this.state.persona.Activo06==="Si")} style={{ width: "94%"}}
                 value={this.state.persona.FecRei06}
                 onChange={evt => {
                   this.cambiar(evt, "FecRei06");
                 }}
                 type="text"
-                placeholder="01/01/2018"
+                placeholder={this.state.placeholder}
               />
             </div>
-            <div className="pure-control-group">
-              <label>¿Activo 08?</label>
-              <select
+            </div>
+            
+            <div style={{display:"flex", flexWrap:"nowrap",width:"80%", marginLeft: "10%"}}>
+            <div className="pure-control-group" style={{marginRight: "5%", marginLeft: "5%", width: "15%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>¿Activo 08?</label>
+              <select 
               value={this.state.persona.Activo08}
-                style={{ width: "45%", marginLeft: "14px" }}
+              style={{ width: "100%", textAlign: "center", height: "40px"}}
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "Activo08");
@@ -706,22 +782,22 @@ class Modelo extends Component {
                 <option>Si</option>
               </select>
             </div>
-            <div className="pure-control-group">
+            <div className="pure-control-group" style={{width: "25%"}}>
               <label>Fecha Reingreso 08</label>
-              <input
+              <input disabled = {!(this.state.persona.Activo08==="Si")} style={{ width: "94%"}}
                 value={this.state.persona.FecRei08}
                 onChange={evt => {
                   this.cambiar(evt, "FecRei08");
                 }}
                 type="text"
-                placeholder="01/01/2018"
+                placeholder={this.state.placeholder}
               />
             </div>
-            <div className="pure-control-group">
-              <label>¿Activo 10?</label>
+            <div className="pure-control-group"  style={{marginRight: "5%", marginLeft: "5%", width: "15%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>¿Activo 10?</label>
               <select
               value={this.state.persona.Activo10}
-                style={{ width: "45%", marginLeft: "14px" }}
+              style={{ width: "100%", textAlign: "center", height: "40px"}}
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "Activo10");
@@ -731,22 +807,25 @@ class Modelo extends Component {
                 <option>Si</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>Fecha Reingreso 10</label>
-              <input
+            <div className="pure-control-group"  style={{width: "25%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>Fecha Reingreso 10</label>
+              <input disabled = {!(this.state.persona.Activo10==="Si")} style={{ width: "94%"}}
                 value={this.state.persona.FecRei10}
                 onChange={evt => {
                   this.cambiar(evt, "FecRei10");
                 }}
                 type="text"
-                placeholder="01/01/2018"
+                placeholder={this.state.placeholder}
               />
             </div>
-            <div className="pure-control-group">
-              <label>¿Activo 12?</label>
+            </div>
+
+            <div style={{display:"flex", flexWrap:"nowrap",width:"80%", marginLeft: "10%"}}>
+            <div className="pure-control-group"  style={{marginRight: "5%", marginLeft: "5%", width: "15%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>¿Activo 12?</label>
               <select
               value={this.state.persona.Activo12}
-                style={{ width: "45%", marginLeft: "14px" }}
+              style={{ width: "100%", textAlign: "center", height: "40px"}}
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "Activo12");
@@ -756,22 +835,22 @@ class Modelo extends Component {
                 <option>Si</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>Fecha Reingreso 12</label>
-              <input
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>Fecha Reingreso 12</label>
+              <input disabled = {!(this.state.persona.Activo12==="Si")} style={{ width: "94%"}}
                 value={this.state.persona.FecRei12}
                 onChange={evt => {
                   this.cambiar(evt, "FecRei12");
                 }}
                 type="text"
-                placeholder="01/01/2018"
+                placeholder={this.state.placeholder}
               />
             </div>
-            <div className="pure-control-group">
-              <label>¿Activo 14?</label>
+            <div className="pure-control-group"  style={{marginRight: "5%", marginLeft: "5%", width: "15%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>¿Activo 14?</label>
               <select
               value={this.state.persona.Activo14}
-                style={{ width: "45%", marginLeft: "14px" }}
+              style={{ width: "100%", textAlign: "center", height: "40px"}}
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "Activo14");
@@ -781,22 +860,25 @@ class Modelo extends Component {
                 <option>Si</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>Fecha Reingreso 14</label>
-              <input
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>Fecha Reingreso 14</label>
+              <input disabled = {!(this.state.persona.Activo14==="Si")} style={{ width: "94%"}}
                 value={this.state.persona.FecRei14}
                 onChange={evt => {
                   this.cambiar(evt, "FecRei14");
                 }}
                 type="text"
-                placeholder="01/01/2018"
+                placeholder={this.state.placeholder}
               />
             </div>
-            <div className="pure-control-group">
-              <label>¿Activo 16?</label>
+            </div>
+
+            <div style={{display:"flex", flexWrap:"nowrap",width:"80%", marginLeft: "10%"}}>
+            <div className="pure-control-group"  style={{marginRight: "5%", marginLeft: "5%", width: "15%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>¿Activo 16?</label>
               <select
               value={this.state.persona.Activo16}
-                style={{ width: "45%", marginLeft: "14px" }}
+              style={{ width: "100%", textAlign: "center", height: "40px"}}
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "Activo16");
@@ -806,23 +888,23 @@ class Modelo extends Component {
                 <option>Si</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>Fecha Reingreso 16</label>
-              <input
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>Fecha Reingreso 16</label>
+              <input disabled = {!(this.state.persona.Activo16==="Si")} style={{ width: "94%"}}
                 value={this.state.persona.FecRei16}
                 onChange={evt => {
                   this.cambiar(evt, "FecRei16");
                 }}
                 type="text"
-                placeholder="01/01/2018"
+                placeholder={this.state.placeholder}
               />
             
             </div>
-            <div className="pure-control-group">
-              <label>¿Activo 18?</label>
+            <div className="pure-control-group"  style={{marginRight: "5%", marginLeft: "5%", width: "15%"}}>
+              <label style={{textAlign: "center", width: "100%"}}>¿Activo 18?</label>
               <select
               value={this.state.persona.Activo18}
-                style={{ width: "45%", marginLeft: "14px" }}
+              style={{ width: "100%", textAlign: "center", height: "40px"}}
                 className="pure-input-1-2"
                 onChange={evt => {
                   this.cambiar(evt, "Activo18");
@@ -832,21 +914,23 @@ class Modelo extends Component {
                 <option>Si</option>
               </select>
             </div>
-            <div className="pure-control-group">
-              <label>Fecha Reingreso 18</label>
-              <input
+
+            <div className="pure-control-group" style={{width: "25%"}}>
+              <label style={{textAlign: "center", width: "100%"}} >Fecha Reingreso 18</label>
+              <input disabled = {!(this.state.persona.Activo18==="Si")} style={{ width: "94%"}}
                 value={this.state.persona.FecRei18}
                 onChange={evt => {
                   this.cambiar(evt, "FecRei18");
                 }}
                 type="text"
-                placeholder="01/01/2018"
+                placeholder={this.state.placeholder}
               />
             </div>
-
-            <div className="pure-controls">
-              <label htmlFor="cb" className="pure-checkbox">
-                <input
+            
+            </div>
+            <div  style={{width:"100%", fontSize: "1.2em", marginTop: "20px"}}>
+              <label style={{textAlign: "center", width: "100%", marginLeft: "0px"}} htmlFor="cb" className="pure-checkbox">
+                <input 
                   checked={this.state.verificacion}
                   id="cb"
                   type="checkbox"
