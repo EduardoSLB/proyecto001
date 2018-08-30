@@ -586,7 +586,7 @@ function generarReporteObligacionesResumen(obligaciones, deudas, codigo) {
 }
 
 export function generarTerrenos(original, terrenos) {
-    let limite = 10
+    let limite = 20
     let aTerrenos = []
     for (let key in terrenos) {
         aTerrenos.push(terrenos[key])
@@ -673,12 +673,23 @@ export function generarTerrenos(original, terrenos) {
         let y = 0
         for (let m = p * limite; m < (p + 1) * limite && m < aTerrenos.length; m++) {
             //Generar Cuadrículas
-            doc.setFontSize(10)
-            doc.rect(18, 59 + y * 5, 262, 5)
-            //
+            let sep = 4
             
-        //
-            doc.rect(18, 59 + y * 5, 22, 5) //codigo
+            let altura = 60
+            if(m === p * limite){
+                sep = 5
+                altura = 59
+            }
+            else{
+                sep = 4
+                altura = 60
+            }
+            doc.setFontSize(9)
+            
+                doc.rect(18, altura + y * sep, 262, sep)
+            
+//////////////////////////////
+            doc.rect(18, altura + y * sep, 22, sep) //codigo
             let carne = aTerrenos[m]["CodTerr"] + ""
         if (carne.length < 5) {
             let n = carne.length
@@ -686,59 +697,59 @@ export function generarTerrenos(original, terrenos) {
                 carne = "0" + carne
             }
         }
-        doc.text(carne + "", 250, 17) 
-            doc.text(carne, 20, 63 + y * 5)
+        
+            doc.text(carne, 20, 63 + y * sep)
 
-            doc.rect(40, 59 + y * 5, 32, 5) //lugar
+            doc.rect(40, altura + y * sep, 32, sep) //lugar
             let lugar = aTerrenos[m]["NomAne"] + ""
             if (lugar.length > 12) {
                 lugar = lugar.substring(0, 12) + "."
             }
-            doc.text(lugar, 41, 63 + y * 5)
+            doc.text(lugar, 41, 63 + y * sep)
 
-            doc.rect(72, 59 + y * 5, 35, 5) //punto denominado
+            doc.rect(72, altura + y * sep, 35, sep) //punto denominado
             let punto = aTerrenos[m]["NomBar"] + ""
             if (punto.length > 13) {
                 punto = punto.substring(0, 13) + "."
             }
-            doc.text(punto, 73, 63 + y * 5)
+            doc.text(punto, 73, 63 + y * sep)
 
-            doc.rect(107, 59 + y * 5, 32, 5) //norte
+            doc.rect(107, altura + y * sep, 32, sep) //norte
             let norte = aTerrenos[m]["ColNor"] + ""
             if (norte.length > 12) {
                 norte = norte.substring(0, 12) + "."
             }
-            doc.text(norte, 108, 63 + y * 5)
+            doc.text(norte, 108, 63 + y * sep)
 
-            doc.rect(139, 59 + y * 5, 32, 5) //sur
+            doc.rect(139, altura + y * sep, 32, sep) //sur
             let sur = aTerrenos[m]["ColSur"] + ""
             if (sur.length > 12) {
                 sur = sur.substring(0, 12) + "."
             }
-            doc.text(sur, 140, 63 + y * 5)
+            doc.text(sur, 140, 63 + y * sep)
 
-            doc.rect(171, 59 + y * 5, 32, 5) //este
+            doc.rect(171, altura + y * sep, 32, sep) //este
             let este = aTerrenos[m]["ColEst"] + ""
             if (este.length > 12) {
                 este = este.substring(0, 12) + "."
             }
-            doc.text(este, 172, 63 + y * 5)
+            doc.text(este, 172, 63 + y * sep)
 
-            doc.rect(203, 59 + y * 5, 32, 5) //oeste
+            doc.rect(203, altura + y * sep, 32, sep) //oeste
             let oeste = aTerrenos[m]["ColOes"] + ""
             if (oeste.length > 12) {
                 oeste = oeste.substring(0, 12) + "."
             }
-            doc.text(oeste, 204, 63 + y * 5)
+            doc.text(oeste, 204, 63 + y * sep)
 
-            doc.rect(235, 59 + y * 5, 24, 5) //tongos
-            doc.text(aTerrenos[m]["ExtTer"] + "", 237, 63 + y * 5)
+            doc.rect(235, altura + y * sep, 24, sep) //tongos
+            doc.text(aTerrenos[m]["ExtTer"] + "", 237, 63 + y * sep)
 
             //M2
-            doc.text(aTerrenos[m]["M2"] + "", 261, 63 + y * 5)
+            doc.text(aTerrenos[m]["M2"] + "", 261, 63 + y * sep)
             y++
         }
-
+        doc.setFontSize(10)
 
         //Fecha de Impresión
         var today = new Date();
@@ -766,34 +777,35 @@ export function generarTerrenos(original, terrenos) {
             m2Total = m2Total + aTerrenos[u]["M2"] + 0
         }
 
-        let hectareas = m2Total * 0.0001
-        doc.text("Declaro poseer la siguiente cantidad de terrenos     " + totalTongos + " Tongos  igual a    " + m2Total + " M2 equivalente a " + hectareas + "Hás.", 18, 120)
+        let hectareas = m2Total/10000
+        doc.text("Declaro poseer la siguiente cantidad de terrenos     " + totalTongos + " Tongos  igual a    " + m2Total + " M2 equivalente a " + hectareas + " Hás.", 18, 140)
 
         //Fecha de Ratificación Actual y Anterior
-        doc.text("Fecha de Ratificación Actual (2012): " + original.FecRei12, 210, 120)
-        doc.text("Fecha de Ratificación Anterior (2010): " + original.FecRei10, 210, 130)
+        doc.text("Fecha de Ratificación Actual (2012): " + original.FecRei12, 210, 140)
+        doc.text("Fecha de Ratificación Anterior (2010): " + original.FecRei10, 210, 150)
 
         //Mensaje de Compromiso Primera Línea
-        doc.text("Así mismo me comprometo a no transferir ni arrendar, sin el Conocimiento y Autorización del Consejo de Administración", 40, 140)
+        doc.text("Así mismo me comprometo a no transferir ni arrendar, sin el Conocimiento y Autorización del Consejo de Administración", 60, 160)
         //Mensaje de Compromiso Segunda Línea
-        doc.text("En caso de incumplimiento perderé mis derechos de Comunero", 80, 150)
+        doc.text("En caso de incumplimiento perderé mis derechos de Comunero", 105, 170)
         //Firmas
 
         //Primera
         let apeee = original.ApeUsu.split(' ')
         let nomss = original.NomUsu.split(' ')
-        doc.rect(38, 180, 40, .1)
-        doc.text(apeee[0] + ", " + nomss[0], 38, 185)
-        doc.text("(Comunero)", 41, 188)
+        let r = 10
+        doc.rect(38, 180+r, 40, .1)
+        doc.text(apeee[0] + ", " + nomss[0], 38, 185+r)
+        doc.text("(Comunero)", 41, 188+r)
         //Segunda
-        doc.rect(120, 180, 63, .1)
-        doc.text("Presidente Consejo Administración", 120, 185)
+        doc.rect(120, 180+r, 63, .1)
+        doc.text("Presidente Consejo Administración", 120, 185+r)
         //Tercera
-        doc.rect(200, 180, 63, .1)
-        doc.text("Secretario Consejo Administración", 200, 185)
+        doc.rect(200, 180+r, 63, .1)
+        doc.text("Secretario Consejo Administración", 200, 185+r)
         //Número de página
         let pagina = p * 1 + 1
-        doc.text("N° Pág: " + pagina, 260, 193)
+        doc.text("N° Pág: " + pagina, 260+10, 193+r-5)
 
     }
 
