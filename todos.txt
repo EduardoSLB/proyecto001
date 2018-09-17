@@ -1,0 +1,33 @@
+Requerimientos
+1.- Acomodar el documento Cédula General para que se parezca un poco más al pedido. 
+		Listo
+
+2.- Detalles en el formulario de Terreno, y respecto a las conversiones de Tongos a Ha a m2.
+	Respuesta automática
+		Listo
+	Que el documento se vea mejor
+		Listo
+3.- Respecto a Imprimir si está activo o no. La haremos respecto a si está activo en el año 2018
+	Tres botones
+	Imprimir todos
+		Listo
+	Imprimir Activos 2018
+		Pendiente
+	Imprimir No Activos 2018
+		Pendiente
+
+4.- Cambiar la fecha de Ratificación Actual y Ratificación Anterior. 	
+	Buscar cada uno de los documentos, crear una función que sirva para hacer esa verificación siempre
+		Listo
+	Documentos Pendientes
+		Certificado
+		Carnet
+		Ganado
+		Terreno
+	Nada más
+
+5.- Tal vez reducir el tamaño que toman unos documentos. Pero no cuento con mucho tiempo ahora. 
+
+
+
+Pendientes: Imprimir Activos 2018, Imprimir No Activos 2018, Cambiar la fecha de Ratificación 4 documentos. 
