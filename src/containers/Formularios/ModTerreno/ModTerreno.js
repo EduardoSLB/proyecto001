@@ -88,17 +88,26 @@ class ModTerreno extends Component {
     let nuevo = {
       ...this.state.terreno
     };
-
+//[0-9]+(\.[0-9][0-9]?)?
     for (let key in nuevo) {
       if (key === identi) {
         if(identi.includes("Fec")||identi.includes("Can")||identi.includes("Cod")||identi.includes("Ext")||identi.includes("M2")||identi.includes("Costo")){
-          if(evt.target.value.match("^[/0-9]+$")||evt.target.value===""){
+          if((evt.target.value.match("^[/0-9]+$")||evt.target.value===""||evt.target.value.match("([/0-9]).([/0-9])+$")||evt.target.value.match(".[0-9]+$")||evt.target.value.match("[0-9].+$")||evt.target.value.match("."))&&!(evt.target.value.match("[a-z]")||evt.target.value.match("[A-Z]"))){
             nuevo[key] = evt.target.value;    
           }
         }else{
           nuevo[key] = evt.target.value;    
       }
       }
+
+    }
+    
+    if(identi === "ExtTer"){
+      nuevo["M2"] = this.round(nuevo[identi]*764)
+    }
+
+    if(identi === "M2"){
+      nuevo["ExtTer"]= this.round(nuevo[identi]/764 )
     }
 
     this.setState({ terreno: nuevo });
@@ -108,6 +117,21 @@ class ModTerreno extends Component {
       );
     }
   };
+
+   round = (num, decimales = 3) =>{
+    var signo = (num >= 0 ? 1 : -1);
+    num = num * signo;
+    if (decimales === 0) //con 0 decimales
+        return signo * Math.round(num);
+    // round(x * 10 ^ decimales)
+    num = num.toString().split('e');
+    num = Math.round(+(num[0] + 'e' + (num[1] ? (+num[1] + decimales) : decimales)));
+    // x * 10 ^ (-decimales)
+    num = num.toString().split('e');
+    return signo * (num[0] + 'e' + (num[1] ? (+num[1] - decimales) : -decimales));
+}
+
+
 
   submitHandler = event => {
     event.preventDefault();

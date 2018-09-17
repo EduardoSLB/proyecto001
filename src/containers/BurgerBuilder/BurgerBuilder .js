@@ -557,6 +557,7 @@ class BurgerBuilder extends Component {
         <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={this.bajarData}>Actualizar tabla</button>
         <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={this.logout}>Cerrar Sesión</button>
         </div>
+        <p style={{marginLeft: "2em"}}>* Nota: Recuerde actualizar la tabla para que los últimos cambios realizados tengan efecto.</p>
         </Aux>
     );
   }

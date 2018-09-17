@@ -48,8 +48,8 @@ class Modelo extends Component {
       FecRei14: "",
       Activo16: "No",
       FecRei16: "",
-      FecRei18: "",
       Activo18: "No",
+      FecRei18: ""
       
     },
     token: null,
@@ -139,7 +139,10 @@ class Modelo extends Component {
           )
           .then(response => {
             let hola = response.data;
-            hola.FecRei18 = ''
+            if(hola.FecRei18===""||hola.FecRei18===undefined||hola.FecRei18===null)
+            hola.FecRei18 = '';
+            if(hola.Activo18===""||hola.Activo18===undefined||hola.Activo18===null)
+            hola.Activo18 = 'No'
             this.setState({ persona: hola });
            
           });
@@ -920,6 +923,7 @@ class Modelo extends Component {
               <input disabled = {!(this.state.persona.Activo18==="Si")} style={{ width: "94%"}}
                 value={this.state.persona.FecRei18}
                 onChange={evt => {
+                  
                   this.cambiar(evt, "FecRei18");
                 }}
                 type="text"

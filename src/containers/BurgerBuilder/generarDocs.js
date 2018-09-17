@@ -106,12 +106,14 @@ export function generarDocumento(original) {
     if (mensaje.length > 31) {
         indice = 24
     }
+    doc.setFontSize(9)
     doc.text(mensaje, indice, 255)
     doc.text("Firma del Comunero", 44, 260)
 
     doc.setFontStyle("normal").setFontSize(12)
     doc.rect(92, 236, 28, 28)
-    doc.text("H.D", 102, 254)
+    doc.setFontSize(9)
+    doc.text("H.D", 103, 261)
 
     doc.setFontStyle("bold").setFontSize(10)
     doc.text("Fecha de Ratificación Actual: ", 128, 250)
@@ -585,7 +587,47 @@ function generarReporteObligacionesResumen(obligaciones, deudas, codigo) {
     return reporteDeudas
 }
 
+function generarFechas(original){
+    let fechas=["","","2004", ""];
+
+    let aniosDados = [original.FecRei04,original.FecRei06,original.FecRei08,original.FecRei10,original.FecRei12,original.FecRei14,original.FecRei16,original.FecRei18];
+    console.log(aniosDados)
+
+    let fechaActual = "";
+    let fechaAnterior = "";
+    let anio = 2004
+    let anioAnterior = "";
+    
+    for(let i = aniosDados.length-1; i>0; i--)
+    {
+        
+        if(aniosDados[i]!==null&&aniosDados[i]!==undefined&&aniosDados[i]!==""){
+            
+            
+            fechaActual=aniosDados[i]
+            anio = 2004 + i*2
+            
+            if(i!==0){
+                fechaAnterior = aniosDados[i-1]
+                anioAnterior = 2004 + (i-1)*2
+            }
+            break
+        }
+        
+    }
+    console.log(fechaActual)
+
+    fechas[0] = fechaActual
+    fechas[1] = fechaAnterior
+    fechas[2] = anio
+    fechas[3] = anioAnterior
+    console.log(fechas)
+    return fechas;
+
+}
+
 export function generarTerrenos(original, terrenos) {
+    generarFechas(original)
     let limite = 20
     let aTerrenos = []
     for (let key in terrenos) {
@@ -637,6 +679,7 @@ export function generarTerrenos(original, terrenos) {
 
         //Cabecera de la tabla
         doc.setFontSize(11)
+        doc.setTextColor("#005893")
         doc.rect(18, 47, 262, 12)
 
         doc.rect(18, 47, 22, 12)
@@ -668,7 +711,7 @@ export function generarTerrenos(original, terrenos) {
         doc.text("Tongos", 237, 57)
 
         doc.text("M2", 261, 57)
-
+        doc.setTextColor("#000000")
         //Bucle para los datos de la tabla
         let y = 0
         for (let m = p * limite; m < (p + 1) * limite && m < aTerrenos.length; m++) {
@@ -778,18 +821,19 @@ export function generarTerrenos(original, terrenos) {
         }
 
         let hectareas = m2Total/10000
-        doc.text("Declaro poseer la siguiente cantidad de terrenos     " + totalTongos + " Tongos  igual a    " + m2Total + " M2 equivalente a " + hectareas + " Hás.", 18, 140)
-
+        doc.setFontSize(12)
+        doc.text("Declaro poseer la siguiente cantidad de terrenos  " + totalTongos + " Tongos   igual a  " + m2Total + " M2 equivalente a  " + hectareas + " Hás.", 18, 140)
+        doc.setFontSize(10)
         //Fecha de Ratificación Actual y Anterior
-        doc.text("Fecha de Ratificación Actual (2012): " + original.FecRei12, 210, 140)
-        doc.text("Fecha de Ratificación Anterior (2010): " + original.FecRei10, 210, 150)
-
+        doc.text("Fecha de Ratificación Actual (2012): " + original.FecRei12, 215, 140)
+        doc.text("Fecha de Ratificación Anterior (2010): " + original.FecRei10, 215, 150)
+        doc.setFontSize(14)
         //Mensaje de Compromiso Primera Línea
-        doc.text("Así mismo me comprometo a no transferir ni arrendar, sin el Conocimiento y Autorización del Consejo de Administración", 60, 160)
+        doc.text("Así mismo me comprometo a no transferir ni arrendar, sin el Conocimiento y Autorización del Consejo de Administración", 22, 160)
         //Mensaje de Compromiso Segunda Línea
-        doc.text("En caso de incumplimiento perderé mis derechos de Comunero", 105, 170)
+        doc.text("En caso de incumplimiento perderé mis derechos de Comunero", 86, 170)
         //Firmas
-
+        doc.setFontSize(12)
         //Primera
         let apeee = original.ApeUsu.split(' ')
         let nomss = original.NomUsu.split(' ')
