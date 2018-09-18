@@ -1072,7 +1072,14 @@ export function generarGanado(original, ganado) {
 
 }
 
-export function generarAnexo(nombre) {
+export function generarAnexo(nombre, opcion) {
+
+    function esValido(fecha){
+        if(fecha!==null&&fecha!==undefined&&fecha!=="No")
+            return true
+        else
+            return false
+    }
 
     let limite = 30
     let comuneros = JSON.parse(localStorage.getItem("COMUNEROS"))
@@ -1080,8 +1087,14 @@ export function generarAnexo(nombre) {
     let seleccion = []
     for (let key in comuneros) {
         if (comuneros[key]["NomAne"] === nombre)
-            seleccion.push(comuneros[key])
-
+            {
+                if(opcion==="todos")
+                    seleccion.push(comuneros[key])
+                if(opcion==="activos" && esValido(comuneros[key]["Activo12"]))
+                    seleccion.push(comuneros[key])
+                if(opcion==="noActivos" && !esValido(comuneros[key]["Activo12"]))
+                    seleccion.push(comuneros[key])
+            }
     }
 
     var doc = new jsPDF({
@@ -1116,7 +1129,20 @@ export function generarAnexo(nombre) {
         //Anexo
         doc.setTextColor("#000000")
         doc.setFontSize(14)
-        doc.text("Anexo: " + nombre, 79, 45)
+        let r = 16
+        if(opcion==="todos"){
+        doc.text("Anexo: " + nombre, 40 + r, 45)
+        doc.text("Todos", 120+ r, 45)
+        }
+        if(opcion==="activos"){
+        doc.text("Anexo: " + nombre, 40+ r, 45)
+        doc.text("Activos 2018", 120+ r, 45)
+        }
+        if(opcion==="noActivos"){
+        doc.text("Anexo: " + nombre, 40+ r, 45)
+        doc.text("No Activos 2018", 120+ r, 45)
+        }
+
         doc.rect(10, 47, 194, .3)
 
         doc.setFontSize(10)

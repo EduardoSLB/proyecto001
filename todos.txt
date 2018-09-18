@@ -12,22 +12,28 @@ Requerimientos
 	Imprimir todos
 		Listo
 	Imprimir Activos 2018
-		Pendiente
-	Imprimir No Activos 2018
-		Pendiente
-
-4.- Cambiar la fecha de Ratificación Actual y Ratificación Anterior. 	
-	Buscar cada uno de los documentos, crear una función que sirva para hacer esa verificación siempre
 		Listo
-	Documentos Pendientes
+	Imprimir No Activos 2018
+		Listo
+4.- Cambiar la fecha de Ratificación Actual y Ratificación Anterior. 	
+	Crear una función que sirva para hacer esa verificación siempre. La de la fecha
+		Listo
+	//-----------------------------------------//
+	Documentos Pendientes alterar la Fecha de Ratificación
 		Certificado
 		Carnet
 		Ganado
 		Terreno
 	Nada más
+	//-----------------------------------------//
+	
+	//-----------------------------------------//
+5.- Crear documento carga familiar
+	Pendiente
+	//-----------------------------------------//
 
-5.- Tal vez reducir el tamaño que toman unos documentos. Pero no cuento con mucho tiempo ahora. 
-
+6.- Tal vez reducir el tamaño que toman unos documentos. Pero no cuento con mucho tiempo ahora. 
+	Listo hasta que me indiquen lo contrario.
 
 
 Pendientes: Imprimir Activos 2018, Imprimir No Activos 2018, Cambiar la fecha de Ratificación 4 documentos. 

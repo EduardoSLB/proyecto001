@@ -40,7 +40,7 @@ class PorAnexos extends Component {
     submitHandler = event => {
         event.preventDefault();
 
-        MyDocs.generarAnexo(this.state.Anexo)
+        //MyDocs.generarAnexo(this.state.Anexo)
     };
 
     switchAuthModeHandler = () => {
@@ -49,6 +49,11 @@ class PorAnexos extends Component {
 
     static contextTypes = {
         router: PropTypes.object
+    }
+
+    imprimirAnexo = (opcion) =>{
+        
+        MyDocs.generarAnexo(this.state.Anexo, opcion)
     }
 
     render() {
@@ -118,9 +123,20 @@ class PorAnexos extends Component {
               </select>
             </div>
   
-            <Button btnType="Success">Imprimir</Button>
+            <Button btnType="Success" clicked={()=>{this.imprimirAnexo("todos")}}
+            >
+            Imprimir todos
+            </Button>
+            <Button btnType="Success" clicked={()=>{this.imprimirAnexo("activos")}}
+            >
+            Imprimir activos - 2018
+            </Button>
+            <Button btnType="Success" clicked={()=>{this.imprimirAnexo("noActivos")}}
+            >
+            Imprimir no activos - 2018
+            </Button>
           </form>
-  
+            
           <Button clicked={this.switchAuthModeHandler} btnType="Normal">
             Atrás
           </Button>
