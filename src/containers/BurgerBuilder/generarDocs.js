@@ -1,5 +1,12 @@
 import * as jsPDF from 'jspdf';
 
+/*
+fechas[0] = fechaActual
+fechas[1] = fechaAnterior
+fechas[2] = anio
+fechas[3] = anioAnterior
+*/
+
 export function generarDocumento(original) {
     var doc = new jsPDF({
         unit: 'mm'
@@ -116,8 +123,14 @@ export function generarDocumento(original) {
     doc.text("H.D", 103, 261)
 
     doc.setFontStyle("bold").setFontSize(10)
-    doc.text("Fecha de Ratificación Actual: ", 128, 250)
-    doc.text("Fecha de Ratificación Anterior: ", 128, 258)
+    let fechas = generarFechas(original)
+    doc.text("Fecha de Ratificación Actual ("+fechas[2]+"): ", 128, 250)
+    doc.text("Fecha de Ratificación Anterior ("+fechas[3]+"): ", 128, 258)
+
+    /*
+            doc.text("Fecha de Ratificación Actual ("+fechas[2]+"): " + fechas[0] , 215, 145)
+        doc.text("Fecha de Ratificación Anterior ("+fechas[3]+"): " + fechas[1] , 215, 150)
+    */ 
 
     if (original.FecRei18 === undefined) {
         original.FecRei18 = ""
@@ -126,8 +139,8 @@ export function generarDocumento(original) {
         original.FecRei18 = ""
     }
     doc.setFontStyle("normal").setFontSize(10)
-    doc.text(original.FecRei12 + "", 180, 250)
-    doc.text(original.FecRei10 + "", 180, 258)
+    doc.text(fechas[0] + "", 186, 250)
+    doc.text(fechas[1] + "", 186, 258)
 
     doc.save(original.ApeUsu + " " + original.NomUsu + ' [Cédula].pdf')
 }
@@ -184,7 +197,8 @@ export function generarCarne(original) {
     doc.setFontSize(9)
     doc.text(apes[0] + "", 54, 60)
     doc.text(original.FecIng + "", 96, 60)
-    doc.text(original.FecRei16 + "", 96, 70)
+    let fechas = generarFechas(original)
+    doc.text(fechas[0] + "", 96, 70)
     doc.text("31/12/2018", 96, 80)
     if (apes[1])
         doc.text(apes[1] + "", 54, 65)
@@ -591,7 +605,6 @@ function generarFechas(original){
     let fechas=["","","2004", ""];
 
     let aniosDados = [original.FecRei04,original.FecRei06,original.FecRei08,original.FecRei10,original.FecRei12,original.FecRei14,original.FecRei16,original.FecRei18];
-    console.log(aniosDados)
 
     let fechaActual = "";
     let fechaAnterior = "";
@@ -615,19 +628,18 @@ function generarFechas(original){
         }
         
     }
-    console.log(fechaActual)
-
+    
     fechas[0] = fechaActual
     fechas[1] = fechaAnterior
     fechas[2] = anio
     fechas[3] = anioAnterior
-    console.log(fechas)
+    
     return fechas;
 
 }
 
 export function generarTerrenos(original, terrenos) {
-    generarFechas(original)
+    let fechas = generarFechas(original)
     let limite = 20
     let aTerrenos = []
     for (let key in terrenos) {
@@ -731,7 +743,7 @@ export function generarTerrenos(original, terrenos) {
             
                 doc.rect(18, altura + y * sep, 262, sep)
             
-//////////////////////////////
+
             doc.rect(18, altura + y * sep, 22, sep) //codigo
             let carne = aTerrenos[m]["CodTerr"] + ""
         if (carne.length < 5) {
@@ -810,14 +822,14 @@ export function generarTerrenos(original, terrenos) {
 
         today = mm + '/' + dd + '/' + yyyy;
 
-        doc.text("Fecha de Impresión: " + today, 240, 45)
+        doc.text("Fecha de Impresión: " + today, 232, 42)
 
         //Mensaje Declaro poseer Tongos M2 Equivalente a 
         let totalTongos = 0,
             m2Total = 0
         for (let u in aTerrenos) {
-            totalTongos = totalTongos + aTerrenos[u]["ExtTer"] + 0
-            m2Total = m2Total + aTerrenos[u]["M2"] + 0
+            totalTongos = totalTongos + (aTerrenos[u]["ExtTer"]*1)  
+            m2Total = m2Total + (aTerrenos[u]["M2"]*1)
         }
 
         let hectareas = m2Total/10000
@@ -825,8 +837,9 @@ export function generarTerrenos(original, terrenos) {
         doc.text("Declaro poseer la siguiente cantidad de terrenos  " + totalTongos + " Tongos   igual a  " + m2Total + " M2 equivalente a  " + hectareas + " Hás.", 18, 140)
         doc.setFontSize(10)
         //Fecha de Ratificación Actual y Anterior
-        doc.text("Fecha de Ratificación Actual (2012): " + original.FecRei12, 215, 140)
-        doc.text("Fecha de Ratificación Anterior (2010): " + original.FecRei10, 215, 150)
+
+        doc.text("Fecha de Ratificación Actual ("+fechas[2]+"): " + fechas[0] , 215, 145)
+        doc.text("Fecha de Ratificación Anterior ("+fechas[3]+"): " + fechas[1] , 215, 150)
         doc.setFontSize(14)
         //Mensaje de Compromiso Primera Línea
         doc.text("Así mismo me comprometo a no transferir ni arrendar, sin el Conocimiento y Autorización del Consejo de Administración", 22, 160)
@@ -1029,16 +1042,17 @@ export function generarGanado(original, ganado) {
 
         today = mm + '/' + dd + '/' + yyyy;
 
-        doc.text("Fecha de Impresión: " + today, 240, 45)
+        doc.text("Fecha de Impresión: " + today, 232, 42)
 
         //Fecha de Ratificación Actual y Anterior
-        doc.text("Fecha de Ratificación Actual (2012): " + original.FecRei12, 210, 120)
-        doc.text("Fecha de Ratificación Anterior (2010): " + original.FecRei10, 210, 130)
+        let fechas = generarFechas(original)
+        doc.text("Fecha de Ratificación Actual ("+ fechas[2]+"): " + fechas[0], 210, 120)
+        doc.text("Fecha de Ratificación Anterior ("+ fechas[3] +"): " + fechas[1], 210, 130)
 
         //Mensaje de Compromiso Primera Línea y Total Ganado
         let ganadoTotal = 0
         for (let llave in aGanado) {
-            ganadoTotal = ganadoTotal + aGanado[llave]["CanGan"]
+            ganadoTotal = ganadoTotal + aGanado[llave]["CanGan"]*1
         }
         doc.text("Cantidad total de ganado: " + ganadoTotal, 40, 140)
         doc.text("Declaro bajo juramento que los datos, consignados son verdaderos; los excedentes pasarán a ser patrimonio de la Comunidad", 40, 155)
