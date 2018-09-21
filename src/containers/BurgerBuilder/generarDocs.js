@@ -287,14 +287,15 @@ export function generarResumen(original, terrenos, ganado, obligaciones, deudas)
         Pages = Math.ceil(sterrenos / limite)
     }
 
-    if (Pages === 0) {
+    if (Pages === 0 ||Pages ===undefined) {
         Pages = 1
+        
     }
-
+    console.log(Pages)
     for (let p = 0; p < Pages; p++) {
         if (p !== 0)
             doc.addPage()
-
+        
         //Imagen chévere
         doc.setFontStyle("Roman")
         doc.rect(9, 6, 113, 12.5, 'S')
@@ -307,7 +308,7 @@ export function generarResumen(original, terrenos, ganado, obligaciones, deudas)
         doc.setFontSize(25)
         doc.setTextColor("#002966")
         doc.setFontStyle('bold')
-        doc.text('RESUMEN GENERAL', 110, 32)
+        doc.text('RESUMEN GENERAL', 108, 32)
         doc.rect(21, 33.5, 255, 1.5)
         //Código
         doc.setTextColor("#000000")
@@ -845,6 +846,208 @@ export function generarTerrenos(original, terrenos) {
         doc.text("Así mismo me comprometo a no transferir ni arrendar, sin el Conocimiento y Autorización del Consejo de Administración", 22, 160)
         //Mensaje de Compromiso Segunda Línea
         doc.text("En caso de incumplimiento perderé mis derechos de Comunero", 86, 170)
+        //Firmas
+        doc.setFontSize(12)
+        //Primera
+        let apeee = original.ApeUsu.split(' ')
+        let nomss = original.NomUsu.split(' ')
+        let r = 10
+        doc.rect(38, 180+r, 40, .1)
+        doc.text(apeee[0] + ", " + nomss[0], 38, 185+r)
+        doc.text("(Comunero)", 41, 188+r)
+        //Segunda
+        doc.rect(120, 180+r, 63, .1)
+        doc.text("Presidente Consejo Administración", 120, 185+r)
+        //Tercera
+        doc.rect(200, 180+r, 63, .1)
+        doc.text("Secretario Consejo Administración", 200, 185+r)
+        //Número de página
+        let pagina = p * 1 + 1
+        doc.text("N° Pág: " + pagina, 260+10, 193+r-5)
+
+    }
+
+    //Nombre del documento
+    let apeee = original.ApeUsu.split(' ')
+    let nomss = original.NomUsu.split(' ')
+    doc.save(apeee[0] + ", " + nomss[0] + " [Terrenos].pdf")
+
+}
+
+export function generarFamilias(original, familias) {
+    let o = 24;
+    let fechas = generarFechas(original)
+    let limite = 20
+    let aFamilias = []
+    for (let key in familias) {
+        aFamilias.push(familias[key])
+        
+    }
+
+    var doc = new jsPDF({
+        unit: 'mm',
+        orientation: 'landscape'
+    })
+
+    let Pages = Math.ceil(aFamilias.length / limite)
+    if (Pages === 0) {
+        Pages = 1
+    }
+    for (let p = 0; p < Pages; p++) {
+        if (p !== 0)
+            doc.addPage()
+
+        //Imagen chévere
+        doc.setFontStyle("Roman")
+        doc.rect(9, 6, 113, 12.5, 'S')
+        doc.setTextColor("#0e6600")
+        doc.setFontSize(18)
+        doc.text('COMUNIDAD CAMPESINA DE PALCA', 10, 12)
+        doc.setFontSize(10)
+        doc.text('Reconocido Oficialmente el 28 de Diciembre de 1933', 12, 16)
+        //Titulo
+        doc.setFontSize(25)
+        doc.setTextColor("#002966")
+        doc.setFontStyle('bold')
+        doc.text('CÉDULA DE RESUMEN FAMILIAR', 84, 32)
+        doc.rect(21, 33.5, 255, 1.5)
+        //Código
+        doc.setTextColor("#000000")
+        doc.setFontSize(14)
+        doc.text("CARNET N°", 246, 8)
+        doc.setFontSize(18)
+        let carne = original.CodUsu + ""
+        if (carne.length < 5) {
+            let n = carne.length
+            for (var i = n; 5 - i !== 0; i++) {
+                carne = "0" + carne
+            }
+        }
+        doc.text(carne + "", 250, 17)
+        doc.rect(240, 10, 37, 10)
+        //Cabecera de la tabla
+        doc.setFontSize(11)
+        doc.setTextColor("#005893")
+        
+        doc.rect(18+o, 47, 22, 12)
+        doc.text("Código", 20+o, 54)
+
+        doc.rect(40+o, 47, 44, 12)
+        doc.text("Apellidos", 42+o, 54)
+
+        doc.rect(84+o, 47, 41, 12)
+        doc.text("Nombres", 88+o, 54)
+
+        doc.rect(125+o, 47, 21, 12)
+        doc.text("Afiliación", 127+o, 54)
+
+        doc.rect(146+o, 47, 25, 12)
+        doc.text("Estado Civil", 147+o, 54)
+
+        doc.rect(171+o, 47, 32, 12)
+        doc.text("Fecha Nacimiento", 172+o, 54)
+
+        doc.rect(203+o, 47, 32, 12)
+        doc.text("Fecha Reingreso", 205+o, 54)
+        doc.setTextColor("#000000")
+        //Bucle para los datos de la tabla
+        let y = 0
+        for (let m = p * limite; m < (p + 1) * limite && m < aFamilias.length; m++) {
+            //Generar Cuadrículas
+            let sep = 4
+        
+            let altura = 60
+            if (m === p * limite) {
+                sep = 5
+                altura = 59
+            } else {
+                sep = 4
+                altura = 60
+            }
+            doc.setFontSize(9)
+        
+            doc.rect(18+o, altura + y * sep, 22, sep) //codigo
+            let carne = aFamilias[m]["CodPar"] + ""
+            if (carne.length < 5) {
+                let n = carne.length
+                for (var h = n; 5 - h !== 0; h++) {
+                    carne = "0" + carne
+                }
+            }
+        
+            doc.text(carne, 22+o, 63 + y * sep)
+        
+            doc.rect(40+o, altura + y * sep, 44, sep) //lugar
+            let lugar = aFamilias[m]["ApePar"] + ""
+            if (lugar.length > 17) {
+                lugar = lugar.substring(0, 17) + "."
+            }
+            doc.text(lugar, 42+o, 63 + y * sep)
+        
+            doc.rect(84+o, altura + y * sep, 41, sep) //punto denominado
+            let punto = aFamilias[m]["NomPar"] + ""
+            if (punto.length > 17) {
+                punto = punto.substring(0, 17) + "."
+            }
+            doc.text(punto, 86+o, 63 + y * sep)
+        
+            doc.rect(125+o, altura + y * sep, 21, sep) //norte
+            let norte = aFamilias[m]["DesPar"] + ""
+            if (norte.length > 12) {
+                norte = norte.substring(0, 12) + "."
+            }
+            doc.text(norte, 129+o, 63 + y * sep)
+        
+            doc.rect(146+o, altura + y * sep, 25, sep) //sur
+            let sur = aFamilias[m]["DesCiv"] + ""
+            if (sur.length > 12) {
+                sur = sur.substring(0, 12) + "."
+            }
+            doc.text(sur, 149+o, 63 + y * sep)
+        
+            doc.rect(171+o, altura + y * sep, 32, sep) //este
+            let este = aFamilias[m]["FecPar"] + ""
+            if (este.length > 12) {
+                este = este.substring(0, 12) + "."
+            }
+            doc.text(este, 178+o, 63 + y * sep)
+        
+            doc.rect(203+o, altura + y * sep, 32, sep) //oeste
+            let oeste = aFamilias[m]["FecRei"] + ""
+            if (oeste.length > 12) {
+                oeste = oeste.substring(0, 12) + "."
+            }
+            doc.text(oeste, 212+o, 63 + y * sep)
+        
+            y++
+        }
+        doc.setFontSize(10)
+
+        //Fecha de Impresión
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+
+        doc.text("Fecha de Impresión: " + today, 232, 42)
+
+        
+        //Fecha de Ratificación Actual y Anterior
+
+        doc.text("Fecha de Ratificación Actual ("+fechas[2]+"): " + fechas[0] , 120, 145)
+        doc.text("Fecha de Ratificación Anterior ("+fechas[3]+"): " + fechas[1] , 120, 150)
+        doc.setFontSize(14)
+        
         //Firmas
         doc.setFontSize(12)
         //Primera

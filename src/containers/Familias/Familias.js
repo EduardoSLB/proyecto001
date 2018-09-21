@@ -7,6 +7,7 @@ import Aux from '../../hoc/Auxiliar';
 import PropTypes from 'prop-types';
 import * as actionTypes from '../../store/actions';
 import { connect } from 'react-redux';
+import * as MyDocs from '../BurgerBuilder/generarDocs';
 
 class Familias extends Component {
 
@@ -88,6 +89,14 @@ class Familias extends Component {
             });
         
       };
+
+      imprimirFamilia = () =>{
+        let original = JSON.parse(localStorage.getItem("ORIGINAL"))
+      const rootRef2 = firebase.database().ref().child('familias').child(localStorage.getItem("IDCOMUNERO"));
+          rootRef2.on('value', snap=>{
+                  MyDocs.generarFamilias(original, snap.val())
+            });
+      }
 
       modificarUsuario = (id) =>{
         const queryParams = [];
@@ -226,6 +235,7 @@ class Familias extends Component {
             {nohayregistros}
             <div style={{textAlign: "center"}}>
             <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarItem("nuevo")}}>Registar familiar</button>
+            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.imprimirFamilia()}}>Imprimir Resumen Familiar</button>
             <button
              style={{padding: "16px", fontSize: "16px", margin: " 10px"}} 
             onClick={this.context.router.history.goBack}>
