@@ -641,7 +641,7 @@ function generarFechas(original){
 
 export function generarTerrenos(original, terrenos) {
     let fechas = generarFechas(original)
-    let limite = 20
+    let limite = 18
     let aTerrenos = []
     for (let key in terrenos) {
         aTerrenos.push(terrenos[key])
@@ -1081,6 +1081,59 @@ export function generarGanado(original, ganado) {
     let aGanado = []
     for (let key in ganado) {
         aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
+        aGanado.push(ganado[key])
     }
 
     var doc = new jsPDF({
@@ -1257,7 +1310,8 @@ export function generarGanado(original, ganado) {
         for (let llave in aGanado) {
             ganadoTotal = ganadoTotal + aGanado[llave]["CanGan"]*1
         }
-        doc.text("Cantidad total de ganado: " + ganadoTotal, 40, 140)
+        doc.setFontSize(12)
+        doc.text("Cantidad total de ganado: " + ganadoTotal, 128, 140)
         doc.text("Declaro bajo juramento que los datos, consignados son verdaderos; los excedentes pasarán a ser patrimonio de la Comunidad", 40, 155)
         //Mensaje de Compromiso Segunda Línea
 

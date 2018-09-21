@@ -11,7 +11,7 @@ const toolbar = (props)=>(
         <div className={classes.Logo}>
             <Logo/>
         </div>
-        <h1 style={{color: "white", fontSize:"24px"}}>Comunidad Campesina de Palca</h1>
+        <h1 style={{color: "white", fontSize:"2em"}}>Comunidad Campesina de Palca</h1>
         <nav className={classes.DesktopOnly}>
             <NavigationItems/> 
         </nav>
