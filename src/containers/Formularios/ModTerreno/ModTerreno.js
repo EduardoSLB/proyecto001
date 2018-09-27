@@ -153,7 +153,6 @@ class ModTerreno extends Component {
             this.context.router.history.goBack();
           });
           
-
         } else if (this.state.tipo === "modificar") {
           const query = new URLSearchParams(this.props.location.search);
 

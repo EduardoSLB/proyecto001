@@ -122,7 +122,15 @@ class Obligaciones extends Component {
     }
 
     subirDB = () => {
-      console.log(Comunero)
+      const rootReff = firebase.database().ref();
+      let i = 0;
+      let obje;
+      for(; i<5; i++)
+      {
+        let obje = Comunero[i]
+        rootReff.child("comuneros-pruebas").push().set(obje).then(()=>{
+        console.log(obje)
+      });}
     }
 
     componentDidMount() {
@@ -156,40 +164,7 @@ class Obligaciones extends Component {
             this.setState({datodos: datosObligaciones,variable: !this.state.variable})
             
         });
-        /*
-        let token = localStorage.getItem('token');
-            if(token){
-                const query = new URLSearchParams(this.props.location.search);
-                    let id = null;
-                    for (let param of query.entries()) {
-                        if (param[0] === "id") {
-                            id = param[1];
-                            this.setState({
-                                idItem: id
-                            });
-                        }
-                    }
-                    const DataSacada = []
-                    const rootRef = firebase.database().ref().child('familias').child(id);
-                    rootRef.on('value', snap=>{
-                        var items = snap.val();
-                        for(let key in items){
-                            let item={
-                            ...items[key],
-                            id: key
-                            }
-                            DataSacada.push(item)
-                        }
-                        if(DataSacada.length===0){
-                            this.setState({vacio: true})
-                        }
-                        this.setState({datodos: DataSacada, variable: !this.state.variable, loading: false})
-                    });}
-
-            else{
-            
-                this.props.history.push('/');
-            }*/
+        
     }
 
     render() {
