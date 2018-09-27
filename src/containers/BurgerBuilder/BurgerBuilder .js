@@ -46,6 +46,8 @@ class BurgerBuilder extends Component {
     idToken: null
   }
 
+
+
   bajarData = () => {
     localStorage.removeItem("COMUNEROS")
     localStorage.removeItem("PROHIBIDOS")

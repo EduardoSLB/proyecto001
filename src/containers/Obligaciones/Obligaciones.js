@@ -7,7 +7,7 @@ import Aux from '../../hoc/Auxiliar';
 import PropTypes from 'prop-types';
 import * as actionTypes from '../../store/actions';
 import { connect } from 'react-redux';
-
+import Comunero from './Json/comunero.json'
 
 class Obligaciones extends Component {
 
@@ -119,6 +119,10 @@ class Obligaciones extends Component {
         pathname: '/modobligacion', 
         search: '?' + queryString
       });
+    }
+
+    subirDB = () => {
+      console.log(Comunero)
     }
 
     componentDidMount() {
@@ -252,6 +256,7 @@ class Obligaciones extends Component {
             {nohayregistros}
             <div style={{textAlign: "center"}}>
             <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarItem("nuevo")}}>Crear Nueva Obligación</button>
+            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.subirDB()}}>SubirDB</button>
             
             
             <button
