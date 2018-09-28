@@ -7,7 +7,7 @@ import Aux from '../../hoc/Auxiliar';
 import PropTypes from 'prop-types';
 import * as actionTypes from '../../store/actions';
 import { connect } from 'react-redux';
-import Comunero from './Json/comunero.json'
+//import Ganado from './Json/ganado.json'
 
 class Obligaciones extends Component {
 
@@ -121,18 +121,53 @@ class Obligaciones extends Component {
       });
     }
 
-    subirDB = () => {
+    /*agregarUno = (ganado, id) =>{
       const rootReff = firebase.database().ref();
-      let i = 0;
-      let obje;
-      for(; i<5; i++)
-      {
-        let obje = Comunero[i]
-        rootReff.child("comuneros-pruebas").push().set(obje).then(()=>{
-        console.log(obje)
-      });}
+      console.log(ganado)
+      rootReff.child("comuneros").orderByChild("CodUsu").equalTo(id).on('value', snap=>{
+ 
+        for(let key in snap.val()){
+          for(let r = 0; r<ganado.length; r++)
+          rootReff.child("ganado").child(key).push().set(ganado[r])
+        }
+       
+      })
     }
 
+    subirDB = () => {
+      /*const rootReff = firebase.database().ref();
+      rootReff.child("terrenos").remove();
+      
+      let i = 0;
+      let ganadoR = [];
+      let id = Ganado[0].Carnet
+      for(; i<Ganado.length; i++)
+      {   
+          if(Ganado[i].Carnet===id){
+            ganadoR.push(Ganado[i])
+            if(i===Ganado.length-1){
+              this.agregarUno(ganadoR, Ganado[i].Carnet)
+              //console.log("i2: "+i, Ganado.length)
+            }
+
+          }else{
+            if(i===Ganado.length-1&&Ganado){
+              let ganadoRR = []
+              ganadoRR.push(Ganado[i])
+              this.agregarUno(ganadoRR, Ganado[i].Carnet)
+              //console.log("i: "+i, Ganado.length)
+            }
+            this.agregarUno(ganadoR, id)
+            id=Ganado[i].Carnet  
+            ganadoR=[]
+            ganadoR.push(Ganado[i])
+            
+          }
+
+        }
+     
+    }
+*/
     componentDidMount() {
         
         /*
@@ -231,7 +266,6 @@ class Obligaciones extends Component {
             {nohayregistros}
             <div style={{textAlign: "center"}}>
             <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.registrarItem("nuevo")}}>Crear Nueva Obligación</button>
-            <button style={{padding: "16px", fontSize: "16px", margin: " 10px"}} onClick={()=>{this.subirDB()}}>SubirDB</button>
             
             
             <button

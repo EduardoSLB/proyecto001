@@ -19,6 +19,7 @@ class ModFamilia extends Component {
       DesCiv: "Soltero(a)",
       FecPar: "",
       FecRei: "",
+      Carnet: ""
     },
     token: null,
     verificacion: false,
@@ -32,10 +33,11 @@ class ModFamilia extends Component {
     this.setState({ token: token });
     let expirationDate = new Date(localStorage.getItem("expirationDate"));
 
-    let numeroFinal = localStorage.getItem("NUMEROFAMILIA")*1 
+    let numeroFinal = localStorage.getItem("NUMEROFAMILIA")
     let object = {
       ...this.state.familiar,
-      CodPar: numeroFinal
+      CodPar: numeroFinal,
+      Carnet: numeroFinal.slice(0,-2)
     }
     this.setState({familiar: object})
     if (!(token && expirationDate > new Date())) {

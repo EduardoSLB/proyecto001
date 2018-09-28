@@ -51,7 +51,9 @@ class BurgerBuilder extends Component {
   bajarData = () => {
     localStorage.removeItem("COMUNEROS")
     localStorage.removeItem("PROHIBIDOS")
+    localStorage.removeItem("NOMBRESCOMUNEROS")
     const datosComuneros = [];
+    const nombresComuneros = []
     axios.get('https://comunidad-palca.firebaseio.com/comuneros.json?auth=' + this.state.idToken).then((res) => {
       if (res) {
 
@@ -61,13 +63,16 @@ class BurgerBuilder extends Component {
             id: key
           }
           datosComuneros.push(objeto);
-
+          nombresComuneros[objeto["CodUsu"]]=objeto;
         }
+        
         this.setState({
           datodos: datosComuneros,
           variable: !this.state.variable,
           loading: false
         });
+        
+        localStorage.setItem("NOMBRESCOMUNEROS", JSON.stringify(nombresComuneros))
         localStorage.setItem("COMUNEROS", JSON.stringify(datosComuneros))
         let numeroFinal = datosComuneros[datosComuneros.length-1]["CodUsu"] * 1 + 1
         localStorage.setItem("NUMEROFINAL", numeroFinal)

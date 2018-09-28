@@ -102,7 +102,7 @@ class AdmiObliga extends Component {
 
 
   componentDidMount() {
-    let nombres = JSON.parse(localStorage.getItem("COMUNEROS"))
+    let nombres = JSON.parse(localStorage.getItem("NOMBRESCOMUNEROS"))
     
     const rootRef2 = firebase.database().ref().child('deudores').child(localStorage.getItem("idObliga"));
     rootRef2.on('value', snap => {
@@ -113,7 +113,7 @@ class AdmiObliga extends Component {
         if (nombres[key] !== undefined) {
           let object = {
             codigo: key,
-            nombre: nombres[key].NomUsu + nombres[key].ApeUsu
+            nombre: nombres[key].NomUsu+" " + nombres[key].ApeUsu
           }
           if(snap.val()[key]==="1")
           deudoresListos.push(object)

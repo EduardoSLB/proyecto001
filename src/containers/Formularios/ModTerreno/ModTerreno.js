@@ -24,7 +24,8 @@ class ModTerreno extends Component {
       Sector:"",
       Observa: "",
       FecRei:"",
-      CostoT: ""
+      CostoT: "",
+      Carnet: ""
     },
     token: null,
     verificacion: false,
@@ -42,7 +43,8 @@ class ModTerreno extends Component {
     let numeroFinal = localStorage.getItem("NUMEROTERRENO")
     let object = {
       ...this.state.terreno,
-      CodTerr: numeroFinal
+      CodTerr: numeroFinal,
+      Carnet: numeroFinal.slice(0,-2)
     }
     this.setState({terreno: object})
 

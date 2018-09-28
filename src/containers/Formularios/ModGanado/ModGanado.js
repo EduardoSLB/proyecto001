@@ -14,7 +14,7 @@ class ModGanado extends Component {
     tipo: null,
     ganado: {
       CodGan: "",
-      Carnet: "10",
+      Carnet: "",
       DesGan: "Ovino",
       SexoGa: "M",
       EdadGa: "",
@@ -39,7 +39,8 @@ class ModGanado extends Component {
     let numeroFinal = localStorage.getItem("NUMEROGANADO")
     let object = {
       ...this.state.ganado,
-      CodGan: numeroFinal
+      CodGan: numeroFinal, 
+      Carnet: numeroFinal.slice(0,-2)
     }
     this.setState({ganado: object})
    
@@ -56,6 +57,7 @@ class ModGanado extends Component {
       }
 
       if (varHayTipo === "nuevo") {
+        
         this.setState({ tipo: varHayTipo, mostrarEliminar: false });
       } else if (varHayTipo === "modificar" && localStorage.getItem('IDITEM')) {
         let id_comunero = localStorage.getItem('IDCOMUNERO');
