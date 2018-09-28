@@ -101,7 +101,8 @@ class BurgerBuilder extends Component {
       if(dataGuardada===null)
       dataGuardada = []
       let nombres = JSON.parse(localStorage.getItem("NOMBRESCOMUNEROS"))
-      if(nombres.length===0){
+      if(nombres!==null){
+          if(nombres.length!==0)
         this.bajarData()
       }
 
