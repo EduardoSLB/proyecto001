@@ -137,10 +137,10 @@ class ModObligacion extends Component {
 
             axios.get('https://comunidad-palca.firebaseio.com/comuneros.json?auth=' + localStorage.getItem('token')).then((res) => {
                   if (res) {
-                    console.log(res.data)
+                    
                     for (let key in res.data) {
                       let superId = res.data[key].CodUsu;
-                      console.log(key)
+                    
                       datosComuneros[superId] = "1";
                     }
 
@@ -152,7 +152,7 @@ class ModObligacion extends Component {
                     const rootRef2 = firebase.database().ref().child('deudores').child(this.state.obligacion.CodObl)
 
                     rootRef2.set(datosComuneros).then(() => {
-                      console.log(datosComuneros)
+                      
                       alert("Obligación Registrada Exitosamente")
                       this.context.router.history.goBack();
                     })

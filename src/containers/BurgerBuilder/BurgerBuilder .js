@@ -74,6 +74,7 @@ class BurgerBuilder extends Component {
         
         localStorage.setItem("NOMBRESCOMUNEROS", JSON.stringify(nombresComuneros))
         localStorage.setItem("COMUNEROS", JSON.stringify(datosComuneros))
+
         let numeroFinal = datosComuneros[datosComuneros.length-1]["CodUsu"] * 1 + 1
         localStorage.setItem("NUMEROFINAL", numeroFinal)
         this.props.guardarComuneros(datosComuneros);
@@ -99,6 +100,10 @@ class BurgerBuilder extends Component {
 
       if(dataGuardada===null)
       dataGuardada = []
+      let nombres = JSON.parse(localStorage.getItem("NOMBRESCOMUNEROS"))
+      if(nombres.length===0){
+        this.bajarData()
+      }
 
       if (this.props.totalComuneros.length === 0 && dataGuardada.length === 0) {
         this.bajarData()
