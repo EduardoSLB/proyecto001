@@ -1361,9 +1361,9 @@ export function generarAnexo(nombre, opcion) {
             {
                 if(opcion==="todos")
                     seleccion.push(comuneros[key])
-                if(opcion==="activos" && esValido(comuneros[key]["Activo12"]))
+                if(opcion==="activos" && esValido(comuneros[key]["Activo18"]))
                     seleccion.push(comuneros[key])
-                if(opcion==="noActivos" && !esValido(comuneros[key]["Activo12"]))
+                if(opcion==="noActivos" && !esValido(comuneros[key]["Activo18"]))
                     seleccion.push(comuneros[key])
             }
     }
